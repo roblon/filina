@@ -401,3 +401,182 @@
 .btn-riprova:hover {
   background: #e0e0e0;
 }
+
+/* MENU PRINCIPALE */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.menu-logo {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.menu-header h1 {
+  font-size: 56px;
+  margin: 0 0 4px;
+  color: #2d3436;
+}
+
+.menu-subtitle {
+  font-size: 22px;
+  color: #636e72;
+  margin: 0;
+}
+
+.menu-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 24px;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.menu-card:hover {
+  border-color: var(--tema-color, #aaa);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.menu-card:active {
+  transform: scale(0.97);
+}
+
+.menu-card-icona {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.menu-card-nome {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2d3436;
+}
+
+.menu-card-desc {
+  font-size: 14px;
+  color: #636e72;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ARTICOLI GAME */
+.tipo-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tipo-badge.determinativo {
+  background: #e3f0ff;
+  color: #1976d2;
+}
+
+.tipo-badge.indeterminativo {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.articolo-parola-emoji {
+  display: block;
+  font-size: 72px;
+  line-height: 1.2;
+}
+
+.articolo-parola-testo {
+  display: block;
+  font-size: 36px;
+  font-weight: 800;
+  color: #2d3436;
+  margin-top: 4px;
+}
+
+.opzioni-grid.articoli {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 320px;
+}
+
+.articolo-btn {
+  padding: 20px;
+}
+
+.opzione-articolo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+}
+
+/* PLACEHOLDER */
+.placeholder-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.placeholder-card {
+  text-align: center;
+  padding: 48px 40px;
+  border-radius: 32px;
+  background: white;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+.placeholder-icona {
+  font-size: 72px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.placeholder-card h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+  color: #2d3436;
+}
+
+.placeholder-card p {
+  font-size: 16px;
+  color: #636e72;
+  line-height: 1.5;
+  margin: 0 0 32px;
+}
+
+.menu-btn {
+  align-self: flex-start;
+  margin-bottom: 8px;
+}

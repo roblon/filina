@@ -1,12 +1,16 @@
-import categorie from '../data/vocabolario'
+import categorieDefault from '../data/vocabolario'
 
-function Home({ onStart }) {
+function Home({ onStart, onBackToMenu, categorie: categorieProp, icona, titolo, sottotitolo }) {
+  const categorie = categorieProp || categorieDefault
   return (
     <div className="home">
       <div className="home-header">
-        <span className="home-icon">🎮</span>
-        <h1>Filina - Impara L'Italiano</h1>
-        <p>Scegli un argomento per iniziare a giocare</p>
+        <button className="btn-back menu-btn" onClick={onBackToMenu}>
+          ← Menu
+        </button>
+        <span className="home-icon">{icona || '🎮'}</span>
+        <h1>{titolo || 'Filina - Impara L\'Italiano'}</h1>
+        <p>{sottotitolo || 'Scegli un argomento per iniziare a giocare'}</p>
       </div>
       <div className="categorie-grid">
         {categorie.map((cat) => (
