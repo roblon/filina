@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: #f8f9fa;
+  color: #2d3436;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border: none;
+  display: block;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+}
+
+p {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
