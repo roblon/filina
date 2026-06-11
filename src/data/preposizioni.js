@@ -1,0 +1,30 @@
+const esercizioPreposizioni = {
+  id: 'preposizioni',
+  nome: 'Preposizioni Articolate',
+  icona: '🔗',
+  colore: '#FF8C42',
+  esercizi: [
+    { frase: 'Il pinguino cammina ___ ghiaccio.', emoji: '🐧', parola: 'ghiaccio', articolo: 'il', preposizione: 'su' },
+    { frase: 'Marco gioca ___ parco con gli amici.', emoji: '🌳', parola: 'parco', articolo: 'il', preposizione: 'a' },
+    { frase: 'Il libro è ___ zaino.', emoji: '🎒', parola: 'zaino', articolo: 'lo', preposizione: 'in' },
+    { frase: 'Il gatto dorme ___ divano.', emoji: '🐱', parola: 'divano', articolo: 'il', preposizione: 'su' },
+    { frase: 'Il pesce nuota ___ mare.', emoji: '🐟', parola: 'mare', articolo: 'il', preposizione: 'in' },
+    { frase: 'Questa è la casa ___ nonno.', emoji: '🏠', parola: 'nonno', articolo: 'il', preposizione: 'di' },
+    { frase: 'Oggi vado ___ nonna.', emoji: '👵', parola: 'nonna', articolo: 'la', preposizione: 'da' },
+    { frase: 'L\'uccello canta ___ albero.', emoji: '🐦', parola: 'albero', articolo: "l'", preposizione: 'su' },
+    { frase: 'Il sole splende ___ cielo.', emoji: '☀️', parola: 'cielo', articolo: 'il', preposizione: 'in' },
+    { frase: 'La candela è ___ torta.', emoji: '🎂', parola: 'torta', articolo: 'la', preposizione: 'su' },
+    { frase: 'I bambini vanno ___ zoo.', emoji: '🦁', parola: 'zoo', articolo: 'lo', preposizione: 'a' },
+    { frase: 'L\'orso vive ___ foresta.', emoji: '🐻', parola: 'foresta', articolo: 'la', preposizione: 'in' },
+    { frase: 'La farfalla si posa ___ fiore.', emoji: '🦋', parola: 'fiore', articolo: 'il', preposizione: 'su' },
+    { frase: 'Il treno parte ___ stazione.', emoji: '🚂', parola: 'stazione', articolo: 'la', preposizione: 'da' },
+    { frase: 'Il latte è ___ frigo.', emoji: '🥛', parola: 'frigo', articolo: 'il', preposizione: 'in' },
+    { frase: 'La mela cade ___ albero.', emoji: '🍎', parola: 'albero', articolo: "l'", preposizione: 'da' },
+    { frase: 'La ruota ___ bicicletta è rotta.', emoji: '🚲', parola: 'bicicletta', articolo: 'la', preposizione: 'di' },
+    { frase: 'L\'ombra ___ amico è lunga.', emoji: '🤝', parola: 'amico', articolo: "l'", preposizione: 'di' },
+    { frase: 'L\'elefante vive ___ savana.', emoji: '🐘', parola: 'savana', articolo: 'la', preposizione: 'in' },
+    { frase: 'La copertina ___ libro è rossa.', emoji: '📚', parola: 'libro', articolo: 'il', preposizione: 'di' },
+  ],
+}
+
+export default esercizioPreposizioni

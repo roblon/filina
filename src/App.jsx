@@ -3,6 +3,7 @@ import ThemeMenu from './components/ThemeMenu'
 import Home from './components/Home'
 import Game from './components/Game'
 import ArticoliGame from './components/ArticoliGame'
+import PreposizioniGame from './components/PreposizioniGame'
 import Placeholder from './components/Placeholder'
 import './App.css'
 
@@ -13,6 +14,13 @@ const categorieEsercizi = [
     icona: '📝',
     colore: '#4ECDC4',
     descrizione: 'Impara gli articoli determinativi e indeterminativi',
+  },
+  {
+    id: 'preposizioni',
+    nome: 'Preposizioni Articolate',
+    icona: '🔗',
+    colore: '#FF8C42',
+    descrizione: 'Impara le preposizioni articolate (al, del, nel, dal, sul…)',
   },
 ]
 
@@ -41,6 +49,9 @@ function App() {
     if (categoria) {
       if (categoria.id === 'articoli') {
         return <ArticoliGame key="articoli" onBack={() => setCategoria(null)} />
+      }
+      if (categoria.id === 'preposizioni') {
+        return <PreposizioniGame key="preposizioni" onBack={() => setCategoria(null)} />
       }
     }
     return (

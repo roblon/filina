@@ -507,6 +507,35 @@
   color: #c62828;
 }
 
+.tipo-badge.preposizione {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+/* PREPOSIZIONI GAME — frase con blank */
+.frase-esercizio {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d3436;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 520px;
+  padding: 16px;
+}
+
+.frase-esercizio .blank {
+  display: inline-block;
+  min-width: 50px;
+  border-bottom: 3px dashed #FF8C42;
+  color: #FF8C42;
+  font-weight: 800;
+}
+
+.frase-esercizio .blank.filled {
+  border-bottom-style: solid;
+  color: #e65100;
+}
+
 .articolo-parola-emoji {
   display: block;
   font-size: 72px;
