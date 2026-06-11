@@ -486,6 +486,57 @@
   line-height: 1.4;
 }
 
+/* ARTICOLI GAME */
+.tipo-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tipo-badge.determinativo {
+  background: #e3f0ff;
+  color: #1976d2;
+}
+
+.tipo-badge.indeterminativo {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.articolo-parola-emoji {
+  display: block;
+  font-size: 72px;
+  line-height: 1.2;
+}
+
+.articolo-parola-testo {
+  display: block;
+  font-size: 36px;
+  font-weight: 800;
+  color: #2d3436;
+  margin-top: 4px;
+}
+
+.opzioni-grid.articoli {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 320px;
+}
+
+.articolo-btn {
+  padding: 20px;
+}
+
+.opzione-articolo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+}
+
 /* PLACEHOLDER */
 .placeholder-screen {
   display: flex;

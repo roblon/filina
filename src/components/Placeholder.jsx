@@ -1,5 +1,4 @@
 const info = {
-  esercizi: { icona: '✍️', titolo: 'Esercizi', testo: 'Presto disponibile! Nuovi esercizi di grammatica e vocabolario in arrivo.' },
   storie: { icona: '📖', titolo: 'Storie', testo: 'Presto disponibile! Brevi storie in italiano per migliorare la lettura e la comprensione.' },
 }
 
