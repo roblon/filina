@@ -122,9 +122,10 @@ const categorie = [
       { parola: 'nonno', articolo: 'il', emoji: '👴' },
       { parola: 'nonna', articolo: 'la', emoji: '👵' },
       { parola: 'bambino', articolo: 'il', emoji: '👶' },
-      { parola: 'zia', articolo: 'la', emoji: '👩‍🦰' },
-      { parola: 'zio', articolo: 'lo', emoji: '👨‍🦱' },
-      { parola: 'cugino', articolo: 'il', emoji: '🧑' },
+      { parola: 'zia', articolo: 'la', emoji: '👱‍♀️' },
+      { parola: 'zio', articolo: 'lo', emoji: '🧔‍♂️' },
+      { parola: 'cugino', articolo: 'il', emoji: '🧑‍🦰' },
+      { parola: 'cugina', articolo: 'la', emoji: '👩‍🦱' },
     ],
   },
 ]
