@@ -1,3 +1,5 @@
+import { inizializzaTTS } from '../utils/tts'
+
 const temi = [
   { id: 'giochi', nome: 'Giochi', descrizione: 'Impara il vocabolario con quiz interattivi', icona: '🎮', colore: '#FF6B6B' },
   { id: 'esercizi', nome: 'Esercizi', descrizione: 'Allenati con esercizi di grammatica', icona: '✍️', colore: '#4ECDC4' },
@@ -18,7 +20,7 @@ function ThemeMenu({ onSelectTema }) {
             key={tema.id}
             className="menu-card"
             style={{ '--tema-color': tema.colore }}
-            onClick={() => onSelectTema(tema.id)}
+            onClick={() => { inizializzaTTS(); onSelectTema(tema.id) }}
           >
             <span className="menu-card-icona">{tema.icona}</span>
             <span className="menu-card-nome">{tema.nome}</span>

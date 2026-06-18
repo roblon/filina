@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioni from '../data/preposizioni'
+import { parla } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -49,31 +50,6 @@ function generaOpzioni(corretta) {
 
 function riempiFrase(frase, articolata) {
   return frase.replace('___', articolata)
-}
-
-let voceItaliana = null
-
-function caricaVoce() {
-  if (!('speechSynthesis' in window)) return
-  const voci = window.speechSynthesis.getVoices()
-  voceItaliana = voci.find((v) =>
-    v.lang.startsWith('it') && v.name.toLowerCase().includes('italiano')
-  ) || voci.find((v) => v.lang.startsWith('it'))
-}
-
-if (typeof window !== 'undefined' && window.speechSynthesis) {
-  window.speechSynthesis.addEventListener('voiceschanged', caricaVoce)
-  caricaVoce()
-}
-
-function parla(testo) {
-  if (!('speechSynthesis' in window)) return
-  window.speechSynthesis.cancel()
-  const u = new SpeechSynthesisUtterance(testo)
-  u.lang = 'it-IT'
-  u.rate = 0.9
-  if (voceItaliana) u.voice = voceItaliana
-  window.speechSynthesis.speak(u)
 }
 
 function PreposizioniGame({ onBack }) {
