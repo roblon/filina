@@ -53,7 +53,10 @@ function riempiFrase(frase, articolata) {
 }
 
 function PreposizioniGame({ onBack }) {
-  const [esercizi] = useState(() => mischia(esercizioPreposizioni.esercizi))
+  const [esercizi] = useState(() => {
+    const conIndice = esercizioPreposizioni.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
+    return mischia(conIndice)
+  })
 
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
@@ -72,7 +75,7 @@ function PreposizioniGame({ onBack }) {
 
   useEffect(() => {
     if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(indice + 1).padStart(2, '0')}.mp3`
+      const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
       playMp3(path)
       ultimoIndiceParlato.current = indice
     }
@@ -150,7 +153,19 @@ function PreposizioniGame({ onBack }) {
       </div>
 
       <div className="game-area">
-        <span className="articolo-parola-emoji">{esercizioCorrente.emoji}</span>
+        <span className="articolo-parola-emoji">
+          {esercizioCorrente.emoji}
+          <button
+            className="btn-speak"
+            onClick={() => {
+              const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
+              playMp3(path)
+            }}
+            aria-label="Ascolta la parola"
+          >
+            🔈
+          </button>
+        </span>
 
         <div className="domanda-label">Completa la frase con la preposizione articolata giusta</div>
 
