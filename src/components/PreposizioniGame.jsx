@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioni from '../data/preposizioni'
-import { parla } from '../utils/tts'
+import { playMp3, stopAudio } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -72,10 +72,15 @@ function PreposizioniGame({ onBack }) {
 
   useEffect(() => {
     if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      parla(riempiFrase(esercizioCorrente.frase, corretta))
+      const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(indice + 1).padStart(2, '0')}.mp3`
+      playMp3(path)
       ultimoIndiceParlato.current = indice
     }
   }, [indice, esercizioCorrente, corretta])
+
+  useEffect(() => {
+    return () => stopAudio()
+  }, [])
 
   function gestisciRisposta(scelta) {
     if (risposto) return
