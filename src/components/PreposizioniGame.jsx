@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioni from '../data/preposizioni'
-import { parla } from '../utils/tts'
+import { playMp3, stopAudio } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -53,7 +53,10 @@ function riempiFrase(frase, articolata) {
 }
 
 function PreposizioniGame({ onBack }) {
-  const [esercizi] = useState(() => mischia(esercizioPreposizioni.esercizi))
+  const [esercizi] = useState(() => {
+    const conIndice = esercizioPreposizioni.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
+    return mischia(conIndice)
+  })
 
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
@@ -72,10 +75,15 @@ function PreposizioniGame({ onBack }) {
 
   useEffect(() => {
     if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      parla(riempiFrase(esercizioCorrente.frase, corretta))
+      const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
+      playMp3(path)
       ultimoIndiceParlato.current = indice
     }
   }, [indice, esercizioCorrente, corretta])
+
+  useEffect(() => {
+    return () => stopAudio()
+  }, [])
 
   function gestisciRisposta(scelta) {
     if (risposto) return
@@ -145,7 +153,19 @@ function PreposizioniGame({ onBack }) {
       </div>
 
       <div className="game-area">
-        <span className="articolo-parola-emoji">{esercizioCorrente.emoji}</span>
+        <span className="articolo-parola-emoji">
+          {esercizioCorrente.emoji}
+          <button
+            className="btn-speak"
+            onClick={() => {
+              const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
+              playMp3(path)
+            }}
+            aria-label="Ascolta la parola"
+          >
+            🔈
+          </button>
+        </span>
 
         <div className="domanda-label">Completa la frase con la preposizione articolata giusta</div>
 
