@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { parla } from '../utils/tts'
+import { playMp3 } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -34,13 +34,14 @@ function Game({ categoria, onBack }) {
   const modalita = Math.floor(indice / 5) % 2 === 0 ? 'parola-emoji' : 'emoji-parola'
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
+  const audioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/${categoria.id}/${parolaCorrente.parola}.mp3`
 
   useEffect(() => {
     if (parolaCorrente && ultimoIndiceParlato.current !== indice) {
-      parla(testoCompleto(parolaCorrente))
+      playMp3(audioPath)
       ultimoIndiceParlato.current = indice
     }
-  }, [indice, parolaCorrente])
+  }, [indice, parolaCorrente, audioPath])
 
   function gestisciRisposta(opzione) {
     if (risposto) return
@@ -115,7 +116,7 @@ function Game({ categoria, onBack }) {
             <div className="domanda-label">Quale immagine rappresenta...</div>
             <div className="parola-corrente">
               {testoCompleto(parolaCorrente)}
-              <button className="btn-speak" onClick={() => parla(testoCompleto(parolaCorrente))} aria-label="Ascolta la parola">
+              <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la parola">
                 🔈
               </button>
             </div>
@@ -145,7 +146,7 @@ function Game({ categoria, onBack }) {
             <div className="domanda-label">Quale parola corrisponde a...</div>
             <div className="parola-corrente emoji-grande">
               {parolaCorrente.emoji}
-              <button className="btn-speak" onClick={() => parla(testoCompleto(parolaCorrente))} aria-label="Ascolta la parola">
+              <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la parola">
                 🔈
               </button>
             </div>

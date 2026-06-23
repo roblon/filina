@@ -1,0 +1,930 @@
+[
+  {
+    "filename": "giochi/animali/cane.mp3",
+    "text": "il cane"
+  },
+  {
+    "filename": "giochi/animali/gatto.mp3",
+    "text": "il gatto"
+  },
+  {
+    "filename": "giochi/animali/coniglio.mp3",
+    "text": "il coniglio"
+  },
+  {
+    "filename": "giochi/animali/leone.mp3",
+    "text": "il leone"
+  },
+  {
+    "filename": "giochi/animali/elefante.mp3",
+    "text": "l'elefante"
+  },
+  {
+    "filename": "giochi/animali/giraffa.mp3",
+    "text": "la giraffa"
+  },
+  {
+    "filename": "giochi/animali/pinguino.mp3",
+    "text": "il pinguino"
+  },
+  {
+    "filename": "giochi/animali/pesce.mp3",
+    "text": "il pesce"
+  },
+  {
+    "filename": "giochi/animali/cavallo.mp3",
+    "text": "il cavallo"
+  },
+  {
+    "filename": "giochi/animali/farfalla.mp3",
+    "text": "la farfalla"
+  },
+  {
+    "filename": "giochi/animali/tartaruga.mp3",
+    "text": "la tartaruga"
+  },
+  {
+    "filename": "giochi/animali/uccello.mp3",
+    "text": "l'uccello"
+  },
+  {
+    "filename": "giochi/colori/rosso.mp3",
+    "text": "il rosso"
+  },
+  {
+    "filename": "giochi/colori/arancione.mp3",
+    "text": "l'arancione"
+  },
+  {
+    "filename": "giochi/colori/giallo.mp3",
+    "text": "il giallo"
+  },
+  {
+    "filename": "giochi/colori/verde.mp3",
+    "text": "il verde"
+  },
+  {
+    "filename": "giochi/colori/blu.mp3",
+    "text": "il blu"
+  },
+  {
+    "filename": "giochi/colori/viola.mp3",
+    "text": "il viola"
+  },
+  {
+    "filename": "giochi/colori/nero.mp3",
+    "text": "il nero"
+  },
+  {
+    "filename": "giochi/colori/bianco.mp3",
+    "text": "il bianco"
+  },
+  {
+    "filename": "giochi/colori/marrone.mp3",
+    "text": "il marrone"
+  },
+  {
+    "filename": "giochi/colori/rosa.mp3",
+    "text": "il rosa"
+  },
+  {
+    "filename": "giochi/numeri/uno.mp3",
+    "text": "l'uno"
+  },
+  {
+    "filename": "giochi/numeri/due.mp3",
+    "text": "il due"
+  },
+  {
+    "filename": "giochi/numeri/tre.mp3",
+    "text": "il tre"
+  },
+  {
+    "filename": "giochi/numeri/quattro.mp3",
+    "text": "il quattro"
+  },
+  {
+    "filename": "giochi/numeri/cinque.mp3",
+    "text": "il cinque"
+  },
+  {
+    "filename": "giochi/numeri/sei.mp3",
+    "text": "il sei"
+  },
+  {
+    "filename": "giochi/numeri/sette.mp3",
+    "text": "il sette"
+  },
+  {
+    "filename": "giochi/numeri/otto.mp3",
+    "text": "l'otto"
+  },
+  {
+    "filename": "giochi/numeri/nove.mp3",
+    "text": "il nove"
+  },
+  {
+    "filename": "giochi/numeri/dieci.mp3",
+    "text": "il dieci"
+  },
+  {
+    "filename": "giochi/cibo/mela.mp3",
+    "text": "la mela"
+  },
+  {
+    "filename": "giochi/cibo/pizza.mp3",
+    "text": "la pizza"
+  },
+  {
+    "filename": "giochi/cibo/gelato.mp3",
+    "text": "il gelato"
+  },
+  {
+    "filename": "giochi/cibo/biscotto.mp3",
+    "text": "il biscotto"
+  },
+  {
+    "filename": "giochi/cibo/cioccolato.mp3",
+    "text": "il cioccolato"
+  },
+  {
+    "filename": "giochi/cibo/banana.mp3",
+    "text": "la banana"
+  },
+  {
+    "filename": "giochi/cibo/pane.mp3",
+    "text": "il pane"
+  },
+  {
+    "filename": "giochi/cibo/uovo.mp3",
+    "text": "l'uovo"
+  },
+  {
+    "filename": "giochi/cibo/latte.mp3",
+    "text": "il latte"
+  },
+  {
+    "filename": "giochi/cibo/formaggio.mp3",
+    "text": "il formaggio"
+  },
+  {
+    "filename": "giochi/vestiti/maglietta.mp3",
+    "text": "la maglietta"
+  },
+  {
+    "filename": "giochi/vestiti/pantaloni.mp3",
+    "text": "i pantaloni"
+  },
+  {
+    "filename": "giochi/vestiti/vestito.mp3",
+    "text": "il vestito"
+  },
+  {
+    "filename": "giochi/vestiti/scarpa.mp3",
+    "text": "la scarpa"
+  },
+  {
+    "filename": "giochi/vestiti/cappello.mp3",
+    "text": "il cappello"
+  },
+  {
+    "filename": "giochi/vestiti/giacca.mp3",
+    "text": "la giacca"
+  },
+  {
+    "filename": "giochi/vestiti/stivale.mp3",
+    "text": "lo stivale"
+  },
+  {
+    "filename": "giochi/vestiti/camicia.mp3",
+    "text": "la camicia"
+  },
+  {
+    "filename": "giochi/vestiti/guanti.mp3",
+    "text": "i guanti"
+  },
+  {
+    "filename": "giochi/vestiti/calzini.mp3",
+    "text": "i calzini"
+  },
+  {
+    "filename": "giochi/corpo/occhi.mp3",
+    "text": "gli occhi"
+  },
+  {
+    "filename": "giochi/corpo/naso.mp3",
+    "text": "il naso"
+  },
+  {
+    "filename": "giochi/corpo/orecchio.mp3",
+    "text": "l'orecchio"
+  },
+  {
+    "filename": "giochi/corpo/bocca.mp3",
+    "text": "la bocca"
+  },
+  {
+    "filename": "giochi/corpo/mano.mp3",
+    "text": "la mano"
+  },
+  {
+    "filename": "giochi/corpo/piede.mp3",
+    "text": "il piede"
+  },
+  {
+    "filename": "giochi/corpo/dente.mp3",
+    "text": "il dente"
+  },
+  {
+    "filename": "giochi/corpo/capelli.mp3",
+    "text": "i capelli"
+  },
+  {
+    "filename": "giochi/corpo/braccio.mp3",
+    "text": "il braccio"
+  },
+  {
+    "filename": "giochi/corpo/testa.mp3",
+    "text": "la testa"
+  },
+  {
+    "filename": "giochi/famiglia/mamma.mp3",
+    "text": "la mamma"
+  },
+  {
+    "filename": "giochi/famiglia/papà.mp3",
+    "text": "il papà"
+  },
+  {
+    "filename": "giochi/famiglia/fratello.mp3",
+    "text": "il fratello"
+  },
+  {
+    "filename": "giochi/famiglia/sorella.mp3",
+    "text": "la sorella"
+  },
+  {
+    "filename": "giochi/famiglia/nonno.mp3",
+    "text": "il nonno"
+  },
+  {
+    "filename": "giochi/famiglia/nonna.mp3",
+    "text": "la nonna"
+  },
+  {
+    "filename": "giochi/famiglia/bambino.mp3",
+    "text": "il bambino"
+  },
+  {
+    "filename": "giochi/famiglia/zia.mp3",
+    "text": "la zia"
+  },
+  {
+    "filename": "giochi/famiglia/zio.mp3",
+    "text": "lo zio"
+  },
+  {
+    "filename": "giochi/famiglia/cugino.mp3",
+    "text": "il cugino"
+  },
+  {
+    "filename": "esercizi/articoli/cane-det.mp3",
+    "text": "il cane"
+  },
+  {
+    "filename": "esercizi/articoli/cane-indet.mp3",
+    "text": "un cane"
+  },
+  {
+    "filename": "esercizi/articoli/cane.mp3",
+    "text": "cane"
+  },
+  {
+    "filename": "esercizi/articoli/gatto-det.mp3",
+    "text": "il gatto"
+  },
+  {
+    "filename": "esercizi/articoli/gatto-indet.mp3",
+    "text": "un gatto"
+  },
+  {
+    "filename": "esercizi/articoli/gatto.mp3",
+    "text": "gatto"
+  },
+  {
+    "filename": "esercizi/articoli/libro-det.mp3",
+    "text": "il libro"
+  },
+  {
+    "filename": "esercizi/articoli/libro-indet.mp3",
+    "text": "un libro"
+  },
+  {
+    "filename": "esercizi/articoli/libro.mp3",
+    "text": "libro"
+  },
+  {
+    "filename": "esercizi/articoli/sole-det.mp3",
+    "text": "il sole"
+  },
+  {
+    "filename": "esercizi/articoli/sole-indet.mp3",
+    "text": "un sole"
+  },
+  {
+    "filename": "esercizi/articoli/sole.mp3",
+    "text": "sole"
+  },
+  {
+    "filename": "esercizi/articoli/pane-det.mp3",
+    "text": "il pane"
+  },
+  {
+    "filename": "esercizi/articoli/pane-indet.mp3",
+    "text": "un pane"
+  },
+  {
+    "filename": "esercizi/articoli/pane.mp3",
+    "text": "pane"
+  },
+  {
+    "filename": "esercizi/articoli/pesce-det.mp3",
+    "text": "il pesce"
+  },
+  {
+    "filename": "esercizi/articoli/pesce-indet.mp3",
+    "text": "un pesce"
+  },
+  {
+    "filename": "esercizi/articoli/pesce.mp3",
+    "text": "pesce"
+  },
+  {
+    "filename": "esercizi/articoli/treno-det.mp3",
+    "text": "il treno"
+  },
+  {
+    "filename": "esercizi/articoli/treno-indet.mp3",
+    "text": "un treno"
+  },
+  {
+    "filename": "esercizi/articoli/treno.mp3",
+    "text": "treno"
+  },
+  {
+    "filename": "esercizi/articoli/fiore-det.mp3",
+    "text": "il fiore"
+  },
+  {
+    "filename": "esercizi/articoli/fiore-indet.mp3",
+    "text": "un fiore"
+  },
+  {
+    "filename": "esercizi/articoli/fiore.mp3",
+    "text": "fiore"
+  },
+  {
+    "filename": "esercizi/articoli/gelato-det.mp3",
+    "text": "il gelato"
+  },
+  {
+    "filename": "esercizi/articoli/gelato-indet.mp3",
+    "text": "un gelato"
+  },
+  {
+    "filename": "esercizi/articoli/gelato.mp3",
+    "text": "gelato"
+  },
+  {
+    "filename": "esercizi/articoli/biscotto-det.mp3",
+    "text": "il biscotto"
+  },
+  {
+    "filename": "esercizi/articoli/biscotto-indet.mp3",
+    "text": "un biscotto"
+  },
+  {
+    "filename": "esercizi/articoli/biscotto.mp3",
+    "text": "biscotto"
+  },
+  {
+    "filename": "esercizi/articoli/cappello-det.mp3",
+    "text": "il cappello"
+  },
+  {
+    "filename": "esercizi/articoli/cappello-indet.mp3",
+    "text": "un cappello"
+  },
+  {
+    "filename": "esercizi/articoli/cappello.mp3",
+    "text": "cappello"
+  },
+  {
+    "filename": "esercizi/articoli/pinguino-det.mp3",
+    "text": "il pinguino"
+  },
+  {
+    "filename": "esercizi/articoli/pinguino-indet.mp3",
+    "text": "un pinguino"
+  },
+  {
+    "filename": "esercizi/articoli/pinguino.mp3",
+    "text": "pinguino"
+  },
+  {
+    "filename": "esercizi/articoli/casa-det.mp3",
+    "text": "la casa"
+  },
+  {
+    "filename": "esercizi/articoli/casa-indet.mp3",
+    "text": "una casa"
+  },
+  {
+    "filename": "esercizi/articoli/casa.mp3",
+    "text": "casa"
+  },
+  {
+    "filename": "esercizi/articoli/mela-det.mp3",
+    "text": "la mela"
+  },
+  {
+    "filename": "esercizi/articoli/mela-indet.mp3",
+    "text": "una mela"
+  },
+  {
+    "filename": "esercizi/articoli/mela.mp3",
+    "text": "mela"
+  },
+  {
+    "filename": "esercizi/articoli/stella-det.mp3",
+    "text": "la stella"
+  },
+  {
+    "filename": "esercizi/articoli/stella-indet.mp3",
+    "text": "una stella"
+  },
+  {
+    "filename": "esercizi/articoli/stella.mp3",
+    "text": "stella"
+  },
+  {
+    "filename": "esercizi/articoli/luna-det.mp3",
+    "text": "la luna"
+  },
+  {
+    "filename": "esercizi/articoli/luna-indet.mp3",
+    "text": "una luna"
+  },
+  {
+    "filename": "esercizi/articoli/luna.mp3",
+    "text": "luna"
+  },
+  {
+    "filename": "esercizi/articoli/farfalla-det.mp3",
+    "text": "la farfalla"
+  },
+  {
+    "filename": "esercizi/articoli/farfalla-indet.mp3",
+    "text": "una farfalla"
+  },
+  {
+    "filename": "esercizi/articoli/farfalla.mp3",
+    "text": "farfalla"
+  },
+  {
+    "filename": "esercizi/articoli/tartaruga-det.mp3",
+    "text": "la tartaruga"
+  },
+  {
+    "filename": "esercizi/articoli/tartaruga-indet.mp3",
+    "text": "una tartaruga"
+  },
+  {
+    "filename": "esercizi/articoli/tartaruga.mp3",
+    "text": "tartaruga"
+  },
+  {
+    "filename": "esercizi/articoli/chitarra-det.mp3",
+    "text": "la chitarra"
+  },
+  {
+    "filename": "esercizi/articoli/chitarra-indet.mp3",
+    "text": "una chitarra"
+  },
+  {
+    "filename": "esercizi/articoli/chitarra.mp3",
+    "text": "chitarra"
+  },
+  {
+    "filename": "esercizi/articoli/sedia-det.mp3",
+    "text": "la sedia"
+  },
+  {
+    "filename": "esercizi/articoli/sedia-indet.mp3",
+    "text": "una sedia"
+  },
+  {
+    "filename": "esercizi/articoli/sedia.mp3",
+    "text": "sedia"
+  },
+  {
+    "filename": "esercizi/articoli/torta-det.mp3",
+    "text": "la torta"
+  },
+  {
+    "filename": "esercizi/articoli/torta-indet.mp3",
+    "text": "una torta"
+  },
+  {
+    "filename": "esercizi/articoli/torta.mp3",
+    "text": "torta"
+  },
+  {
+    "filename": "esercizi/articoli/bicicletta-det.mp3",
+    "text": "la bicicletta"
+  },
+  {
+    "filename": "esercizi/articoli/bicicletta-indet.mp3",
+    "text": "una bicicletta"
+  },
+  {
+    "filename": "esercizi/articoli/bicicletta.mp3",
+    "text": "bicicletta"
+  },
+  {
+    "filename": "esercizi/articoli/scuola-det.mp3",
+    "text": "la scuola"
+  },
+  {
+    "filename": "esercizi/articoli/scuola-indet.mp3",
+    "text": "una scuola"
+  },
+  {
+    "filename": "esercizi/articoli/scuola.mp3",
+    "text": "scuola"
+  },
+  {
+    "filename": "esercizi/articoli/giraffa-det.mp3",
+    "text": "la giraffa"
+  },
+  {
+    "filename": "esercizi/articoli/giraffa-indet.mp3",
+    "text": "una giraffa"
+  },
+  {
+    "filename": "esercizi/articoli/giraffa.mp3",
+    "text": "giraffa"
+  },
+  {
+    "filename": "esercizi/articoli/albero-det.mp3",
+    "text": "l'albero"
+  },
+  {
+    "filename": "esercizi/articoli/albero-indet.mp3",
+    "text": "un albero"
+  },
+  {
+    "filename": "esercizi/articoli/albero.mp3",
+    "text": "albero"
+  },
+  {
+    "filename": "esercizi/articoli/amico-det.mp3",
+    "text": "l'amico"
+  },
+  {
+    "filename": "esercizi/articoli/amico-indet.mp3",
+    "text": "un amico"
+  },
+  {
+    "filename": "esercizi/articoli/amico.mp3",
+    "text": "amico"
+  },
+  {
+    "filename": "esercizi/articoli/occhio-det.mp3",
+    "text": "l'occhio"
+  },
+  {
+    "filename": "esercizi/articoli/occhio-indet.mp3",
+    "text": "un occhio"
+  },
+  {
+    "filename": "esercizi/articoli/occhio.mp3",
+    "text": "occhio"
+  },
+  {
+    "filename": "esercizi/articoli/uccello-det.mp3",
+    "text": "l'uccello"
+  },
+  {
+    "filename": "esercizi/articoli/uccello-indet.mp3",
+    "text": "un uccello"
+  },
+  {
+    "filename": "esercizi/articoli/uccello.mp3",
+    "text": "uccello"
+  },
+  {
+    "filename": "esercizi/articoli/elefante-det.mp3",
+    "text": "l'elefante"
+  },
+  {
+    "filename": "esercizi/articoli/elefante-indet.mp3",
+    "text": "un elefante"
+  },
+  {
+    "filename": "esercizi/articoli/elefante.mp3",
+    "text": "elefante"
+  },
+  {
+    "filename": "esercizi/articoli/orso-det.mp3",
+    "text": "l'orso"
+  },
+  {
+    "filename": "esercizi/articoli/orso-indet.mp3",
+    "text": "un orso"
+  },
+  {
+    "filename": "esercizi/articoli/orso.mp3",
+    "text": "orso"
+  },
+  {
+    "filename": "esercizi/articoli/isola-det.mp3",
+    "text": "l'isola"
+  },
+  {
+    "filename": "esercizi/articoli/isola-indet.mp3",
+    "text": "un'isola"
+  },
+  {
+    "filename": "esercizi/articoli/isola.mp3",
+    "text": "isola"
+  },
+  {
+    "filename": "esercizi/articoli/amica-det.mp3",
+    "text": "l'amica"
+  },
+  {
+    "filename": "esercizi/articoli/amica-indet.mp3",
+    "text": "un'amica"
+  },
+  {
+    "filename": "esercizi/articoli/amica.mp3",
+    "text": "amica"
+  },
+  {
+    "filename": "esercizi/articoli/ombra-det.mp3",
+    "text": "l'ombra"
+  },
+  {
+    "filename": "esercizi/articoli/ombra-indet.mp3",
+    "text": "un'ombra"
+  },
+  {
+    "filename": "esercizi/articoli/ombra.mp3",
+    "text": "ombra"
+  },
+  {
+    "filename": "esercizi/articoli/aquila-det.mp3",
+    "text": "l'aquila"
+  },
+  {
+    "filename": "esercizi/articoli/aquila-indet.mp3",
+    "text": "un'aquila"
+  },
+  {
+    "filename": "esercizi/articoli/aquila.mp3",
+    "text": "aquila"
+  },
+  {
+    "filename": "esercizi/articoli/zaino-det.mp3",
+    "text": "lo zaino"
+  },
+  {
+    "filename": "esercizi/articoli/zaino-indet.mp3",
+    "text": "uno zaino"
+  },
+  {
+    "filename": "esercizi/articoli/zaino.mp3",
+    "text": "zaino"
+  },
+  {
+    "filename": "esercizi/articoli/gnomo-det.mp3",
+    "text": "lo gnomo"
+  },
+  {
+    "filename": "esercizi/articoli/gnomo-indet.mp3",
+    "text": "uno gnomo"
+  },
+  {
+    "filename": "esercizi/articoli/gnomo.mp3",
+    "text": "gnomo"
+  },
+  {
+    "filename": "esercizi/articoli/specchio-det.mp3",
+    "text": "lo specchio"
+  },
+  {
+    "filename": "esercizi/articoli/specchio-indet.mp3",
+    "text": "uno specchio"
+  },
+  {
+    "filename": "esercizi/articoli/specchio.mp3",
+    "text": "specchio"
+  },
+  {
+    "filename": "esercizi/articoli/studente-det.mp3",
+    "text": "lo studente"
+  },
+  {
+    "filename": "esercizi/articoli/studente-indet.mp3",
+    "text": "uno studente"
+  },
+  {
+    "filename": "esercizi/articoli/studente.mp3",
+    "text": "studente"
+  },
+  {
+    "filename": "esercizi/articoli/zucchero-det.mp3",
+    "text": "lo zucchero"
+  },
+  {
+    "filename": "esercizi/articoli/zucchero-indet.mp3",
+    "text": "uno zucchero"
+  },
+  {
+    "filename": "esercizi/articoli/zucchero.mp3",
+    "text": "zucchero"
+  },
+  {
+    "filename": "esercizi/articoli/zio-det.mp3",
+    "text": "lo zio"
+  },
+  {
+    "filename": "esercizi/articoli/zio-indet.mp3",
+    "text": "uno zio"
+  },
+  {
+    "filename": "esercizi/articoli/zio.mp3",
+    "text": "zio"
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/01.mp3",
+    "text": "Il pinguino cammina sul ghiaccio."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/02.mp3",
+    "text": "Marco gioca al parco con gli amici."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/03.mp3",
+    "text": "Il libro è nello zaino."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/04.mp3",
+    "text": "Il gatto dorme sul divano."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/05.mp3",
+    "text": "Il pesce nuota nel mare."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/06.mp3",
+    "text": "Questa è la casa del nonno."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/07.mp3",
+    "text": "Oggi vado dalla nonna."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/08.mp3",
+    "text": "L'uccello canta sull' albero."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/09.mp3",
+    "text": "Il sole splende nel cielo."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/10.mp3",
+    "text": "La candela è sulla torta."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/11.mp3",
+    "text": "I bambini vanno allo zoo."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/12.mp3",
+    "text": "L'orso vive nella foresta."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/13.mp3",
+    "text": "La farfalla si posa sul fiore."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/14.mp3",
+    "text": "Il treno parte dalla stazione."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/15.mp3",
+    "text": "Il latte è nel frigo."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/16.mp3",
+    "text": "La mela cade dall' albero."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/17.mp3",
+    "text": "La ruota della bicicletta è rotta."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/18.mp3",
+    "text": "L'ombra dell' amico è lunga."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/19.mp3",
+    "text": "L'elefante vive nella savana."
+  },
+  {
+    "filename": "esercizi/preposizioni-articolate/20.mp3",
+    "text": "La copertina del libro è rossa."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/01.mp3",
+    "text": "Questa è la macchina di Marco."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/02.mp3",
+    "text": "Il libro di Luca è molto bello."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/03.mp3",
+    "text": "Vado a scuola ogni giorno."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/04.mp3",
+    "text": "Domani andiamo in spiaggia."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/05.mp3",
+    "text": "Vengo da Milano."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/06.mp3",
+    "text": "Questo pacco arriva da Roma."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/07.mp3",
+    "text": "Abito in Italia."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/08.mp3",
+    "text": "Il gatto dorme in camera da letto."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/09.mp3",
+    "text": "Esco sempre con i miei amici."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/10.mp3",
+    "text": "Mangio la pasta con il pomodoro."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/11.mp3",
+    "text": "Il libro è su un tavolo."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/12.mp3",
+    "text": "La foto è su una parete."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/13.mp3",
+    "text": "Questo regalo è per te."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/14.mp3",
+    "text": "Partiamo per Roma domani mattina."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/15.mp3",
+    "text": "tra me e te, è un segreto."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/16.mp3",
+    "text": "Il gatto è nascosto tra i mobili."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/17.mp3",
+    "text": "fra due settimane è Natale."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/18.mp3",
+    "text": "Il ristorante è tra la banca e il supermercato."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/19.mp3",
+    "text": "Devo parlare con il professore."
+  },
+  {
+    "filename": "esercizi/preposizioni-semplici/20.mp3",
+    "text": "Il piatto è già a tavola."
+  }
+]

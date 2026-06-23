@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioniSemplici from '../data/preposizioni-semplici'
-import { parla } from '../utils/tts'
+import { playMp3, stopAudio } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -19,12 +19,11 @@ function generaOpzioni(corretta) {
   return mischia([corretta, ...distrattori])
 }
 
-function riempiFrase(frase, preposizione) {
-  return frase.replace('___', preposizione)
-}
-
 function PreposizioniSempliciGame({ onBack }) {
-  const [esercizi] = useState(() => mischia(esercizioPreposizioniSemplici.esercizi))
+  const [esercizi] = useState(() => {
+    const conIndice = esercizioPreposizioniSemplici.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
+    return mischia(conIndice)
+  })
 
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
@@ -37,13 +36,18 @@ function PreposizioniSempliciGame({ onBack }) {
   const ultimoIndiceParlato = useRef(-1)
   const corretta = esercizioCorrente.preposizione
   const parti = esercizioCorrente.frase.split('___')
+  const audioPath = `${import.meta.env.BASE_URL}assets/audio/esercizi/preposizioni-semplici/${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
 
   useEffect(() => {
     if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      parla(riempiFrase(esercizioCorrente.frase, corretta))
+      playMp3(audioPath)
       ultimoIndiceParlato.current = indice
     }
-  }, [indice, esercizioCorrente, corretta])
+  }, [indice, esercizioCorrente, audioPath])
+
+  useEffect(() => {
+    return () => stopAudio()
+  }, [])
 
   function gestisciRisposta(scelta) {
     if (risposto) return
@@ -117,7 +121,7 @@ function PreposizioniSempliciGame({ onBack }) {
           {esercizioCorrente.emoji}
           <button
             className="btn-speak"
-            onClick={() => parla(riempiFrase(esercizioCorrente.frase, corretta))}
+            onClick={() => playMp3(audioPath)}
             aria-label="Ascolta la frase"
           >
             🔈
@@ -183,6 +187,10 @@ function PreposizioniSempliciGame({ onBack }) {
       </div>
     </div>
   )
+}
+
+function riempiFrase(frase, preposizione) {
+  return frase.replace('___', preposizione)
 }
 
 export default PreposizioniSempliciGame
