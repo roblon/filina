@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Game from './components/Game'
 import ArticoliGame from './components/ArticoliGame'
 import PreposizioniGame from './components/PreposizioniGame'
+import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import Placeholder from './components/Placeholder'
 import './App.css'
 
@@ -14,6 +15,13 @@ const categorieEsercizi = [
     icona: '📝',
     colore: '#4ECDC4',
     descrizione: 'Impara gli articoli determinativi e indeterminativi',
+  },
+  {
+    id: 'preposizioni-semplici',
+    nome: 'Preposizioni Semplici',
+    icona: '➡️',
+    colore: '#6C5CE7',
+    descrizione: 'Impara le preposizioni semplici (di, a, da, in, con, su, per, tra, fra)',
   },
   {
     id: 'preposizioni',
@@ -53,6 +61,9 @@ function App() {
       if (categoria.id === 'preposizioni') {
         return <PreposizioniGame key="preposizioni" onBack={() => setCategoria(null)} />
       }
+      if (categoria.id === 'preposizioni-semplici') {
+        return <PreposizioniSempliciGame key="preposizioni-semplici" onBack={() => setCategoria(null)} />
+      }
     }
     return (
       <Home
@@ -60,8 +71,8 @@ function App() {
         onStart={setCategoria}
         onBackToMenu={() => setTema(null)}
         icona="✍️"
-        titolo="Esercizi"
-        sottotitolo="Allenati con esercizi di grammatica"
+        titolo="Grammatica"
+        sottotitolo="Allenati con la grammatica"
       />
     )
   }
