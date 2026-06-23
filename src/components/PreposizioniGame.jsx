@@ -72,14 +72,14 @@ function PreposizioniGame({ onBack }) {
   const ultimoIndiceParlato = useRef(-1)
   const corretta = MAP[`${esercizioCorrente.preposizione}+${esercizioCorrente.articolo}`]
   const parti = esercizioCorrente.frase.split('___')
+  const audioPath = `${import.meta.env.BASE_URL}assets/audio/esercizi/preposizioni-articolate/${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
 
   useEffect(() => {
     if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
-      playMp3(path)
+      playMp3(audioPath)
       ultimoIndiceParlato.current = indice
     }
-  }, [indice, esercizioCorrente, corretta])
+  }, [indice, esercizioCorrente, audioPath])
 
   useEffect(() => {
     return () => stopAudio()
@@ -157,10 +157,7 @@ function PreposizioniGame({ onBack }) {
           {esercizioCorrente.emoji}
           <button
             className="btn-speak"
-            onClick={() => {
-              const path = `${import.meta.env.BASE_URL}assets/audio/preposizione-${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
-              playMp3(path)
-            }}
+            onClick={() => playMp3(audioPath)}
             aria-label="Ascolta la parola"
           >
             🔈

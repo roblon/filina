@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioArticoli from '../data/articoli'
-import { parla } from '../utils/tts'
+import { playMp3 } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -43,13 +43,15 @@ function ArticoliGame({ onBack }) {
 
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
+  const audioPath = `${import.meta.env.BASE_URL}assets/audio/esercizi/articoli/${parolaCorrente.parola}-${tipo}.mp3`
+  const audioPathParola = `${import.meta.env.BASE_URL}assets/audio/esercizi/articoli/${parolaCorrente.parola}.mp3`
 
   useEffect(() => {
     if (parolaCorrente && ultimoIndiceParlato.current !== indice) {
-      parla(articoloCompleto(parolaCorrente, tipo))
+      playMp3(audioPath)
       ultimoIndiceParlato.current = indice
     }
-  }, [indice, parolaCorrente, tipo])
+  }, [indice, parolaCorrente, tipo, audioPath])
 
   function gestisciRisposta(articoloScelto) {
     if (risposto) return
@@ -134,7 +136,7 @@ function ArticoliGame({ onBack }) {
           <span className="articolo-parola-testo">{parolaCorrente.parola}</span>
           <button
             className="btn-speak"
-            onClick={() => parla(parolaCorrente.parola)}
+            onClick={() => playMp3(audioPathParola)}
             aria-label="Ascolta la parola"
           >
             🔈

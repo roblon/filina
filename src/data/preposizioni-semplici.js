@@ -1,0 +1,30 @@
+const esercizioPreposizioniSemplici = {
+  id: 'preposizioni-semplici',
+  nome: 'Preposizioni Semplici',
+  icona: '➡️',
+  colore: '#6C5CE7',
+  esercizi: [
+    { frase: 'Questa è la macchina ___ Marco.', emoji: '🚗', preposizione: 'di' },
+    { frase: 'Il libro ___ Luca è molto bello.', emoji: '📚', preposizione: 'di' },
+    { frase: 'Vado ___ scuola ogni giorno.', emoji: '🏫', preposizione: 'a' },
+    { frase: 'Domani andiamo ___ spiaggia.', emoji: '🏖️', preposizione: 'in' },
+    { frase: 'Vengo ___ Milano.', emoji: '🏙️', preposizione: 'da' },
+    { frase: 'Questo pacco arriva ___ Roma.', emoji: '📦', preposizione: 'da' },
+    { frase: 'Abito ___ Italia.', emoji: '🇮🇹', preposizione: 'in' },
+    { frase: 'Il gatto dorme ___ camera da letto.', emoji: '🐱', preposizione: 'in' },
+    { frase: 'Esco sempre ___ i miei amici.', emoji: '👫', preposizione: 'con' },
+    { frase: 'Mangio la pasta ___ il pomodoro.', emoji: '🍝', preposizione: 'con' },
+    { frase: 'Il libro è ___ un tavolo.', emoji: '📖', preposizione: 'su' },
+    { frase: 'La foto è ___ una parete.', emoji: '🖼️', preposizione: 'su' },
+    { frase: 'Questo regalo è ___ te.', emoji: '🎁', preposizione: 'per' },
+    { frase: 'Partiamo ___ Roma domani mattina.', emoji: '✈️', preposizione: 'per' },
+    { frase: '___ me e te, è un segreto.', emoji: '🤫', preposizione: 'tra' },
+    { frase: 'Il gatto è nascosto ___ i mobili.', emoji: '🪑', preposizione: 'tra' },
+    { frase: '___ due settimane è Natale.', emoji: '🎄', preposizione: 'fra' },
+    { frase: 'Il ristorante è ___ la banca e il supermercato.', emoji: '🏪', preposizione: 'tra' },
+    { frase: 'Devo parlare ___ il professore.', emoji: '🗣️', preposizione: 'con' },
+    { frase: 'Il piatto è già ___ tavola.', emoji: '🍽️', preposizione: 'a' },
+  ],
+}
+
+export default esercizioPreposizioniSemplici

@@ -41,7 +41,7 @@ const categorie = [
     id: 'numeri',
     nome: 'Numeri',
     icona: '🔢',
-    colore: '#FFE66D',
+    colore: '#D68910',
     parole: [
       { parola: 'uno', articolo: 'l\'', emoji: '1️⃣' },
       { parola: 'due', articolo: 'il', emoji: '2️⃣' },
