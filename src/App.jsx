@@ -58,7 +58,15 @@ function App() {
         />
       )
     }
-    return <Home onStart={setCategoria} onBackToMenu={() => setTema(null)} />
+    return (
+      <Home
+        onStart={setCategoria}
+        onBackToMenu={() => setTema(null)}
+        icona="📖"
+        titolo="Vocabolario"
+        sottotitolo="Scegli un argomento per imparare nuove parole"
+      />
+    )
   }
 
   if (tema === 'esercizi') {
