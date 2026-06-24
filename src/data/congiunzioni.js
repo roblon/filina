@@ -1,0 +1,30 @@
+const esercizioCongiunzioni = {
+  id: 'congiunzioni',
+  nome: 'Congiunzioni',
+  icona: '🔀',
+  colore: '#E17055',
+  esercizi: [
+    { frase: 'Vado al mare ___ al lago.', emoji: '🏖️', congiunzione: 'o' },
+    { frase: 'Mangio la mela ___ la pera.', emoji: '🍎', congiunzione: 'e' },
+    { frase: 'Piove, ___ esco lo stesso.', emoji: '🌧️', congiunzione: 'ma' },
+    { frase: 'Ho fame ___ non ho mangiato.', emoji: '🍽️', congiunzione: 'perché' },
+    { frase: '___ hai tempo, vieni a trovarmi.', emoji: '⏰', congiunzione: 'se' },
+    { frase: 'Oggi fa caldo, ___ ieri faceva freddo.', emoji: '🌡️', congiunzione: 'mentre' },
+    { frase: 'Preferisci il caffè ___ il tè?', emoji: '☕', congiunzione: 'o' },
+    { frase: 'Studio l\'italiano ___ mi piace.', emoji: '📚', congiunzione: 'perché' },
+    { frase: 'Prendo l\'ombrello ___ piove.', emoji: '☂️', congiunzione: 'perché' },
+    { frase: 'Vengo volentieri, ___ non posso fermarmi.', emoji: '🏃', congiunzione: 'ma' },
+    { frase: 'Ho studiato, ___ ho superato l\'esame.', emoji: '🎓', congiunzione: 'quindi' },
+    { frase: 'Il gatto dorme ___ il cane gioca.', emoji: '😺', congiunzione: 'mentre' },
+    { frase: '___ vuoi, andiamo al cinema.', emoji: '🎬', congiunzione: 'se' },
+    { frase: 'È simpatico, ___ a volte è rumoroso.', emoji: '😅', congiunzione: 'però' },
+    { frase: 'Parlo italiano ___ inglese.', emoji: '🇮🇹', congiunzione: 'e' },
+    { frase: 'So ___ verrai alla festa.', emoji: '🎉', congiunzione: 'che' },
+    { frase: 'Sono stanco ___ ho lavorato tanto.', emoji: '😴', congiunzione: 'perché' },
+    { frase: 'Prendiamo la macchina ___ il treno?', emoji: '🚗', congiunzione: 'oppure' },
+    { frase: 'Compro il pane ___ il latte.', emoji: '🥖', congiunzione: 'e' },
+    { frase: 'Arrivo tardi ___ c\'è traffico.', emoji: '🚦', congiunzione: 'perché' },
+  ],
+}
+
+export default esercizioCongiunzioni

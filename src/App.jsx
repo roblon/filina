@@ -5,6 +5,7 @@ import Game from './components/Game'
 import ArticoliGame from './components/ArticoliGame'
 import PreposizioniGame from './components/PreposizioniGame'
 import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
+import CongiunzioniGame from './components/CongiunzioniGame'
 import Placeholder from './components/Placeholder'
 import './App.css'
 
@@ -29,6 +30,13 @@ const categorieEsercizi = [
     icona: '🔗',
     colore: '#FF8C42',
     descrizione: 'Impara le preposizioni articolate (al, del, nel, dal, sul…)',
+  },
+  {
+    id: 'congiunzioni',
+    nome: 'Congiunzioni',
+    icona: '🔀',
+    colore: '#E17055',
+    descrizione: 'Impara le congiunzioni (e, ma, perché, se, mentre, però, che…)',
   },
 ]
 
@@ -63,6 +71,9 @@ function App() {
       }
       if (categoria.id === 'preposizioni-semplici') {
         return <PreposizioniSempliciGame key="preposizioni-semplici" onBack={() => setCategoria(null)} />
+      }
+      if (categoria.id === 'congiunzioni') {
+        return <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} />
       }
     }
     return (
