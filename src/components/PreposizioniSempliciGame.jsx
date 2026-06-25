@@ -19,7 +19,7 @@ function generaOpzioni(corretta) {
   return mischia([corretta, ...distrattori])
 }
 
-function PreposizioniSempliciGame({ onBack }) {
+function PreposizioniSempliciGame({ onBack, onStarEarned }) {
   const [esercizi] = useState(() => {
     const conIndice = esercizioPreposizioniSemplici.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
     return mischia(conIndice)
@@ -55,6 +55,7 @@ function PreposizioniSempliciGame({ onBack }) {
     setUltimaRisposta(scelta)
     if (scelta === corretta) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`esercizi/preposizioni-semplici/${esercizioCorrente.indiceOriginale}`)
     }
   }
 

@@ -1,0 +1,17 @@
+import { useEffect } from 'react'
+import { playStarSound } from '../utils/tts'
+
+function StarsCounter({ count }) {
+  useEffect(() => {
+    if (count > 0) playStarSound()
+  }, [count])
+
+  return (
+    <div className="stars-counter" key={count}>
+      <span className="stars-icon">⭐</span>
+      <span className="stars-count">{count}</span>
+    </div>
+  )
+}
+
+export default StarsCounter

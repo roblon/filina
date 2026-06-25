@@ -27,7 +27,7 @@ function articoloCompleto(parola, tipo) {
   return art.endsWith("'") ? `${art}${parola.parola}` : `${art} ${parola.parola}`
 }
 
-function ArticoliGame({ onBack }) {
+function ArticoliGame({ onBack, onStarEarned }) {
   const [parole] = useState(() => mischia(esercizioArticoli.parole))
 
   const [indice, setIndice] = useState(0)
@@ -60,6 +60,7 @@ function ArticoliGame({ onBack }) {
     const corretto = tipo === 'determinativo' ? parolaCorrente.determinativo : parolaCorrente.indeterminativo
     if (articoloScelto === corretto) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`)
     }
   }
 

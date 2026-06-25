@@ -21,7 +21,7 @@ function testoCompleto(p) {
   return p.articolo.endsWith("'") ? `${p.articolo}${p.parola}` : `${p.articolo} ${p.parola}`
 }
 
-function Game({ categoria, onBack }) {
+function Game({ categoria, onBack, onStarEarned }) {
   const [parole] = useState(() => mischia(categoria.parole))
 
   const [indice, setIndice] = useState(0)
@@ -49,6 +49,7 @@ function Game({ categoria, onBack }) {
     setUltimaRisposta(opzione)
     if (opzione.parola === parolaCorrente.parola) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`giochi/${categoria.id}/${parolaCorrente.parola}`)
     }
   }
 

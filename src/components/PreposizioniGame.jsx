@@ -52,7 +52,7 @@ function riempiFrase(frase, articolata) {
   return frase.replace('___', articolata)
 }
 
-function PreposizioniGame({ onBack }) {
+function PreposizioniGame({ onBack, onStarEarned }) {
   const [esercizi] = useState(() => {
     const conIndice = esercizioPreposizioni.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
     return mischia(conIndice)
@@ -91,6 +91,7 @@ function PreposizioniGame({ onBack }) {
     setUltimaRisposta(scelta)
     if (scelta === corretta) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`esercizi/preposizioni-articolate/${esercizioCorrente.indiceOriginale}`)
     }
   }
 
