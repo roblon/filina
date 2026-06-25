@@ -9,6 +9,7 @@ import CongiunzioniGame from './components/CongiunzioniGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
+import { playStarSound } from './utils/tts'
 import './App.css'
 
 const categorieEsercizi = [
@@ -50,6 +51,7 @@ function App() {
   function guadagnaStella(domandaKey) {
     if (registraStella(domandaKey)) {
       setStelle((s) => s + 1)
+      playStarSound()
     }
   }
 
