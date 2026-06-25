@@ -36,10 +36,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
   const [fatto, setFatto] = useState(false)
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [tipo, setTipo] = useState(() => Math.random() < 0.5 ? 'determinativo' : 'indeterminativo')
-  const [opzioni, setOpzioni] = useState(() => {
-    const t = Math.random() < 0.5 ? 'determinativo' : 'indeterminativo'
-    return generaOpzioni(parole[0], t)
-  })
+  const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole[0], tipo))
 
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
