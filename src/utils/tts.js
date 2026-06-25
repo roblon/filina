@@ -19,3 +19,26 @@ export function stopAudio() {
     audioCorrente = null
   }
 }
+
+export function playStarSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)()
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(1047, ctx.currentTime)
+    osc.frequency.setValueAtTime(1319, ctx.currentTime + 0.08)
+    osc.frequency.setValueAtTime(1568, ctx.currentTime + 0.16)
+
+    gain.gain.setValueAtTime(0.3, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4)
+
+    osc.start(ctx.currentTime)
+    osc.stop(ctx.currentTime + 0.4)
+  } catch {
+    // audio context not available
+  }
+}

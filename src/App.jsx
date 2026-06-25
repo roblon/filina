@@ -7,6 +7,9 @@ import PreposizioniGame from './components/PreposizioniGame'
 import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import CongiunzioniGame from './components/CongiunzioniGame'
 import Placeholder from './components/Placeholder'
+import StarsCounter from './components/StarsCounter'
+import { getChiaviGuadagnate, registraStella } from './utils/stelle'
+import { playStarSound } from './utils/tts'
 import './App.css'
 
 const categorieEsercizi = [
@@ -43,60 +46,93 @@ const categorieEsercizi = [
 function App() {
   const [tema, setTema] = useState(null)
   const [categoria, setCategoria] = useState(null)
+  const [stelle, setStelle] = useState(() => getChiaviGuadagnate().length)
+
+  function guadagnaStella(domandaKey) {
+    if (registraStella(domandaKey)) {
+      setStelle((s) => s + 1)
+      playStarSound()
+    }
+  }
 
   if (!tema) {
-    return <ThemeMenu onSelectTema={setTema} />
+    return (
+      <>
+        <ThemeMenu onSelectTema={setTema} />
+        <StarsCounter count={stelle} />
+      </>
+    )
   }
 
   if (tema === 'giochi') {
     if (categoria) {
       return (
-        <Game
-          key={categoria.id}
-          categoria={categoria}
-          onBack={() => setCategoria(null)}
-        />
+        <>
+          <Game
+            key={categoria.id}
+            categoria={categoria}
+            onBack={() => setCategoria(null)}
+            onStarEarned={guadagnaStella}
+          />
+          <StarsCounter count={stelle} />
+        </>
       )
     }
     return (
-      <Home
-        onStart={setCategoria}
-        onBackToMenu={() => setTema(null)}
-        icona="📖"
-        titolo="Vocabolario"
-        sottotitolo="Scegli un argomento per imparare nuove parole"
-      />
+      <>
+        <Home
+          onStart={setCategoria}
+          onBackToMenu={() => setTema(null)}
+          icona="📖"
+          titolo="Vocabolario"
+          sottotitolo="Scegli un argomento per imparare nuove parole"
+        />
+        <StarsCounter count={stelle} />
+      </>
     )
   }
 
   if (tema === 'esercizi') {
     if (categoria) {
-      if (categoria.id === 'articoli') {
-        return <ArticoliGame key="articoli" onBack={() => setCategoria(null)} />
-      }
-      if (categoria.id === 'preposizioni') {
-        return <PreposizioniGame key="preposizioni" onBack={() => setCategoria(null)} />
-      }
-      if (categoria.id === 'preposizioni-semplici') {
-        return <PreposizioniSempliciGame key="preposizioni-semplici" onBack={() => setCategoria(null)} />
-      }
-      if (categoria.id === 'congiunzioni') {
-        return <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} />
-      }
+      return (
+        <>
+          {categoria.id === 'articoli' && (
+            <ArticoliGame key="articoli" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'preposizioni' && (
+            <PreposizioniGame key="preposizioni" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'preposizioni-semplici' && (
+            <PreposizioniSempliciGame key="preposizioni-semplici" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'congiunzioni' && (
+            <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          <StarsCounter count={stelle} />
+        </>
+      )
     }
     return (
-      <Home
-        categorie={categorieEsercizi}
-        onStart={setCategoria}
-        onBackToMenu={() => setTema(null)}
-        icona="✍️"
-        titolo="Grammatica"
-        sottotitolo="Allenati con la grammatica"
-      />
+      <>
+        <Home
+          categorie={categorieEsercizi}
+          onStart={setCategoria}
+          onBackToMenu={() => setTema(null)}
+          icona="✍️"
+          titolo="Grammatica"
+          sottotitolo="Allenati con la grammatica"
+        />
+        <StarsCounter count={stelle} />
+      </>
     )
   }
 
-  return <Placeholder tema={tema} onBackToMenu={() => setTema(null)} />
+  return (
+    <>
+      <Placeholder tema={tema} onBackToMenu={() => setTema(null)} />
+      <StarsCounter count={stelle} />
+    </>
+  )
 }
 
 export default App

@@ -27,7 +27,7 @@ function articoloCompleto(parola, tipo) {
   return art.endsWith("'") ? `${art}${parola.parola}` : `${art} ${parola.parola}`
 }
 
-function ArticoliGame({ onBack }) {
+function ArticoliGame({ onBack, onStarEarned }) {
   const [parole] = useState(() => mischia(esercizioArticoli.parole))
 
   const [indice, setIndice] = useState(0)
@@ -36,10 +36,7 @@ function ArticoliGame({ onBack }) {
   const [fatto, setFatto] = useState(false)
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [tipo, setTipo] = useState(() => Math.random() < 0.5 ? 'determinativo' : 'indeterminativo')
-  const [opzioni, setOpzioni] = useState(() => {
-    const t = Math.random() < 0.5 ? 'determinativo' : 'indeterminativo'
-    return generaOpzioni(parole[0], t)
-  })
+  const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole[0], tipo))
 
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
@@ -60,6 +57,7 @@ function ArticoliGame({ onBack }) {
     const corretto = tipo === 'determinativo' ? parolaCorrente.determinativo : parolaCorrente.indeterminativo
     if (articoloScelto === corretto) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`)
     }
   }
 

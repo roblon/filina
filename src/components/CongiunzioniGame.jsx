@@ -19,7 +19,7 @@ function generaOpzioni(corretta) {
   return mischia([corretta, ...distrattori])
 }
 
-function CongiunzioniGame({ onBack }) {
+function CongiunzioniGame({ onBack, onStarEarned }) {
   const [esercizi] = useState(() => {
     const conIndice = esercizioCongiunzioni.esercizi.map((e, i) => ({ ...e, indiceOriginale: i }))
     return mischia(conIndice)
@@ -55,6 +55,7 @@ function CongiunzioniGame({ onBack }) {
     setUltimaRisposta(scelta)
     if (scelta === corretta) {
       setPunteggio((p) => p + 1)
+      onStarEarned?.(`esercizi/congiunzioni/${esercizioCorrente.indiceOriginale}`)
     }
   }
 
