@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioni from '../data/preposizioni'
 import { playMp3, stopAudio } from '../utils/tts'
+import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
   const a = [...arr]
@@ -67,6 +68,7 @@ function PreposizioniGame({ onBack, onStarEarned }) {
     const e = esercizi[0]
     return generaOpzioni(MAP[`${e.preposizione}+${e.articolo}`])
   })
+  const [risposte, setRisposte] = useState([])
 
   const esercizioCorrente = esercizi[indice]
   const ultimoIndiceParlato = useRef(-1)
@@ -89,10 +91,17 @@ function PreposizioniGame({ onBack, onStarEarned }) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(scelta)
-    if (scelta === corretta) {
+    const giusta = scelta === corretta
+    if (giusta) {
       setPunteggio((p) => p + 1)
       onStarEarned?.(`esercizi/preposizioni-articolate/${esercizioCorrente.indiceOriginale}`)
     }
+    setRisposte(prev => [...prev, {
+      domanda: `${esercizioCorrente.emoji} ${riempiFrase(esercizioCorrente.frase, '___')}`,
+      corretta: giusta,
+      rispostaCorretta: riempiFrase(esercizioCorrente.frase, corretta),
+    }])
+    setTimeout(prossimaDomanda, 1500)
   }
 
   function prossimaDomanda() {
@@ -111,25 +120,15 @@ function PreposizioniGame({ onBack, onStarEarned }) {
 
   if (fatto) {
     return (
-      <div className="risultati-screen">
-        <div className="risultati-card" style={{ '--cat-color': esercizioPreposizioni.colore }}>
-          <span className="risultati-icona">{esercizioPreposizioni.icona}</span>
-          <h2>Complimenti!</h2>
-          <p className="risultati-testo">
-            Hai completato <strong>{esercizioPreposizioni.nome}</strong>!
-          </p>
-          <div className="punteggio-finale">
-            <span className="punteggio-numero">{punteggio}</span>
-            <span className="punteggio-div">/</span>
-            <span className="punteggio-totale">{esercizi.length}</span>
-          </div>
-          <div className="risultati-azioni">
-            <button className="btn btn-riprova" onClick={onBack}>
-              🔙 Scegli un altro argomento
-            </button>
-          </div>
-        </div>
-      </div>
+      <Riepilogo
+        icona={esercizioPreposizioni.icona}
+        nome={esercizioPreposizioni.nome}
+        colore={esercizioPreposizioni.colore}
+        punteggio={punteggio}
+        totale={esercizi.length}
+        risposte={risposte}
+        onBack={onBack}
+      />
     )
   }
 
@@ -212,13 +211,6 @@ function PreposizioniGame({ onBack, onStarEarned }) {
                 <span>❌</span> Quasi! La risposta giusta è &quot;{corretta}&quot;: {riempiFrase(esercizioCorrente.frase, corretta)}
               </div>
             )}
-            <button
-              className="btn-next"
-              style={{ background: esercizioPreposizioni.colore }}
-              onClick={prossimaDomanda}
-            >
-              {indice + 1 >= esercizi.length ? 'Vedi risultati →' : 'Prossima →'}
-            </button>
           </div>
         )}
       </div>

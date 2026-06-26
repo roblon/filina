@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { playMp3 } from '../utils/tts'
+import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
   const a = [...arr]
@@ -30,6 +31,7 @@ function Game({ categoria, onBack, onStarEarned }) {
   const [fatto, setFatto] = useState(false)
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole, 0))
+  const [risposte, setRisposte] = useState([])
 
   const modalita = Math.floor(indice / 5) % 2 === 0 ? 'parola-emoji' : 'emoji-parola'
   const parolaCorrente = parole[indice]
@@ -47,10 +49,17 @@ function Game({ categoria, onBack, onStarEarned }) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(opzione)
-    if (opzione.parola === parolaCorrente.parola) {
+    const giusta = opzione.parola === parolaCorrente.parola
+    if (giusta) {
       setPunteggio((p) => p + 1)
       onStarEarned?.(`giochi/${categoria.id}/${parolaCorrente.parola}`)
     }
+    setRisposte(prev => [...prev, {
+      domanda: `${parolaCorrente.emoji} ${testoCompleto(parolaCorrente)}`,
+      corretta: giusta,
+      rispostaCorretta: testoCompleto(parolaCorrente),
+    }])
+    setTimeout(prossimaDomanda, 1500)
   }
 
   function prossimaDomanda() {
@@ -69,25 +78,15 @@ function Game({ categoria, onBack, onStarEarned }) {
 
   if (fatto) {
     return (
-      <div className="risultati-screen">
-        <div className="risultati-card" style={{ '--cat-color': categoria.colore }}>
-          <span className="risultati-icona">{categoria.icona}</span>
-          <h2>Complimenti!</h2>
-          <p className="risultati-testo">
-            Hai completato <strong>{categoria.nome}</strong>!
-          </p>
-          <div className="punteggio-finale">
-            <span className="punteggio-numero">{punteggio}</span>
-            <span className="punteggio-div">/</span>
-            <span className="punteggio-totale">{parole.length}</span>
-          </div>
-          <div className="risultati-azioni">
-            <button className="btn btn-riprova" onClick={onBack}>
-              🔙 Scegli un altro argomento
-            </button>
-          </div>
-        </div>
-      </div>
+      <Riepilogo
+        icona={categoria.icona}
+        nome={categoria.nome}
+        colore={categoria.colore}
+        punteggio={punteggio}
+        totale={parole.length}
+        risposte={risposte}
+        onBack={onBack}
+      />
     )
   }
 
@@ -185,13 +184,6 @@ function Game({ categoria, onBack, onStarEarned }) {
                 <span>❌</span> Quasi! La risposta giusta era &quot;{testoCompleto(parolaCorrente)}&quot;
               </div>
             )}
-            <button
-              className="btn-next"
-              style={{ background: categoria.colore }}
-              onClick={prossimaDomanda}
-            >
-              {indice + 1 >= parole.length ? 'Vedi risultati →' : 'Prossima →'}
-            </button>
           </div>
         )}
       </div>

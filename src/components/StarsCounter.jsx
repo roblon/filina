@@ -1,9 +1,9 @@
-function StarsCounter({ count }) {
+function StarsCounter({ count, onClick }) {
   return (
-    <div className="stars-counter" key={count}>
+    <button className="stars-counter" key={count} onClick={onClick}>
       <span className="stars-icon">⭐</span>
       <span className="stars-count">{count}</span>
-    </div>
+    </button>
   )
 }
 

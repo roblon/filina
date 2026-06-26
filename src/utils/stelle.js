@@ -26,3 +26,29 @@ export function registraStella(key) {
   }
   return false
 }
+
+const moduli = [
+  { id: 'animali',        tipo: 'giochi',  nome: 'Animali',                icona: '🐾', colore: '#FF6B6B',  totale: 12 },
+  { id: 'colori',         tipo: 'giochi',  nome: 'Colori',                icona: '🎨', colore: '#4ECDC4',  totale: 10 },
+  { id: 'numeri',         tipo: 'giochi',  nome: 'Numeri',                icona: '🔢', colore: '#D68910',  totale: 10 },
+  { id: 'cibo',           tipo: 'giochi',  nome: 'Cibo',                  icona: '🍕', colore: '#FF8C42',  totale: 10 },
+  { id: 'vestiti',        tipo: 'giochi',  nome: 'Vestiti',               icona: '👕', colore: '#A66CFF',  totale: 10 },
+  { id: 'corpo',          tipo: 'giochi',  nome: 'Corpo',                 icona: '🖐️', colore: '#FF6B9D',  totale: 10 },
+  { id: 'famiglia',       tipo: 'giochi',  nome: 'Famiglia',              icona: '👨‍👩‍👧‍👦', colore: '#45B7D1',  totale: 10 },
+  { id: 'articoli',       tipo: 'esercizi/articoli',             nome: 'Articoli',                icona: '📝', colore: '#4ECDC4',  totale: 80 },
+  { id: 'congiunzioni',   tipo: 'esercizi/congiunzioni',         nome: 'Congiunzioni',            icona: '🔀', colore: '#E17055',  totale: 20 },
+  { id: 'preposizioni-articolate',  tipo: 'esercizi/preposizioni-articolate',  nome: 'Preposizioni Articolate',    icona: '🔗', colore: '#FF8C42',  totale: 20 },
+  { id: 'preposizioni-semplici',    tipo: 'esercizi/preposizioni-semplici',    nome: 'Preposizioni Semplici',      icona: '➡️', colore: '#6C5CE7',  totale: 20 },
+]
+
+export function getStatisticheModuli() {
+  const chiavi = getChiaviGuadagnate()
+  return moduli.map((m) => {
+    const ottenute = chiavi.filter((k) => k.startsWith(m.tipo + '/')).length
+    return { ...m, ottenute }
+  })
+}
+
+export function getTotalePossibile() {
+  return moduli.reduce((sum, m) => sum + m.totale, 0)
+}

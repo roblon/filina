@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioCongiunzioni from '../data/congiunzioni'
 import { playMp3, stopAudio } from '../utils/tts'
+import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
   const a = [...arr]
@@ -31,6 +32,7 @@ function CongiunzioniGame({ onBack, onStarEarned }) {
   const [fatto, setFatto] = useState(false)
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [opzioni, setOpzioni] = useState(() => generaOpzioni(esercizi[0].congiunzione))
+  const [risposte, setRisposte] = useState([])
 
   const esercizioCorrente = esercizi[indice]
   const ultimoIndiceParlato = useRef(-1)
@@ -53,10 +55,17 @@ function CongiunzioniGame({ onBack, onStarEarned }) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(scelta)
-    if (scelta === corretta) {
+    const giusta = scelta === corretta
+    if (giusta) {
       setPunteggio((p) => p + 1)
       onStarEarned?.(`esercizi/congiunzioni/${esercizioCorrente.indiceOriginale}`)
     }
+    setRisposte(prev => [...prev, {
+      domanda: `${esercizioCorrente.emoji} ${riempiFrase(esercizioCorrente.frase, '___')}`,
+      corretta: giusta,
+      rispostaCorretta: riempiFrase(esercizioCorrente.frase, corretta),
+    }])
+    setTimeout(prossimaDomanda, 1500)
   }
 
   function prossimaDomanda() {
@@ -75,25 +84,15 @@ function CongiunzioniGame({ onBack, onStarEarned }) {
 
   if (fatto) {
     return (
-      <div className="risultati-screen">
-        <div className="risultati-card" style={{ '--cat-color': esercizioCongiunzioni.colore }}>
-          <span className="risultati-icona">{esercizioCongiunzioni.icona}</span>
-          <h2>Complimenti!</h2>
-          <p className="risultati-testo">
-            Hai completato <strong>{esercizioCongiunzioni.nome}</strong>!
-          </p>
-          <div className="punteggio-finale">
-            <span className="punteggio-numero">{punteggio}</span>
-            <span className="punteggio-div">/</span>
-            <span className="punteggio-totale">{esercizi.length}</span>
-          </div>
-          <div className="risultati-azioni">
-            <button className="btn btn-riprova" onClick={onBack}>
-              🔙 Scegli un altro argomento
-            </button>
-          </div>
-        </div>
-      </div>
+      <Riepilogo
+        icona={esercizioCongiunzioni.icona}
+        nome={esercizioCongiunzioni.nome}
+        colore={esercizioCongiunzioni.colore}
+        punteggio={punteggio}
+        totale={esercizi.length}
+        risposte={risposte}
+        onBack={onBack}
+      />
     )
   }
 
@@ -176,13 +175,6 @@ function CongiunzioniGame({ onBack, onStarEarned }) {
                 <span>❌</span> Quasi! La risposta giusta è &quot;{corretta}&quot;: {riempiFrase(esercizioCorrente.frase, corretta)}
               </div>
             )}
-            <button
-              className="btn-next"
-              style={{ background: esercizioCongiunzioni.colore }}
-              onClick={prossimaDomanda}
-            >
-              {indice + 1 >= esercizi.length ? 'Vedi risultati →' : 'Prossima →'}
-            </button>
           </div>
         )}
       </div>
