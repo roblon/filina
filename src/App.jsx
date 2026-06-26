@@ -8,6 +8,7 @@ import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import CongiunzioniGame from './components/CongiunzioniGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
+import StarsModal from './components/StarsModal'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
 import { playStarSound } from './utils/tts'
 import './App.css'
@@ -47,6 +48,7 @@ function App() {
   const [tema, setTema] = useState(null)
   const [categoria, setCategoria] = useState(null)
   const [stelle, setStelle] = useState(() => getChiaviGuadagnate().length)
+  const [mostraModaleStelle, setMostraModaleStelle] = useState(false)
 
   function guadagnaStella(domandaKey) {
     if (registraStella(domandaKey)) {
@@ -59,7 +61,8 @@ function App() {
     return (
       <>
         <ThemeMenu onSelectTema={setTema} />
-        <StarsCounter count={stelle} />
+        <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
       </>
     )
   }
@@ -74,7 +77,8 @@ function App() {
             onBack={() => setCategoria(null)}
             onStarEarned={guadagnaStella}
           />
-          <StarsCounter count={stelle} />
+          <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
         </>
       )
     }
@@ -87,7 +91,8 @@ function App() {
           titolo="Vocabolario"
           sottotitolo="Scegli un argomento per imparare nuove parole"
         />
-        <StarsCounter count={stelle} />
+        <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
       </>
     )
   }
@@ -108,7 +113,8 @@ function App() {
           {categoria.id === 'congiunzioni' && (
             <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
           )}
-          <StarsCounter count={stelle} />
+          <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
         </>
       )
     }
@@ -122,7 +128,8 @@ function App() {
           titolo="Grammatica"
           sottotitolo="Allenati con la grammatica"
         />
-        <StarsCounter count={stelle} />
+        <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
       </>
     )
   }
@@ -130,7 +137,8 @@ function App() {
   return (
     <>
       <Placeholder tema={tema} onBackToMenu={() => setTema(null)} />
-      <StarsCounter count={stelle} />
+      <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
     </>
   )
 }
