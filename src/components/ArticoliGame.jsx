@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioArticoli from '../data/articoli'
 import { playMp3 } from '../utils/tts'
+import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
   const a = [...arr]
@@ -37,6 +38,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [tipo, setTipo] = useState(() => Math.random() < 0.5 ? 'determinativo' : 'indeterminativo')
   const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole[0], tipo))
+  const [risposte, setRisposte] = useState([])
 
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
@@ -55,10 +57,17 @@ function ArticoliGame({ onBack, onStarEarned }) {
     setRisposto(true)
     setUltimaRisposta(articoloScelto)
     const corretto = tipo === 'determinativo' ? parolaCorrente.determinativo : parolaCorrente.indeterminativo
-    if (articoloScelto === corretto) {
+    const giusta = articoloScelto === corretto
+    if (giusta) {
       setPunteggio((p) => p + 1)
       onStarEarned?.(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`)
     }
+    setRisposte(prev => [...prev, {
+      domanda: `${parolaCorrente.emoji} ${parolaCorrente.parola} (${tipo})`,
+      corretta: giusta,
+      rispostaCorretta: `${articoloCompleto(parolaCorrente, tipo)}`,
+    }])
+    setTimeout(prossimaDomanda, 1500)
   }
 
   function prossimaDomanda() {
@@ -67,7 +76,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
       return
     }
     const nuovoIndice = indice + 1
-    const nuovoTipo = Math.random() < 0.5 ? 'determinativo' : 'indeterminativo'
+    const nuovoTipo = crypto.getRandomValues(new Uint32Array(1))[0] % 2 === 0 ? 'determinativo' : 'indeterminativo'
     setIndice(nuovoIndice)
     setTipo(nuovoTipo)
     setRisposto(false)
@@ -79,25 +88,15 @@ function ArticoliGame({ onBack, onStarEarned }) {
 
   if (fatto) {
     return (
-      <div className="risultati-screen">
-        <div className="risultati-card" style={{ '--cat-color': esercizioArticoli.colore }}>
-          <span className="risultati-icona">{esercizioArticoli.icona}</span>
-          <h2>Complimenti!</h2>
-          <p className="risultati-testo">
-            Hai completato <strong>{esercizioArticoli.nome}</strong>!
-          </p>
-          <div className="punteggio-finale">
-            <span className="punteggio-numero">{punteggio}</span>
-            <span className="punteggio-div">/</span>
-            <span className="punteggio-totale">{parole.length}</span>
-          </div>
-          <div className="risultati-azioni">
-            <button className="btn btn-riprova" onClick={onBack}>
-              🔙 Scegli un altro argomento
-            </button>
-          </div>
-        </div>
-      </div>
+      <Riepilogo
+        icona={esercizioArticoli.icona}
+        nome={esercizioArticoli.nome}
+        colore={esercizioArticoli.colore}
+        punteggio={punteggio}
+        totale={parole.length}
+        risposte={risposte}
+        onBack={onBack}
+      />
     )
   }
 
@@ -173,13 +172,6 @@ function ArticoliGame({ onBack, onStarEarned }) {
                 <span>❌</span> L&apos;articolo {tipo} giusto è &quot;{corretto}&quot; → {articoloCompleto(parolaCorrente, tipo)}
               </div>
             )}
-            <button
-              className="btn-next"
-              style={{ background: esercizioArticoli.colore }}
-              onClick={prossimaDomanda}
-            >
-              {indice + 1 >= parole.length ? 'Vedi risultati →' : 'Prossima →'}
-            </button>
           </div>
         )}
       </div>

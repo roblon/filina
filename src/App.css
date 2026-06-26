@@ -640,6 +640,56 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+.riepilogo-lista {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.riepilogo-riga {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.riepilogo-riga.giusta {
+  background: #e6fff8;
+  color: #00b894;
+}
+
+.riepilogo-riga.sbagliata {
+  background: #fff0f0;
+  color: #d63031;
+}
+
+.riepilogo-icona {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.riepilogo-domanda {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.riepilogo-correzione {
+  font-size: 13px;
+  color: #636e72;
+  font-weight: 500;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 @keyframes starPop {
   0% { transform: scale(0); opacity: 0; }
   50% { transform: scale(1.3); }
