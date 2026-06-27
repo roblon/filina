@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioArticoli from '../data/articoli'
 import { playMp3 } from '../utils/tts'
+import { stellaGiaGuadagnata } from '../utils/stelle'
 import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
@@ -67,7 +68,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
       corretta: giusta,
       rispostaCorretta: `${articoloCompleto(parolaCorrente, tipo)}`,
     }])
-    setTimeout(prossimaDomanda, 1500)
+    setTimeout(prossimaDomanda, 700)
   }
 
   function prossimaDomanda() {
@@ -174,6 +175,12 @@ function ArticoliGame({ onBack, onStarEarned }) {
             )}
           </div>
         )}
+      </div>
+
+      <div className="star-progress">
+        <span className={`star-singola ${stellaGiaGuadagnata(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`) ? 'piena' : 'vuota'}`}>
+          {stellaGiaGuadagnata(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`) ? '⭐' : '☆'}
+        </span>
       </div>
     </div>
   )
