@@ -62,7 +62,7 @@ function App() {
       <>
         <ThemeMenu onSelectTema={setTema} />
         <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
       </>
     )
   }
@@ -78,7 +78,7 @@ function App() {
             onStarEarned={guadagnaStella}
           />
           <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
         </>
       )
     }
@@ -92,7 +92,7 @@ function App() {
           sottotitolo="Scegli un argomento per imparare nuove parole"
         />
         <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
       </>
     )
   }
@@ -114,7 +114,7 @@ function App() {
             <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
           )}
           <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
         </>
       )
     }
@@ -129,7 +129,7 @@ function App() {
           sottotitolo="Allenati con la grammatica"
         />
         <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
       </>
     )
   }
@@ -138,7 +138,7 @@ function App() {
     <>
       <Placeholder tema={tema} onBackToMenu={() => setTema(null)} />
       <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
-      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} />}
+      {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
     </>
   )
 }

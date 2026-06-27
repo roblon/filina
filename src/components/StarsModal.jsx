@@ -1,9 +1,17 @@
-import { getStatisticheModuli, getTotalePossibile, getChiaviGuadagnate } from '../utils/stelle'
+import { useState } from 'react'
+import { getStatisticheModuli, getTotalePossibile, getChiaviGuadagnate, resettaStelle } from '../utils/stelle'
 
-function StarsModal({ onClose }) {
-  const stats = getStatisticheModuli()
-  const totali = getChiaviGuadagnate().length
+function StarsModal({ onClose, onReset }) {
+  const [stats, setStats] = useState(getStatisticheModuli())
+  const [totali, setTotali] = useState(getChiaviGuadagnate().length)
   const possibili = getTotalePossibile()
+
+  function handleReset() {
+    resettaStelle()
+    setStats(getStatisticheModuli())
+    setTotali(0)
+    onReset?.()
+  }
 
   return (
     <div className="stars-modal-overlay" onClick={onClose}>
@@ -33,6 +41,9 @@ function StarsModal({ onClose }) {
             </div>
           ))}
         </div>
+        <button className="btn-reset-stars" onClick={handleReset}>
+          🗑️ Azzera tutte le stelle
+        </button>
       </div>
     </div>
   )

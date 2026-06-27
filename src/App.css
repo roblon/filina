@@ -820,6 +820,30 @@
   transition: width 0.5s ease;
 }
 
+/* STAR PROGRESS (per-sheet indicator) */
+.star-progress {
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 20px;
+}
+
+.star-singola {
+  font-size: 32px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+}
+
+.star-singola.vuota {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
 .stars-modal-riga-conteggio {
   font-size: 13px;
   font-weight: 700;
@@ -827,4 +851,23 @@
   min-width: 48px;
   text-align: right;
   flex-shrink: 0;
+}
+
+.btn-reset-stars {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  border: 2px solid #d63031;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #d63031;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.btn-reset-stars:hover {
+  background: #ffe0e0;
 }

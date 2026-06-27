@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { playMp3 } from '../utils/tts'
+import { stellaGiaGuadagnata } from '../utils/stelle'
 import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
@@ -59,7 +60,7 @@ function Game({ categoria, onBack, onStarEarned }) {
       corretta: giusta,
       rispostaCorretta: testoCompleto(parolaCorrente),
     }])
-    setTimeout(prossimaDomanda, 1500)
+    setTimeout(prossimaDomanda, 700)
   }
 
   function prossimaDomanda() {
@@ -186,6 +187,12 @@ function Game({ categoria, onBack, onStarEarned }) {
             )}
           </div>
         )}
+      </div>
+
+      <div className="star-progress">
+        <span className={`star-singola ${stellaGiaGuadagnata(`giochi/${categoria.id}/${parolaCorrente.parola}`) ? 'piena' : 'vuota'}`}>
+          {stellaGiaGuadagnata(`giochi/${categoria.id}/${parolaCorrente.parola}`) ? '⭐' : '☆'}
+        </span>
       </div>
     </div>
   )

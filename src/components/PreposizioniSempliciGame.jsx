@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import esercizioPreposizioniSemplici from '../data/preposizioni-semplici'
 import { playMp3, stopAudio } from '../utils/tts'
+import { stellaGiaGuadagnata } from '../utils/stelle'
 import Riepilogo from './Riepilogo'
 
 function mischia(arr) {
@@ -65,7 +66,7 @@ function PreposizioniSempliciGame({ onBack, onStarEarned }) {
       corretta: giusta,
       rispostaCorretta: riempiFrase(esercizioCorrente.frase, corretta),
     }])
-    setTimeout(prossimaDomanda, 1500)
+    setTimeout(prossimaDomanda, 700)
   }
 
   function prossimaDomanda() {
@@ -177,6 +178,12 @@ function PreposizioniSempliciGame({ onBack, onStarEarned }) {
             )}
           </div>
         )}
+      </div>
+
+      <div className="star-progress">
+        <span className={`star-singola ${stellaGiaGuadagnata(`esercizi/preposizioni-semplici/${esercizioCorrente.indiceOriginale}`) ? 'piena' : 'vuota'}`}>
+          {stellaGiaGuadagnata(`esercizi/preposizioni-semplici/${esercizioCorrente.indiceOriginale}`) ? '⭐' : '☆'}
+        </span>
       </div>
     </div>
   )
