@@ -101,6 +101,8 @@ function PreposizioniGame({ onBack, onStarEarned }) {
       domanda: `${esercizioCorrente.emoji} ${riempiFrase(esercizioCorrente.frase, '___')}`,
       corretta: giusta,
       rispostaCorretta: riempiFrase(esercizioCorrente.frase, corretta),
+      rispostaData: riempiFrase(esercizioCorrente.frase, scelta),
+      valoreSbagliato: giusta ? null : scelta,
     }])
     setTimeout(prossimaDomanda, 700)
   }
@@ -129,6 +131,7 @@ function PreposizioniGame({ onBack, onStarEarned }) {
         totale={esercizi.length}
         risposte={risposte}
         onBack={onBack}
+        grammatica
       />
     )
   }

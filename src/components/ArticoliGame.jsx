@@ -63,10 +63,13 @@ function ArticoliGame({ onBack, onStarEarned }) {
       setPunteggio((p) => p + 1)
       onStarEarned?.(`esercizi/articoli/${parolaCorrente.parola}/${tipo}`)
     }
+    const rispostaData = articoloScelto.endsWith("'") ? `${articoloScelto}${parolaCorrente.parola}` : `${articoloScelto} ${parolaCorrente.parola}`
     setRisposte(prev => [...prev, {
       domanda: `${parolaCorrente.emoji} ${parolaCorrente.parola} (${tipo})`,
       corretta: giusta,
       rispostaCorretta: `${articoloCompleto(parolaCorrente, tipo)}`,
+      rispostaData,
+      valoreSbagliato: giusta ? null : articoloScelto,
     }])
     setTimeout(prossimaDomanda, 700)
   }
@@ -97,6 +100,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
         totale={parole.length}
         risposte={risposte}
         onBack={onBack}
+        grammatica
       />
     )
   }

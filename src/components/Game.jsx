@@ -59,6 +59,7 @@ function Game({ categoria, onBack, onStarEarned }) {
       domanda: `${parolaCorrente.emoji} ${testoCompleto(parolaCorrente)}`,
       corretta: giusta,
       rispostaCorretta: testoCompleto(parolaCorrente),
+      rispostaData: testoCompleto(opzione),
     }])
     setTimeout(prossimaDomanda, 700)
   }

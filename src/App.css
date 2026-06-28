@@ -679,7 +679,6 @@
 
 .riepilogo-riga.sbagliata {
   background: #fff0f0;
-  color: #d63031;
 }
 
 .riepilogo-icona {
@@ -700,6 +699,12 @@
   font-weight: 500;
   margin-left: auto;
   flex-shrink: 0;
+}
+
+.errore-testo {
+  color: #c62828;
+  font-weight: 800;
+  text-decoration: underline;
 }
 
 @keyframes starPop {
@@ -870,4 +875,275 @@
 
 .btn-reset-stars:hover {
   background: #ffe0e0;
+}
+
+/* RESPONSIVE — smartphone (max 480px) */
+@media (max-width: 480px) {
+  .home {
+    padding: 20px 12px;
+  }
+
+  .home-header {
+    margin-bottom: 24px;
+  }
+
+  .home-icon {
+    font-size: 48px;
+  }
+
+  .home-header h1 {
+    font-size: 28px;
+  }
+
+  .home-header p {
+    font-size: 15px;
+  }
+
+  .categorie-grid {
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .categoria-card {
+    padding: 14px 10px;
+    border-radius: 14px;
+    gap: 4px;
+  }
+
+  .categoria-icona {
+    font-size: 28px;
+  }
+
+  .categoria-nome {
+    font-size: 13px;
+  }
+
+  .game-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .btn-back {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .punteggio-corrente {
+    font-size: 13px;
+  }
+
+  .game-area {
+    padding: 24px 12px;
+    gap: 16px;
+  }
+
+  .domanda-label {
+    font-size: 16px;
+  }
+
+  .parola-corrente {
+    font-size: 32px;
+  }
+
+  .parola-corrente.emoji-grande {
+    font-size: 56px;
+  }
+
+  .btn-speak {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-left: 8px;
+  }
+
+  .opzioni-grid {
+    gap: 10px;
+    max-width: 320px;
+  }
+
+  .opzioni-grid.parole {
+    max-width: 340px;
+  }
+
+  .opzione-btn {
+    padding: 16px;
+    border-radius: 14px;
+    border-width: 2px;
+  }
+
+  .opzione-emoji {
+    font-size: 40px;
+  }
+
+  .opzione-parola {
+    font-size: 17px;
+  }
+
+  .feedback-corretto,
+  .feedback-sbagliato {
+    font-size: 16px;
+    padding: 10px 16px;
+  }
+
+  .btn-next {
+    font-size: 16px;
+    padding: 12px 32px;
+  }
+
+  .frase-esercizio {
+    font-size: 18px;
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .articolo-parola-emoji {
+    font-size: 48px;
+  }
+
+  .articolo-parola-testo {
+    font-size: 26px;
+  }
+
+  .opzioni-grid.articoli {
+    max-width: 260px;
+  }
+
+  .articolo-btn {
+    padding: 14px;
+  }
+
+  .opzione-articolo {
+    font-size: 22px;
+  }
+
+  .tipo-badge {
+    font-size: 12px;
+    padding: 4px 14px;
+  }
+
+  .risultati-card {
+    padding: 32px 20px;
+  }
+
+  .risultati-icona {
+    font-size: 48px;
+  }
+
+  .risultati-card h2 {
+    font-size: 28px;
+  }
+
+  .risultati-testo {
+    font-size: 15px;
+  }
+
+  .punteggio-numero {
+    font-size: 52px;
+  }
+
+  .punteggio-div,
+  .punteggio-totale {
+    font-size: 28px;
+  }
+
+  .menu {
+    padding: 24px 16px;
+  }
+
+  .menu-header {
+    margin-bottom: 32px;
+  }
+
+  .menu-logo {
+    font-size: 56px;
+  }
+
+  .menu-header h1 {
+    font-size: 40px;
+  }
+
+  .menu-subtitle {
+    font-size: 18px;
+  }
+
+  .menu-card {
+    padding: 20px 16px;
+    gap: 4px;
+  }
+
+  .menu-card-icona {
+    font-size: 36px;
+  }
+
+  .menu-card-nome {
+    font-size: 18px;
+  }
+
+  .stars-counter {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 18px;
+    gap: 8px;
+  }
+
+  .stars-icon {
+    font-size: 26px;
+  }
+
+  .stars-count {
+    font-size: 22px;
+  }
+
+  .stars-modal {
+    padding: 24px 16px;
+  }
+
+  .stars-modal-title {
+    font-size: 20px;
+  }
+
+  .stars-modal-total {
+    font-size: 28px;
+  }
+
+  .stars-modal-riga-nome {
+    font-size: 12px;
+    min-width: 80px;
+  }
+
+  .placeholder-card {
+    padding: 32px 20px;
+  }
+
+  .placeholder-icona {
+    font-size: 52px;
+  }
+
+  .placeholder-card h2 {
+    font-size: 24px;
+  }
+
+  .star-progress {
+    padding: 8px 12px;
+  }
+
+  .star-singola {
+    font-size: 24px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+
+  .riepilogo-lista {
+    max-height: 200px;
+  }
+
+  .riepilogo-riga {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
 }
