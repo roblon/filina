@@ -6,8 +6,10 @@ import ArticoliGame from './components/ArticoliGame'
 import PreposizioniGame from './components/PreposizioniGame'
 import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import CongiunzioniGame from './components/CongiunzioniGame'
+import StoriaGame from './components/StoriaGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
+import storie from './data/storie'
 import StarsModal from './components/StarsModal'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
 import { playStarSound } from './utils/tts'
@@ -93,6 +95,36 @@ function App() {
         />
         <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
       {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
+      </>
+    )
+  }
+
+  if (tema === 'storie') {
+    if (categoria) {
+      return (
+        <>
+          <StoriaGame
+            storia={categoria}
+            onBack={() => setCategoria(null)}
+            onStarEarned={guadagnaStella}
+          />
+          <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+          {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
+        </>
+      )
+    }
+    return (
+      <>
+        <Home
+          categorie={storie}
+          onStart={setCategoria}
+          onBackToMenu={() => setTema(null)}
+          icona="📖"
+          titolo="Storie"
+          sottotitolo="Leggi e ascolta brevi storie in italiano"
+        />
+        <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
+        {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
       </>
     )
   }
