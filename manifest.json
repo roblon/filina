@@ -18,5 +18,9 @@
   { "filename": "esercizi/congiunzioni/17.mp3", "text": "Sono stanco perché ho lavorato tanto." },
   { "filename": "esercizi/congiunzioni/18.mp3", "text": "Prendiamo la macchina oppure il treno?" },
   { "filename": "esercizi/congiunzioni/19.mp3", "text": "Compro il pane e il latte." },
-  { "filename": "esercizi/congiunzioni/20.mp3", "text": "Arrivo tardi perché c'è traffico." }
+  { "filename": "esercizi/congiunzioni/20.mp3", "text": "Arrivo tardi perché c'è traffico." },
+  { "filename": "storie/folletto-dei-regali/domanda-1.mp3", "text": "Di cosa parla la storia?" },
+  { "filename": "storie/folletto-dei-regali/domanda-2.mp3", "text": "Da dove cade il folletto?" },
+  { "filename": "storie/folletto-dei-regali/domanda-3.mp3", "text": "Quanti fratelli ha il folletto?" },
+  { "filename": "storie/folletto-dei-regali/domanda-4.mp3", "text": "Dove vanno a vivere tutti i folletti?" }
 ]

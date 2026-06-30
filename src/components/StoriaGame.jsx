@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { playMp3 } from '../utils/tts'
 import { stellaGiaGuadagnata } from '../utils/stelle'
 import Riepilogo from './Riepilogo'
 
@@ -23,8 +24,21 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
     d.opzioni.map((t, i) => ({ testo: t, corretta: i === d.corretta }))
   )))
   const videoRef = useRef(null)
+  const ultimoIndiceParlato = useRef(-1)
 
   const videoPath = `${import.meta.env.BASE_URL}assets/video/${storia.video}`
+
+  const domandaCorrente = fase === 'quiz' ? storia.domande[indice] : null
+  const audioPath = domandaCorrente
+    ? `${import.meta.env.BASE_URL}assets/audio/storie/${storia.id}/domanda-${indice + 1}.mp3`
+    : null
+
+  useEffect(() => {
+    if (audioPath && ultimoIndiceParlato.current !== indice) {
+      playMp3(audioPath)
+      ultimoIndiceParlato.current = indice
+    }
+  }, [indice, audioPath])
 
   function gestisciRisposta(opzione) {
     if (risposto) return
