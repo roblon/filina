@@ -56,6 +56,7 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
       rispostaCorretta: storia.domande[indice].opzioni[storia.domande[indice].corretta],
       rispostaData: opzione.testo,
     }])
+    setTimeout(prossimaDomanda, 700)
   }
 
   function prossimaDomanda() {
@@ -147,7 +148,12 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
 
       <div className="game-area">
         <div className="domanda-label">Domanda {indice + 1} di {storia.domande.length}</div>
-        <div className="parola-corrente">{domanda.domanda}</div>
+        <div className="parola-corrente">
+          {domanda.domanda}
+          <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la domanda">
+            🔈
+          </button>
+        </div>
 
         <div className="opzioni-grid storie">
           {ops.map((op, i) => (
@@ -181,13 +187,6 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
                 <span>❌</span> La risposta giusta era: &quot;{storia.domande[indice].opzioni[storia.domande[indice].corretta]}&quot;
               </div>
             )}
-            <button
-              className="btn-next"
-              style={{ background: storia.colore }}
-              onClick={prossimaDomanda}
-            >
-              {indice + 1 >= storia.domande.length ? 'Vedi risultati' : 'Prossima domanda'}
-            </button>
           </div>
         )}
       </div>

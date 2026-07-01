@@ -170,7 +170,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
           <div className="feedback">
             {ultimaRisposta === corretto ? (
               <div className="feedback-corretto">
-                <span>✅</span> Bravo! {articoloCompleto(parolaCorrente, tipo)}!
+                <span>✅</span> Bene! {articoloCompleto(parolaCorrente, tipo)}!
               </div>
             ) : (
               <div className="feedback-sbagliato">

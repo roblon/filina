@@ -208,7 +208,7 @@ function PreposizioniGame({ onBack, onStarEarned }) {
           <div className="feedback">
             {ultimaRisposta === corretta ? (
               <div className="feedback-corretto">
-                <span>✅</span> Bravo! {riempiFrase(esercizioCorrente.frase, corretta)}
+                <span>✅</span> Bene! {riempiFrase(esercizioCorrente.frase, corretta)}
               </div>
             ) : (
               <div className="feedback-sbagliato">
