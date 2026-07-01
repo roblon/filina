@@ -20,6 +20,7 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
   const [ultimaRisposta, setUltimaRisposta] = useState(null)
   const [fatto, setFatto] = useState(false)
   const [risposte, setRisposte] = useState([])
+  const [videoProgress, setVideoProgress] = useState(0)
   const [opzioni] = useState(() => storia.domande.map(d => mischia(
     d.opzioni.map((t, i) => ({ testo: t, corretta: i === d.corretta }))
   )))
@@ -83,19 +84,40 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
 
   if (fase === 'video') {
     return (
-      <div className="storia-video-container">
-        <video
-          ref={videoRef}
-          className="storia-video"
-          src={videoPath}
-          autoPlay
-          controls
-          onEnded={() => setFase('quiz')}
-          playsInline
-        />
-        <button className="btn-back video-skip-btn" onClick={() => setFase('quiz')}>
-          Salta video →
-        </button>
+      <div className="game">
+        <div className="game-header">
+          <button className="btn-back" onClick={onBack}>
+            ← Indietro
+          </button>
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{
+                width: `${videoProgress}%`,
+                background: storia.colore,
+              }}
+            />
+          </div>
+          <span className="punteggio-corrente">Video</span>
+        </div>
+        <div className="storia-video-container">
+          <video
+            ref={videoRef}
+            className="storia-video"
+            src={videoPath}
+            autoPlay
+            controls
+            onTimeUpdate={(e) => {
+              const dur = e.target.duration || 42
+              setVideoProgress((e.target.currentTime / dur) * 100)
+            }}
+            onEnded={() => setFase('quiz')}
+            playsInline
+          />
+          <button className="btn-back video-skip-btn" onClick={() => setFase('quiz')}>
+            Salta video →
+          </button>
+        </div>
       </div>
     )
   }
