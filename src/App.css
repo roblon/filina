@@ -566,6 +566,52 @@
   font-family: 'Nunito', system-ui, -apple-system, sans-serif;
 }
 
+/* STORIA VIDEO */
+.storia-video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.storia-video {
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.video-skip-btn {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.video-skip-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.opzioni-grid.storie {
+  grid-template-columns: 1fr 1fr;
+  max-width: 520px;
+}
+
 /* PLACEHOLDER */
 .placeholder-screen {
   display: flex;
@@ -1109,6 +1155,27 @@
   .stars-modal-riga-nome {
     font-size: 12px;
     min-width: 80px;
+  }
+
+  .storia-video-container {
+    padding: 12px;
+  }
+
+  .storia-video {
+    max-height: 60vh;
+    border-radius: 12px;
+  }
+
+  .video-skip-btn {
+    bottom: 16px;
+    left: 16px;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .opzioni-grid.storie {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 
   .placeholder-card {

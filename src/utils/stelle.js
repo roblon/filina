@@ -39,6 +39,7 @@ const moduli = [
   { id: 'congiunzioni',   tipo: 'esercizi/congiunzioni',         nome: 'Congiunzioni',            icona: '🔀', colore: '#E17055',  totale: 20 },
   { id: 'preposizioni-articolate',  tipo: 'esercizi/preposizioni-articolate',  nome: 'Preposizioni Articolate',    icona: '🔗', colore: '#FF8C42',  totale: 20 },
   { id: 'preposizioni-semplici',    tipo: 'esercizi/preposizioni-semplici',    nome: 'Preposizioni Semplici',      icona: '➡️', colore: '#6C5CE7',  totale: 20 },
+  { id: 'folletto-dei-regali',     tipo: 'storie/folletto-dei-regali',       nome: 'Il folletto dei regali',     icona: '🧝', colore: '#A66CFF',  totale: 4 },
 ]
 
 export function getStatisticheModuli() {
