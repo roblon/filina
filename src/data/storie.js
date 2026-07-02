@@ -29,8 +29,8 @@ const storie = [
     ],
   },
   {
-    id: 'panda-padino',
-    nome: 'Panda Padino',
+    id: 'panda-pandino',
+    nome: 'Panda Pandino',
     icona: '🐼',
     colore: '#2ECC71',
     video: 'panda-pandino.mp4',
