@@ -1,0 +1,30 @@
+const esercizioVerbi = {
+  id: 'verbi',
+  nome: 'Verbi al Presente',
+  icona: '🏃',
+  colore: '#00B894',
+  esercizi: [
+    { frase: 'Io ___ (mangiare) la pizza.', emoji: '🍕', verbo: 'mangio' },
+    { frase: 'Tu ___ (parlare) italiano molto bene.', emoji: '🗣️', verbo: 'parli' },
+    { frase: 'Lui ___ (leggere) un libro.', emoji: '📖', verbo: 'legge' },
+    { frase: 'Noi ___ (scrivere) una lettera.', emoji: '✉️', verbo: 'scriviamo' },
+    { frase: 'Voi ___ (dormire) molto.', emoji: '😴', verbo: 'dormite' },
+    { frase: 'Loro ___ (giocare) a calcio.', emoji: '⚽', verbo: 'giocano' },
+    { frase: 'Io ___ (bere) un caffè.', emoji: '☕', verbo: 'bevo' },
+    { frase: 'Tu ___ (finire) i compiti.', emoji: '📚', verbo: 'finisci' },
+    { frase: 'Lei ___ (partire) domani.', emoji: '✈️', verbo: 'parte' },
+    { frase: 'Noi ___ (aprire) la finestra.', emoji: '🪟', verbo: 'apriamo' },
+    { frase: 'Voi ___ (sentire) la musica?', emoji: '🎵', verbo: 'sentite' },
+    { frase: 'Loro ___ (vivere) a Roma.', emoji: '🏛️', verbo: 'vivono' },
+    { frase: 'Io ___ (capire) la lezione.', emoji: '🧠', verbo: 'capisco' },
+    { frase: 'Tu ___ (correre) veloce.', emoji: '🏃', verbo: 'corri' },
+    { frase: 'Lui ___ (dormire) sul divano.', emoji: '🛋️', verbo: 'dorme' },
+    { frase: 'Noi ___ (cantare) una canzone.', emoji: '🎤', verbo: 'cantiamo' },
+    { frase: 'Voi ___ (vedere) il tramonto.', emoji: '🌅', verbo: 'vedete' },
+    { frase: 'Loro ___ (preferire) il tè.', emoji: '🍵', verbo: 'preferiscono' },
+    { frase: 'Io ___ (studiare) la grammatica.', emoji: '📝', verbo: 'studio' },
+    { frase: 'Tu ___ (prendere) il treno.', emoji: '🚂', verbo: 'prendi' },
+  ],
+}
+
+export default esercizioVerbi
