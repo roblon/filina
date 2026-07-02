@@ -6,10 +6,18 @@ import ArticoliGame from './components/ArticoliGame'
 import PreposizioniGame from './components/PreposizioniGame'
 import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import CongiunzioniGame from './components/CongiunzioniGame'
+import GrammarGame from './components/GrammarGame'
 import StoriaGame from './components/StoriaGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import storie from './data/storie'
+import esercizioVerbi from './data/verbi'
+import esercizioAggettivi from './data/aggettivi'
+import esercizioPronomi from './data/pronomi'
+import esercizioPossessivi from './data/possessivi'
+import esercizioAvverbi from './data/avverbi'
+import esercizioPassatoProssimo from './data/passato-prossimo'
+import esercizioPreposizioniTempoLuogo from './data/preposizioni-tempo-luogo'
 import StarsModal from './components/StarsModal'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
 import { playStarSound } from './utils/tts'
@@ -43,6 +51,55 @@ const categorieEsercizi = [
     icona: '🔀',
     colore: '#E17055',
     descrizione: 'Impara le congiunzioni (e, ma, perché, se, mentre, però, che…)',
+  },
+  {
+    id: 'verbi',
+    nome: 'Verbi al Presente',
+    icona: '🏃',
+    colore: '#00B894',
+    descrizione: 'Coniuga i verbi al presente (-are, -ere, -ire)',
+  },
+  {
+    id: 'aggettivi',
+    nome: 'Aggettivi',
+    icona: '🎨',
+    colore: '#FD79A8',
+    descrizione: 'Accorda gli aggettivi con nome e genere',
+  },
+  {
+    id: 'pronomi',
+    nome: 'Pronomi',
+    icona: '🔄',
+    colore: '#0984E3',
+    descrizione: 'Pronomi diretti e indiretti (mi, ti, lo, la, gli, le…)',
+  },
+  {
+    id: 'possessivi',
+    nome: 'Possessivi',
+    icona: '👤',
+    colore: '#6C5CE7',
+    descrizione: 'Aggettivi possessivi (mio, tuo, suo, nostro, vostro)',
+  },
+  {
+    id: 'avverbi',
+    nome: 'Avverbi di Frequenza',
+    icona: '⏰',
+    colore: '#FDCB6E',
+    descrizione: 'Sempre, mai, spesso, qualche volta…',
+  },
+  {
+    id: 'passato-prossimo',
+    nome: 'Passato Prossimo',
+    icona: '⏪',
+    colore: '#E17055',
+    descrizione: 'Passato prossimo con essere e avere',
+  },
+  {
+    id: 'preposizioni-tempo-luogo',
+    nome: 'Prep. Tempo e Luogo',
+    icona: '📍',
+    colore: '#00CEC9',
+    descrizione: 'Preposizioni di tempo e luogo',
   },
 ]
 
@@ -144,6 +201,27 @@ function App() {
           )}
           {categoria.id === 'congiunzioni' && (
             <CongiunzioniGame key="congiunzioni" onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'verbi' && (
+            <GrammarGame key="verbi" esercizi={esercizioVerbi.esercizi} campo="verbo" etichetta="Coniuga il verbo al presente" moduloId="verbi" icona={esercizioVerbi.icona} nome={esercizioVerbi.nome} colore={esercizioVerbi.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'aggettivi' && (
+            <GrammarGame key="aggettivi" esercizi={esercizioAggettivi.esercizi} campo="aggettivo" etichetta="Accorda l'aggettivo corretto" moduloId="aggettivi" icona={esercizioAggettivi.icona} nome={esercizioAggettivi.nome} colore={esercizioAggettivi.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'pronomi' && (
+            <GrammarGame key="pronomi" esercizi={esercizioPronomi.esercizi} campo="pronome" etichetta="Scegli il pronome corretto" moduloId="pronomi" icona={esercizioPronomi.icona} nome={esercizioPronomi.nome} colore={esercizioPronomi.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'possessivi' && (
+            <GrammarGame key="possessivi" esercizi={esercizioPossessivi.esercizi} campo="possessivo" etichetta="Scegli l'aggettivo possessivo corretto" moduloId="possessivi" icona={esercizioPossessivi.icona} nome={esercizioPossessivi.nome} colore={esercizioPossessivi.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'avverbi' && (
+            <GrammarGame key="avverbi" esercizi={esercizioAvverbi.esercizi} campo="avverbio" etichetta="Completa con l'avverbio di frequenza" moduloId="avverbi" icona={esercizioAvverbi.icona} nome={esercizioAvverbi.nome} colore={esercizioAvverbi.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'passato-prossimo' && (
+            <GrammarGame key="passato-prossimo" esercizi={esercizioPassatoProssimo.esercizi} campo="verbo" etichetta="Completa con il passato prossimo" moduloId="passato-prossimo" icona={esercizioPassatoProssimo.icona} nome={esercizioPassatoProssimo.nome} colore={esercizioPassatoProssimo.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
+          )}
+          {categoria.id === 'preposizioni-tempo-luogo' && (
+            <GrammarGame key="preposizioni-tempo-luogo" esercizi={esercizioPreposizioniTempoLuogo.esercizi} campo="preposizione" etichetta="Scegli la preposizione di tempo/luogo" moduloId="preposizioni-tempo-luogo" icona={esercizioPreposizioniTempoLuogo.icona} nome={esercizioPreposizioniTempoLuogo.nome} colore={esercizioPreposizioniTempoLuogo.colore} onBack={() => setCategoria(null)} onStarEarned={guadagnaStella} />
           )}
           <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
       {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
