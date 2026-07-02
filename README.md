@@ -47,4 +47,4 @@ npm run preview
 
 Il deploy su GitHub Pages avviene automaticamente tramite GitHub Actions a ogni push sul branch `main`.
 
-GitHub Pages del progetto Filina: `https://roblon.github.io/filina`
+GitHub Pages del progetto [Filina](https://roblon.github.io/filina)
