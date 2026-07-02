@@ -33,7 +33,7 @@ const storie = [
     nome: 'Panda Padino',
     icona: '🐼',
     colore: '#2ECC71',
-    video: 'panda-padino.mp4',
+    video: 'panda-pandino.mp4',
     domande: [
       {
         domanda: 'Di cosa parla la storia?',
