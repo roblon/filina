@@ -28,6 +28,35 @@ const storie = [
       },
     ],
   },
+  {
+    id: 'panda-pandino',
+    nome: 'Panda Pandino',
+    icona: '🐼',
+    colore: '#2ECC71',
+    video: 'panda-pandino.mp4',
+    domande: [
+      {
+        domanda: 'Di cosa parla la storia?',
+        opzioni: ['Panda Pandino', 'Orso Yoghi', 'di una puzzola', 'di un pinguino'],
+        corretta: 0,
+      },
+      {
+        domanda: 'Dove si trova la casa della nonna?',
+        opzioni: ['In campagna', 'in città', 'in montagna', 'al mare'],
+        corretta: 1,
+      },
+      {
+        domanda: 'Dove vanno l\'amico panda e Filina?',
+        opzioni: ['A Francoforte', 'in agriturismo', 'a Monaco', 'al centro sportivo'],
+        corretta: 2,
+      },
+      {
+        domanda: 'Chi porterà panda pandino dal suo amico a Monaco?',
+        opzioni: ['La mamma', 'La figlia', 'la nonna', 'la nipote'],
+        corretta: 2,
+      },
+    ],
+  },
 ]
 
 export default storie
