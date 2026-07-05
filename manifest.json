@@ -138,5 +138,9 @@
   { "filename": "esercizi/preposizioni-tempo-luogo/17.mp3", "text": "L'aereo parte da Napoli." },
   { "filename": "esercizi/preposizioni-tempo-luogo/18.mp3", "text": "Il pacco arriverà per Natale." },
   { "filename": "esercizi/preposizioni-tempo-luogo/19.mp3", "text": "Fra due settimane inizia la scuola." },
-  { "filename": "esercizi/preposizioni-tempo-luogo/20.mp3", "text": "Lascio le chiavi sotto il tappeto." }
+  { "filename": "esercizi/preposizioni-tempo-luogo/20.mp3", "text": "Lascio le chiavi sotto il tappeto." },
+  { "filename": "giochi/calendario/giorni.mp3", "text": "Puoi ordinare i giorni della settimana sulla griglia?" },
+  { "filename": "giochi/calendario/mesi.mp3", "text": "Puoi ordinare i mesi dell'anno sulla griglia?" },
+  { "filename": "giochi/calendario/stagioni.mp3", "text": "Puoi ordinare i nomi delle stagioni sulla griglia?" },
+  { "filename": "giochi/calendario/zodiaco.mp3", "text": "Posiziona il simbolo di ogni segno zodiacale sul nome corrispondente" }
 ]

@@ -288,6 +288,162 @@
     "text": "il cugino"
   },
   {
+    "filename": "giochi/calendario/giorni.mp3",
+    "text": "Puoi ordinare i giorni della settimana sulla griglia?"
+  },
+  {
+    "filename": "giochi/calendario/lunedì.mp3",
+    "text": "lunedì"
+  },
+  {
+    "filename": "giochi/calendario/martedì.mp3",
+    "text": "martedì"
+  },
+  {
+    "filename": "giochi/calendario/mercoledì.mp3",
+    "text": "mercoledì"
+  },
+  {
+    "filename": "giochi/calendario/giovedì.mp3",
+    "text": "giovedì"
+  },
+  {
+    "filename": "giochi/calendario/venerdì.mp3",
+    "text": "venerdì"
+  },
+  {
+    "filename": "giochi/calendario/sabato.mp3",
+    "text": "sabato"
+  },
+  {
+    "filename": "giochi/calendario/domenica.mp3",
+    "text": "domenica"
+  },
+  {
+    "filename": "giochi/calendario/mesi.mp3",
+    "text": "Puoi ordinare i mesi dell'anno sulla griglia?"
+  },
+  {
+    "filename": "giochi/calendario/gennaio.mp3",
+    "text": "gennaio"
+  },
+  {
+    "filename": "giochi/calendario/febbraio.mp3",
+    "text": "febbraio"
+  },
+  {
+    "filename": "giochi/calendario/marzo.mp3",
+    "text": "marzo"
+  },
+  {
+    "filename": "giochi/calendario/aprile.mp3",
+    "text": "aprile"
+  },
+  {
+    "filename": "giochi/calendario/maggio.mp3",
+    "text": "maggio"
+  },
+  {
+    "filename": "giochi/calendario/giugno.mp3",
+    "text": "giugno"
+  },
+  {
+    "filename": "giochi/calendario/luglio.mp3",
+    "text": "luglio"
+  },
+  {
+    "filename": "giochi/calendario/agosto.mp3",
+    "text": "agosto"
+  },
+  {
+    "filename": "giochi/calendario/settembre.mp3",
+    "text": "settembre"
+  },
+  {
+    "filename": "giochi/calendario/ottobre.mp3",
+    "text": "ottobre"
+  },
+  {
+    "filename": "giochi/calendario/novembre.mp3",
+    "text": "novembre"
+  },
+  {
+    "filename": "giochi/calendario/dicembre.mp3",
+    "text": "dicembre"
+  },
+  {
+    "filename": "giochi/calendario/stagioni.mp3",
+    "text": "Puoi ordinare i nomi delle stagioni sulla griglia?"
+  },
+  {
+    "filename": "giochi/calendario/primavera.mp3",
+    "text": "primavera"
+  },
+  {
+    "filename": "giochi/calendario/estate.mp3",
+    "text": "estate"
+  },
+  {
+    "filename": "giochi/calendario/autunno.mp3",
+    "text": "autunno"
+  },
+  {
+    "filename": "giochi/calendario/inverno.mp3",
+    "text": "inverno"
+  },
+  {
+    "filename": "giochi/calendario/zodiaco.mp3",
+    "text": "Posiziona il simbolo di ogni segno zodiacale sul nome corrispondente"
+  },
+  {
+    "filename": "giochi/calendario/ariete.mp3",
+    "text": "Ariete"
+  },
+  {
+    "filename": "giochi/calendario/toro.mp3",
+    "text": "Toro"
+  },
+  {
+    "filename": "giochi/calendario/gemelli.mp3",
+    "text": "Gemelli"
+  },
+  {
+    "filename": "giochi/calendario/cancro.mp3",
+    "text": "Cancro"
+  },
+  {
+    "filename": "giochi/calendario/leone.mp3",
+    "text": "Leone"
+  },
+  {
+    "filename": "giochi/calendario/vergine.mp3",
+    "text": "Vergine"
+  },
+  {
+    "filename": "giochi/calendario/bilancia.mp3",
+    "text": "Bilancia"
+  },
+  {
+    "filename": "giochi/calendario/scorpione.mp3",
+    "text": "Scorpione"
+  },
+  {
+    "filename": "giochi/calendario/sagittario.mp3",
+    "text": "Sagittario"
+  },
+  {
+    "filename": "giochi/calendario/capricorno.mp3",
+    "text": "Capricorno"
+  },
+  {
+    "filename": "giochi/calendario/acquario.mp3",
+    "text": "Acquario"
+  },
+  {
+    "filename": "giochi/calendario/pesci.mp3",
+    "text": "Pesci"
+  },
+  {
     "filename": "esercizi/articoli/cane-det.mp3",
     "text": "il cane"
   },
