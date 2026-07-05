@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import calendario from '../data/calendario'
+import { playMp3 } from '../utils/tts'
 
 function mischia(arr) {
   const a = [...arr]
@@ -45,6 +46,12 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
 
   const domanda = calendario.domande[fase]
   const abbinamento = domanda.tipo === 'abbinamento'
+
+  const audioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/calendario/${domanda.id}.mp3`
+
+  useEffect(() => {
+    playMp3(audioPath)
+  }, [audioPath])
 
   function cliccaTassello(indiceWallet) {
     if (stato !== 'gioco') return
@@ -144,7 +151,12 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     <div className="calendario-area">
       <div className="calendario-domanda">
         <span className="calendario-domanda-icona">{calendario.icona}</span>
-        <p className="calendario-domanda-testo">{domanda.testo}</p>
+        <p className="calendario-domanda-testo">
+          {domanda.testo}
+          <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la domanda">
+            🔈
+          </button>
+        </p>
       </div>
 
       <div
