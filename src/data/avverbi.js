@@ -1,0 +1,30 @@
+const esercizioAvverbi = {
+  id: 'avverbi',
+  nome: 'Avverbi di Frequenza',
+  icona: '⏰',
+  colore: '#FDCB6E',
+  esercizi: [
+    { frase: 'Io ___ vado al mare d\'estate.', emoji: '🏖️', avverbio: 'sempre' },
+    { frase: 'Loro non mangiano ___ la carne.', emoji: '🥩', avverbio: 'mai' },
+    { frase: 'Noi ___ andiamo al cinema.', emoji: '🎬', avverbio: 'spesso' },
+    { frase: 'Io ___ prendo il caffè la mattina.', emoji: '☕', avverbio: 'sempre' },
+    { frase: 'Marco ___ arriva in orario.', emoji: '⏰', avverbio: 'raramente' },
+    { frase: '___ vado a correre nel parco.', emoji: '🏃', avverbio: 'Spesso' },
+    { frase: 'Non ho ___ visitato Roma.', emoji: '🏛️', avverbio: 'mai' },
+    { frase: '___ guardiamo un film la sera.', emoji: '📺', avverbio: 'Di solito' },
+    { frase: 'Loro ___ viaggiano all\'estero.', emoji: '✈️', avverbio: 'qualche volta' },
+    { frase: 'Io non trovo ___ le chiavi.', emoji: '🔑', avverbio: 'mai' },
+    { frase: 'La nonna ___ prepara i biscotti.', emoji: '🍪', avverbio: 'ogni giorno' },
+    { frase: '___ faccio colazione al bar.', emoji: '🥐', avverbio: 'Qualche volta' },
+    { frase: 'Studio l\'italiano ___.', emoji: '📚', avverbio: 'ogni giorno' },
+    { frase: '___ scrivo una lettera a mia nonna.', emoji: '✉️', avverbio: 'Di solito' },
+    { frase: 'Non nevica ___ qui.', emoji: '❄️', avverbio: 'mai' },
+    { frase: 'Andiamo ___ in montagna.', emoji: '🏔️', avverbio: 'raramente' },
+    { frase: '___ gioco a calcio con gli amici.', emoji: '⚽', avverbio: 'Spesso' },
+    { frase: 'Ci vediamo ___ al parco.', emoji: '🌳', avverbio: 'qualche volta' },
+    { frase: 'Lui ___ legge il giornale.', emoji: '📰', avverbio: 'sempre' },
+    { frase: 'Non piove ___ a luglio.', emoji: '☀️', avverbio: 'quasi mai' },
+  ],
+}
+
+export default esercizioAvverbi

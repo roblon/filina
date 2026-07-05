@@ -1,0 +1,30 @@
+const esercizioPossessivi = {
+  id: 'possessivi',
+  nome: 'Possessivi',
+  icona: '👤',
+  colore: '#6C5CE7',
+  esercizi: [
+    { frase: 'Questa è la ___ (io) casa.', emoji: '🏠', possessivo: 'mia' },
+    { frase: 'Il ___ (tu) libro è bello.', emoji: '📖', possessivo: 'tuo' },
+    { frase: 'La ___ (lui) macchina è rossa.', emoji: '🚗', possessivo: 'sua' },
+    { frase: 'I ___ (noi) amici sono simpatici.', emoji: '👫', possessivo: 'nostri' },
+    { frase: 'La ___ (voi) scuola è grande.', emoji: '🏫', possessivo: 'vostra' },
+    { frase: 'La ___ (io) mamma cuoce bene.', emoji: '👩‍🍳', possessivo: 'mia' },
+    { frase: 'Il ___ (tu) cane è affettuoso.', emoji: '🐶', possessivo: 'tuo' },
+    { frase: 'I ___ (lei) occhi sono azzurri.', emoji: '👁️', possessivo: 'suoi' },
+    { frase: 'Le ___ (loro) biciclette sono nuove.', emoji: '🚲', possessivo: 'loro' },
+    { frase: 'Il ___ (noi) giardino è fiorito.', emoji: '🌺', possessivo: 'nostro' },
+    { frase: 'I ___ (vostro) consigli sono utili.', emoji: '💡', possessivo: 'vostri' },
+    { frase: 'La ___ (io) sorella suona il piano.', emoji: '🎹', possessivo: 'mia' },
+    { frase: 'Il ___ (tu) zaino è pesante.', emoji: '🎒', possessivo: 'tuo' },
+    { frase: 'La ___ (lui) camera è ordinata.', emoji: '🛏️', possessivo: 'sua' },
+    { frase: 'I ___ (lei) fratelli sono alti.', emoji: '👨‍👩‍👧‍👦', possessivo: 'suoi' },
+    { frase: 'La ___ (noi) nonna racconta storie.', emoji: '👵', possessivo: 'nostra' },
+    { frase: 'Il ___ (vostro) gatto è bianco.', emoji: '🐱', possessivo: 'vostro' },
+    { frase: 'Le ___ (io) chiavi sono sul tavolo.', emoji: '🔑', possessivo: 'mie' },
+    { frase: 'I ___ (tu) disegni sono bellissimi.', emoji: '🎨', possessivo: 'tuoi' },
+    { frase: 'La ___ (loro) casa ha un grande balcone.', emoji: '🏢', possessivo: 'loro' },
+  ],
+}
+
+export default esercizioPossessivi

@@ -1,0 +1,30 @@
+const esercizioPreposizioniTempoLuogo = {
+  id: 'preposizioni-tempo-luogo',
+  nome: 'Prep. Tempo e Luogo',
+  icona: '📍',
+  colore: '#00CEC9',
+  esercizi: [
+    { frase: 'L\'appuntamento è ___ lunedì.', emoji: '📅', preposizione: 'di' },
+    { frase: 'Partiamo ___ Roma domani.', emoji: '✈️', preposizione: 'da' },
+    { frase: 'Vado ___ scuola ogni giorno.', emoji: '🏫', preposizione: 'a' },
+    { frase: 'Marco vive ___ campagna.', emoji: '🌾', preposizione: 'in' },
+    { frase: 'Ci vediamo ___ cinque.', emoji: '🕐', preposizione: 'alle' },
+    { frase: 'Il treno arriva ___ due ore.', emoji: '🚂', preposizione: 'tra' },
+    { frase: 'Lavoro ___ un ufficio.', emoji: '💼', preposizione: 'in' },
+    { frase: 'Arriverò ___ l\'estate.', emoji: '☀️', preposizione: 'per' },
+    { frase: 'La biblioteca chiude ___ otto.', emoji: '📚', preposizione: 'alle' },
+    { frase: 'Sono nato ___ Milano.', emoji: '🏙️', preposizione: 'a' },
+    { frase: 'Il negozio apre ___ nove.', emoji: '🕘', preposizione: 'alle' },
+    { frase: 'Vado in vacanza ___ luglio.', emoji: '🏖️', preposizione: 'a' },
+    { frase: '___ me e te, è un segreto.', emoji: '🤫', preposizione: 'Tra' },
+    { frase: 'Il gatto è ___ il letto.', emoji: '🛏️', preposizione: 'sotto' },
+    { frase: 'Il ristorante è ___ l\'albergo.', emoji: '🏨', preposizione: 'dietro' },
+    { frase: 'Studio ___ sera.', emoji: '🌆', preposizione: 'di' },
+    { frase: 'L\'aereo parte ___ Napoli.', emoji: '🛫', preposizione: 'da' },
+    { frase: 'Il pacco arriverà ___ Natale.', emoji: '🎄', preposizione: 'per' },
+    { frase: '___ due settimane inizia la scuola.', emoji: '📓', preposizione: 'Fra' },
+    { frase: 'Lascio le chiavi ___ il tappeto.', emoji: '🚪', preposizione: 'sotto' },
+  ],
+}
+
+export default esercizioPreposizioniTempoLuogo
