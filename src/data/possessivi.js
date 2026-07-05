@@ -4,7 +4,7 @@ const esercizioPossessivi = {
   icona: '👤',
   colore: '#6C5CE7',
   esercizi: [
-    { frase: 'Questa è ___ (io) casa.', emoji: '🏠', possessivo: 'mia' },
+    { frase: 'Questa è la ___ (io) casa.', emoji: '🏠', possessivo: 'mia' },
     { frase: 'Il ___ (tu) libro è bello.', emoji: '📖', possessivo: 'tuo' },
     { frase: 'La ___ (lui) macchina è rossa.', emoji: '🚗', possessivo: 'sua' },
     { frase: 'I ___ (noi) amici sono simpatici.', emoji: '👫', possessivo: 'nostri' },
