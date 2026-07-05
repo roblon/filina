@@ -873,9 +873,13 @@
 
 /* STAR PROGRESS (per-sheet indicator) */
 .star-progress {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
   display: flex;
   justify-content: flex-start;
   padding: 12px 20px;
+  z-index: 100;
 }
 
 .star-singola {
@@ -1273,6 +1277,8 @@
   }
 
   .star-progress {
+    bottom: 10px;
+    left: 10px;
     padding: 6px 10px;
   }
 
