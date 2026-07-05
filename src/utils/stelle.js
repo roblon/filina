@@ -41,13 +41,6 @@ const moduli = [
   { id: 'preposizioni-semplici',    tipo: 'esercizi/preposizioni-semplici',    nome: 'Preposizioni Semplici',      icona: '➡️', colore: '#6C5CE7',  totale: 20 },
   { id: 'folletto-dei-regali',     tipo: 'storie/folletto-dei-regali',       nome: 'Il folletto dei regali',     icona: '🧝', colore: '#A66CFF',  totale: 4 },
   { id: 'panda-pandino',            tipo: 'storie/panda-pandino',              nome: 'Panda Pandino',            icona: '🐼', colore: '#2ECC71',  totale: 4 },
-  { id: 'verbi',                    tipo: 'esercizi/verbi',                    nome: 'Verbi al Presente',        icona: '🏃', colore: '#00B894',  totale: 20 },
-  { id: 'aggettivi',                tipo: 'esercizi/aggettivi',                nome: 'Aggettivi',                icona: '🎨', colore: '#FD79A8',  totale: 20 },
-  { id: 'pronomi',                  tipo: 'esercizi/pronomi',                  nome: 'Pronomi',                  icona: '🔄', colore: '#0984E3',  totale: 20 },
-  { id: 'possessivi',               tipo: 'esercizi/possessivi',               nome: 'Possessivi',               icona: '👤', colore: '#6C5CE7',  totale: 20 },
-  { id: 'avverbi',                  tipo: 'esercizi/avverbi',                  nome: 'Avverbi di Frequenza',     icona: '⏰', colore: '#FDCB6E',  totale: 20 },
-  { id: 'passato-prossimo',         tipo: 'esercizi/passato-prossimo',        nome: 'Passato Prossimo',         icona: '⏪', colore: '#E17055',  totale: 20 },
-  { id: 'preposizioni-tempo-luogo', tipo: 'esercizi/preposizioni-tempo-luogo',nome: 'Prep. Tempo e Luogo',      icona: '📍', colore: '#00CEC9',  totale: 20 },
 ]
 
 export function getStatisticheModuli() {
