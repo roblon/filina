@@ -11,28 +11,38 @@ function mischia(arr) {
   return a
 }
 
+function randomPreInseriti(totale, conteggio) {
+  const indici = Array.from({ length: totale }, (_, i) => i)
+  for (let i = indici.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indici[i], indici[j]] = [indici[j], indici[i]]
+  }
+  return new Set(indici.slice(0, conteggio))
+}
+
 function inizializzaFase(fase) {
   const d = calendario.domande[fase]
+  const preInseriti = randomPreInseriti(d.tasselli.length, d.preInseriti)
   if (d.tipo === 'ordine') {
     return {
       grid: d.tasselli.map((t, i) => ({
-        valore: d.preInseriti.includes(i) ? t : null,
-        bloccato: d.preInseriti.includes(i),
+        valore: preInseriti.has(i) ? t : null,
+        bloccato: preInseriti.has(i),
         atteso: t,
         indice: i,
       })),
-      wallet: mischia(d.tasselli.filter((_, i) => !d.preInseriti.includes(i))),
+      wallet: mischia(d.tasselli.filter((_, i) => !preInseriti.has(i))),
     }
   }
   return {
     grid: d.tasselli.map((t, i) => ({
       etichetta: t.nome,
-      valore: d.preInseriti.includes(i) ? t.simbolo : null,
-      bloccato: d.preInseriti.includes(i),
+      valore: preInseriti.has(i) ? t.simbolo : null,
+      bloccato: preInseriti.has(i),
       atteso: t.simbolo,
       indice: i,
     })),
-    wallet: mischia(d.tasselli.filter((_, i) => !d.preInseriti.includes(i)).map(t => t.simbolo)),
+    wallet: mischia(d.tasselli.filter((_, i) => !preInseriti.has(i)).map(t => t.simbolo)),
   }
 }
 
@@ -160,7 +170,7 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
       </div>
 
       <div
-        className="calendario-griglia"
+        className={`calendario-griglia${abbinamento ? ' calendario-griglia--abbinamento' : ''}`}
         style={{ '--num-colonne': numColonne }}
       >
         {grid.map((slot, i) => (
@@ -245,37 +255,21 @@ function CalendarioGame({ onBack, onStarEarned }) {
     setStelleFase(prev => new Set([...prev, faseCompletata]))
   }
 
+  function vaiFase(i) {
+    setFase(i)
+  }
+
   function prossimaFase() {
-    if (fase + 1 >= totaleFasi) {
-      setStato('finito')
-    } else {
-      setFase(prev => prev + 1)
-    }
+    if (fase + 1 >= totaleFasi) return
+    setFase(prev => prev + 1)
   }
 
-  const [statoGlobale, setStato] = useState('gioco')
-
-  if (statoGlobale === 'finito') {
-    return (
-      <div className="calendario-game">
-        <div className="calendario-completato">
-          <div className="calendario-completato-icona">🎉</div>
-          <h2>Complimenti!</h2>
-          <p>Hai completato tutti i moduli del Calendario!</p>
-          <div className="calendario-stelle-riepilogo">
-            {calendario.domande.map((d, i) => (
-              <span key={d.id} className={`calendario-riepilogo-stella ${stelleFase.has(i) ? 'piena' : 'vuota'}`}>
-                {stelleFase.has(i) ? '⭐' : '☆'}
-              </span>
-            ))}
-          </div>
-          <button className="btn btn-riprova" onClick={onBack}>
-            ← Torna al vocabolario
-          </button>
-        </div>
-      </div>
-    )
+  function fasePrecedente() {
+    if (fase <= 0) return
+    setFase(prev => prev - 1)
   }
+
+  const tutteCompletate = calendario.domande.every((_, i) => stelleFase.has(i))
 
   return (
     <div className="calendario-game">
@@ -288,6 +282,7 @@ function CalendarioGame({ onBack, onStarEarned }) {
             <span
               key={d.id}
               className={`calendario-dot ${i === fase ? 'attivo' : ''} ${stelleFase.has(i) ? 'completato' : ''}`}
+              onClick={() => vaiFase(i)}
             />
           ))}
         </div>
@@ -301,14 +296,34 @@ function CalendarioGame({ onBack, onStarEarned }) {
         onStarEarned={onStarEarned}
       />
 
-      {stelleFase.has(fase) && (
+      {tutteCompletate && (
         <div className="calendario-avanti-container">
           <button
             className="btn-next"
             style={{ background: calendario.colore }}
+            onClick={onBack}
+          >
+            🎉 Visualizza risultati →
+          </button>
+        </div>
+      )}
+
+      {!tutteCompletate && (
+        <div className="calendario-nav-container">
+          <button
+            className="calendario-nav-btn"
+            disabled={fase === 0}
+            onClick={fasePrecedente}
+          >
+            ← Precedente
+          </button>
+          <span className="calendario-nav-counter">{fase + 1} / {totaleFasi}</span>
+          <button
+            className="calendario-nav-btn"
+            disabled={fase === totaleFasi - 1}
             onClick={prossimaFase}
           >
-            {fase + 1 < totaleFasi ? 'Prossima domanda →' : 'Visualizza risultati →'}
+            Successivo →
           </button>
         </div>
       )}
