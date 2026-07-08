@@ -8,6 +8,7 @@ import PreposizioniSempliciGame from './components/PreposizioniSempliciGame'
 import CongiunzioniGame from './components/CongiunzioniGame'
 import GrammarGame from './components/GrammarGame'
 import StoriaGame from './components/StoriaGame'
+import CalendarioGame from './components/CalendarioGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import storie from './data/storie'
@@ -20,6 +21,8 @@ import esercizioPassatoProssimo from './data/passato-prossimo'
 import esercizioPreposizioniTempoLuogo from './data/preposizioni-tempo-luogo'
 import StarsModal from './components/StarsModal'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
+import datiCalendario from './data/calendario'
+import categorieVocabolario from './data/vocabolario'
 import { playStarSound } from './utils/tts'
 import './App.css'
 
@@ -130,20 +133,39 @@ function App() {
     if (categoria) {
       return (
         <>
-          <Game
-            key={categoria.id}
-            categoria={categoria}
-            onBack={() => setCategoria(null)}
-            onStarEarned={guadagnaStella}
-          />
+          {categoria.id === 'calendario' ? (
+            <CalendarioGame
+              key="calendario"
+              onBack={() => setCategoria(null)}
+              onStarEarned={guadagnaStella}
+            />
+          ) : (
+            <Game
+              key={categoria.id}
+              categoria={categoria}
+              onBack={() => setCategoria(null)}
+              onStarEarned={guadagnaStella}
+            />
+          )}
           <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
       {mostraModaleStelle && <StarsModal onClose={() => setMostraModaleStelle(false)} onReset={() => setStelle(getChiaviGuadagnate().length)} />}
         </>
       )
     }
+    const categorieGiochi = [
+      ...categorieVocabolario,
+      {
+        id: datiCalendario.id,
+        nome: datiCalendario.nome,
+        icona: datiCalendario.icona,
+        colore: datiCalendario.colore,
+        descrizione: datiCalendario.descrizione,
+      },
+    ]
     return (
       <>
         <Home
+          categorie={categorieGiochi}
           onStart={setCategoria}
           onBackToMenu={() => setTema(null)}
           icona="📖"

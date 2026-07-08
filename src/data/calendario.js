@@ -1,0 +1,56 @@
+const calendario = {
+  id: 'calendario',
+  nome: 'Calendario',
+  icona: '\uD83D\uDCC5',
+  colore: '#E17055',
+  descrizione: 'Giorni, mesi, stagioni e segni zodiacali',
+  domande: [
+    {
+      id: 'giorni',
+      titolo: 'Giorni della Settimana',
+      testo: 'Puoi ordinare i giorni della settimana sulla griglia?',
+      tasselli: ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'],
+      preInseriti: 1,
+      tipo: 'ordine',
+    },
+    {
+      id: 'mesi',
+      titolo: "Mesi dell'Anno",
+      testo: 'Puoi ordinare i mesi dell\'anno sulla griglia?',
+      tasselli: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
+      preInseriti: 1,
+      tipo: 'ordine',
+    },
+    {
+      id: 'stagioni',
+      titolo: 'Stagioni',
+      testo: 'Puoi ordinare i nomi delle stagioni sulla griglia?',
+      tasselli: ['primavera', 'estate', 'autunno', 'inverno'],
+      preInseriti: 1,
+      tipo: 'ordine',
+    },
+    {
+      id: 'zodiaco',
+      titolo: 'Segni Zodiacali',
+      testo: 'Posiziona il simbolo di ogni segno zodiacale sul nome corrispondente',
+      tasselli: [
+        { nome: 'Ariete', simbolo: '\uD83D\uDC0F' },
+        { nome: 'Toro', simbolo: '\uD83D\uDC02' },
+        { nome: 'Gemelli', simbolo: '\uD83D\uDC6B' },
+        { nome: 'Cancro', simbolo: '\uD83E\uDD80' },
+        { nome: 'Leone', simbolo: '\uD83E\uDD81' },
+        { nome: 'Vergine', simbolo: '\uD83D\uDC69' },
+        { nome: 'Bilancia', simbolo: '\u2696\uFE0F' },
+        { nome: 'Scorpione', simbolo: '\uD83E\uDD82' },
+        { nome: 'Sagittario', simbolo: '\uD83C\uDFF9' },
+        { nome: 'Capricorno', simbolo: '\uD83D\uDC10' },
+        { nome: 'Acquario', simbolo: '\uD83D\uDCA7' },
+        { nome: 'Pesci', simbolo: '\uD83D\uDC1F' },
+      ],
+      preInseriti: 2,
+      tipo: 'abbinamento',
+    },
+  ],
+}
+
+export default calendario
