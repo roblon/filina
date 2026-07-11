@@ -1,18 +1,27 @@
 import { useState, useEffect } from 'react'
+import styles from './OrologioGame.module.css'
 import orologio from '../data/orologio'
 import { playMp3 } from '../utils/tts'
+import mischia from '../utils/mischia'
 import ClockIcon from './ClockIcon'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+interface Tassello {
+  nome: string
+  ore: number
+  minuti: number
+  descrizione: string
 }
 
-function randomPreInseriti(totale, conteggio) {
+interface SlotGriglia {
+  etichetta: string
+  descrizione: string
+  valore: Tassello | null
+  bloccato: boolean
+  atteso: Tassello
+  indice: number
+}
+
+function randomPreInseriti(totale: number, conteggio: number) {
   const indici = Array.from({ length: totale }, (_, i) => i)
   for (let i = indici.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -21,7 +30,7 @@ function randomPreInseriti(totale, conteggio) {
   return new Set(indici.slice(0, conteggio))
 }
 
-function inizializzaFase(fase) {
+function inizializzaFase(fase: number) {
   const d = orologio.domande[fase]
   const preInseriti = randomPreInseriti(d.tasselli.length, d.preInseriti)
   return {
@@ -37,13 +46,13 @@ function inizializzaFase(fase) {
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }) {
+function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number) => void; onStarEarned: (chiave: string) => void }) {
   const init = inizializzaFase(fase)
-  const [grid, setGrid] = useState(init.grid)
-  const [wallet, setWallet] = useState(init.wallet)
-  const [selezionato, setSelezionato] = useState(null)
+  const [grid, setGrid] = useState<SlotGriglia[]>(init.grid)
+  const [wallet, setWallet] = useState<Tassello[]>(init.wallet)
+  const [selezionato, setSelezionato] = useState<number | null>(null)
   const [stato, setStato] = useState('gioco')
-  const [slotErrati, setSlotErrati] = useState(new Set())
+  const [slotErrati, setSlotErrati] = useState<Set<number>>(new Set())
 
   const domanda = orologio.domande[fase]
   const audioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/orologio/${domanda.id}.mp3`
@@ -52,7 +61,7 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     playMp3(audioPath)
   }, [audioPath])
 
-  function cliccaTassello(indiceWallet) {
+  function cliccaTassello(indiceWallet: number) {
     if (stato !== 'gioco') return
     setSelezionato(prev => {
       const nuovoSelezionato = prev === indiceWallet ? null : indiceWallet
@@ -65,7 +74,7 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     })
   }
 
-  function cliccaSlot(indiceSlot) {
+  function cliccaSlot(indiceSlot: number) {
     if (stato === 'completato') return
 
     const slot = grid[indiceSlot]
@@ -100,11 +109,11 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     }
   }
 
-  function controlla(griglia) {
+  function controlla(griglia: SlotGriglia[]) {
     const d = orologio.domande[fase]
-    const errati = new Set()
+    const errati = new Set<number>()
     let ok = true
-    griglia.forEach((s, i) => {
+    griglia.forEach((s: SlotGriglia, i: number) => {
       if (!s.valore || s.valore.nome !== s.atteso.nome) {
         errati.add(i)
         ok = false
@@ -122,15 +131,15 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     }
   }
 
-  function handleDragStart(e, sorgente, indice) {
+  function handleDragStart(e: React.DragEvent, sorgente: string, indice: number) {
     e.dataTransfer.setData('application/json', JSON.stringify({ sorgente, indice }))
   }
 
-  function handleDragOver(e) {
+  function handleDragOver(e: React.DragEvent) {
     if (stato === 'gioco') e.preventDefault()
   }
 
-  function handleDrop(e, indiceSlot) {
+  function handleDrop(e: React.DragEvent, indiceSlot: number) {
     e.preventDefault()
     if (stato !== 'gioco') return
     const data = JSON.parse(e.dataTransfer.getData('application/json'))
@@ -153,10 +162,10 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
   }
 
   return (
-    <div className="orologio-area">
-      <div className="orologio-domanda">
-        <span className="orologio-domanda-icona">{orologio.icona}</span>
-        <p className="orologio-domanda-testo">
+    <div className={styles.orologioArea}>
+      <div className={styles.orologioDomanda}>
+        <span className={styles.orologioDomandaIcona}>{orologio.icona}</span>
+        <p className={styles.orologioDomandaTesto}>
           {domanda.testo}
           <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la domanda">
             🔈
@@ -165,18 +174,18 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
       </div>
 
       <div
-        className="orologio-griglia"
-        style={{ '--num-colonne': 4 }}
+        className={styles.orologioGriglia}
+        style={{ '--num-colonne': 4 } as React.CSSProperties}
       >
         {grid.map((slot, i) => (
           <div
             key={i}
-            className={`orologio-slot ${
-              slot.valore && !slot.bloccato ? 'pieno' : ''
-            } ${slot.bloccato ? 'bloccato' : ''} ${
-              slot.valore === null && !slot.bloccato ? 'vuoto' : ''
-            } ${slotErrati.has(i) ? 'errato' : ''} ${
-              selezionato !== null && slot.valore === null && !slot.bloccato ? 'pronto' : ''
+            className={`${styles.orologioSlot} ${
+              slot.valore && !slot.bloccato ? styles.pieno : ''
+            } ${slot.bloccato ? styles.bloccato : ''} ${
+              slot.valore === null && !slot.bloccato ? styles.vuoto : ''
+            } ${slotErrati.has(i) ? styles.errato : ''} ${
+              selezionato !== null && slot.valore === null && !slot.bloccato ? styles.pronto : ''
             }`}
             onClick={() => cliccaSlot(i)}
             onDragOver={handleDragOver}
@@ -184,39 +193,39 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
           >
             {slot.valore ? (
               <>
-                <span className="orologio-slot-valore">
+                <span className={styles.orologioSlotValore}>
                   <ClockIcon ore={slot.valore.ore} minuti={slot.valore.minuti} size={48} />
                 </span>
-                <span className="orologio-slot-etichetta">{slot.etichetta}</span>
+                <span className={styles.orologioSlotEtichetta}>{slot.etichetta}</span>
               </>
             ) : (
-              <span className="orologio-slot-etichetta">{slot.etichetta}</span>
+              <span className={styles.orologioSlotEtichetta}>{slot.etichetta}</span>
             )}
           </div>
         ))}
       </div>
 
       {stato === 'errato' && (
-        <div className="orologio-feedback orologio-feedback-errato">
+        <div className={`${styles.orologioFeedback} ${styles.orologioFeedbackErrato}`}>
           ❌ Alcuni tasselli non sono nella posizione giusta. Clicca quelli evidenziati per correggerli.
         </div>
       )}
 
       {wallet.length > 0 && stato !== 'completato' && (
-        <div className="orologio-wallet" onDragOver={handleDragOver}>
-          <p className="orologio-wallet-label">Orologi da posizionare:</p>
-          <div className="orologio-tasselli">
+        <div className={styles.orologioWallet} onDragOver={handleDragOver}>
+          <p className={styles.orologioWalletLabel}>Orologi da posizionare:</p>
+          <div className={styles.orologioTasselli}>
             {wallet.map((valore, i) => (
-              <div className="orologio-tassello-wrapper" key={`${valore.nome}-${i}`}>
+              <div className={styles.orologioTasselloWrapper} key={`${valore.nome}-${i}`}>
                 <div
-                  className={`orologio-tassello ${selezionato === i ? 'selezionato' : ''}`}
+                  className={`${styles.orologioTassello} ${selezionato === i ? styles.selezionato : ''}`}
                   draggable={stato === 'gioco'}
                   onClick={() => cliccaTassello(i)}
                   onDragStart={(e) => handleDragStart(e, 'wallet', i)}
                 >
                   <ClockIcon ore={valore.ore} minuti={valore.minuti} size={48} />
                 </div>
-                <span className="orologio-tassello-descrizione">{valore.descrizione}</span>
+                <span className={styles.orologioTasselloDescrizione}>{valore.descrizione}</span>
               </div>
             ))}
           </div>
@@ -224,14 +233,14 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
       )}
 
       {stato === 'completato' && (
-        <div className="orologio-successo">
-          <div className="orologio-successo-icona">✅</div>
+        <div className={styles.orologioSuccesso}>
+          <div className={styles.orologioSuccessoIcona}>✅</div>
           <p>Ottimo! Hai completato &quot;{domanda.titolo}&quot;!</p>
         </div>
       )}
 
       {stato === 'gioco' && wallet.length === 0 && grid.every(s => s.valore !== null) && (
-        <div className="orologio-feedback orologio-feedback-corretto">
+        <div className={`${styles.orologioFeedback} ${styles.orologioFeedbackCorretto}`}>
           ✅ Controllo in corso...
         </div>
       )}
@@ -239,33 +248,33 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
   )
 }
 
-function OrologioGame({ onBack, onStarEarned }) {
+function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (chiave: string) => void }) {
   const [fase, setFase] = useState(0)
   const [stelleFase, setStelleFase] = useState(new Set())
   const totaleFasi = orologio.domande.length
 
-  function onCompletato(faseCompletata) {
+  function onCompletato(faseCompletata: number) {
     setStelleFase(prev => new Set([...prev, faseCompletata]))
   }
 
   const tutteCompletate = orologio.domande.every((_, i) => stelleFase.has(i))
 
   return (
-    <div className="orologio-game">
-      <div className="orologio-header">
+    <div className={styles.orologioGame}>
+      <div className={styles.orologioHeader}>
         <button className="btn-back" onClick={onBack}>
           ← Indietro
         </button>
-        <div className="orologio-progress-dots">
+        <div className={styles.orologioProgressDots}>
           {orologio.domande.map((d, i) => (
             <span
               key={d.id}
-              className={`orologio-dot ${i === fase ? 'attivo' : ''} ${stelleFase.has(i) ? 'completato' : ''}`}
+              className={`${styles.orologioDot} ${i === fase ? styles.attivo : ''} ${stelleFase.has(i) ? styles.completato : ''}`}
               onClick={() => setFase(i)}
             />
           ))}
         </div>
-        <span className="orologio-fase-label">{fase + 1}/{totaleFasi}</span>
+        <span className={styles.orologioFaseLabel}>{fase + 1}/{totaleFasi}</span>
       </div>
 
       <FaseGame
@@ -276,7 +285,7 @@ function OrologioGame({ onBack, onStarEarned }) {
       />
 
       {tutteCompletate && (
-        <div className="orologio-avanti-container">
+        <div className={styles.orologioAvantiContainer}>
           <button
             className="btn-next"
             style={{ background: orologio.colore }}

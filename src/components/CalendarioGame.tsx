@@ -1,17 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import calendario from '../data/calendario'
 import { playMp3 } from '../utils/tts'
+import mischia from '../utils/mischia'
+import styles from './CalendarioGame.module.css'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
-function randomPreInseriti(totale, conteggio) {
+function randomPreInseriti(totale: number, conteggio: number) {
   const indici = Array.from({ length: totale }, (_, i) => i)
   for (let i = indici.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -20,39 +13,42 @@ function randomPreInseriti(totale, conteggio) {
   return new Set(indici.slice(0, conteggio))
 }
 
-function inizializzaFase(fase) {
+function inizializzaFase(fase: number) {
   const d = calendario.domande[fase]
   const preInseriti = randomPreInseriti(d.tasselli.length, d.preInseriti)
   if (d.tipo === 'ordine') {
+    const tasselli = d.tasselli as string[]
     return {
-      grid: d.tasselli.map((t, i) => ({
+      grid: tasselli.map((t, i) => ({
+        etichetta: undefined as string | undefined,
         valore: preInseriti.has(i) ? t : null,
         bloccato: preInseriti.has(i),
         atteso: t,
         indice: i,
       })),
-      wallet: mischia(d.tasselli.filter((_, i) => !preInseriti.has(i))),
+      wallet: mischia(tasselli.filter((_, i) => !preInseriti.has(i))),
     }
   }
+  const tasselli = d.tasselli as { nome: string; simbolo: string }[]
   return {
-    grid: d.tasselli.map((t, i) => ({
+    grid: tasselli.map((t, i) => ({
       etichetta: t.nome,
       valore: preInseriti.has(i) ? t.simbolo : null,
       bloccato: preInseriti.has(i),
       atteso: t.simbolo,
       indice: i,
     })),
-    wallet: mischia(d.tasselli.filter((_, i) => !preInseriti.has(i)).map(t => t.simbolo)),
+    wallet: mischia(tasselli.filter((_, i) => !preInseriti.has(i)).map(t => t.simbolo)),
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }) {
+function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number) => void; onStarEarned: (key: string) => void }) {
   const init = inizializzaFase(fase)
   const [grid, setGrid] = useState(init.grid)
   const [wallet, setWallet] = useState(init.wallet)
-  const [selezionato, setSelezionato] = useState(null)
-  const [stato, setStato] = useState('gioco')
-  const [slotErrati, setSlotErrati] = useState(new Set())
+  const [selezionato, setSelezionato] = useState<number | null>(null)
+  const [stato, setStato] = useState<'gioco' | 'completato' | 'errato'>('gioco')
+  const [slotErrati, setSlotErrati] = useState(new Set<number>())
 
   const domanda = calendario.domande[fase]
   const abbinamento = domanda.tipo === 'abbinamento'
@@ -63,12 +59,12 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     playMp3(audioPath)
   }, [audioPath])
 
-  function cliccaTassello(indiceWallet) {
+  function cliccaTassello(indiceWallet: number) {
     if (stato !== 'gioco') return
     setSelezionato(prev => prev === indiceWallet ? null : indiceWallet)
   }
 
-  function cliccaSlot(indiceSlot) {
+  function cliccaSlot(indiceSlot: number) {
     if (stato === 'completato') return
 
     const slot = grid[indiceSlot]
@@ -103,9 +99,9 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     }
   }
 
-  function controlla(griglia) {
+  function controlla(griglia: { valore: string | null; bloccato: boolean; atteso: string; indice: number; etichetta?: string }[]) {
     const d = calendario.domande[fase]
-    const errati = new Set()
+    const errati = new Set<number>()
     let ok = true
     griglia.forEach((s, i) => {
       if (s.valore !== s.atteso) {
@@ -125,15 +121,15 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
     }
   }
 
-  function handleDragStart(e, sorgente, indice) {
+  function handleDragStart(e: React.DragEvent<HTMLDivElement>, sorgente: string, indice: number) {
     e.dataTransfer.setData('application/json', JSON.stringify({ sorgente, indice }))
   }
 
-  function handleDragOver(e) {
+  function handleDragOver(e: React.DragEvent<HTMLDivElement>) {
     if (stato === 'gioco') e.preventDefault()
   }
 
-  function handleDrop(e, indiceSlot) {
+  function handleDrop(e: React.DragEvent<HTMLDivElement>, indiceSlot: number) {
     e.preventDefault()
     if (stato !== 'gioco') return
     const data = JSON.parse(e.dataTransfer.getData('application/json'))
@@ -158,10 +154,10 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
   const numColonne = abbinamento ? 4 : grid.length <= 4 ? grid.length : grid.length <= 7 ? 4 : 4
 
   return (
-    <div className="calendario-area">
-      <div className="calendario-domanda">
-        <span className="calendario-domanda-icona">{calendario.icona}</span>
-        <p className="calendario-domanda-testo">
+    <div className={styles.calendarioArea}>
+      <div className={styles.calendarioDomanda}>
+        <span className={styles.calendarioDomandaIcona}>{calendario.icona}</span>
+        <p className={styles.calendarioDomandaTesto}>
           {domanda.testo}
           <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la domanda">
             🔈
@@ -170,18 +166,18 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
       </div>
 
       <div
-        className={`calendario-griglia${abbinamento ? ' calendario-griglia--abbinamento' : ''}`}
-        style={{ '--num-colonne': numColonne }}
+        className={`${styles.calendarioGriglia}${abbinamento ? ` ${styles.calendarioGrigliaAbbinamento}` : ''}`}
+        style={{ '--num-colonne': numColonne } as React.CSSProperties}
       >
         {grid.map((slot, i) => (
           <div
             key={i}
-            className={`calendario-slot ${
-              slot.valore && !slot.bloccato ? 'pieno' : ''
-            } ${slot.bloccato ? 'bloccato' : ''} ${
-              slot.valore === null && !slot.bloccato ? 'vuoto' : ''
-            } ${slotErrati.has(i) ? 'errato' : ''} ${
-              selezionato !== null && slot.valore === null && !slot.bloccato ? 'pronto' : ''
+            className={`${styles.calendarioSlot}${
+              slot.valore && !slot.bloccato ? ` ${styles.pieno}` : ''
+            }${slot.bloccato ? ` ${styles.bloccato}` : ''}${
+              slot.valore === null && !slot.bloccato ? ` ${styles.vuoto}` : ''
+            }${slotErrati.has(i) ? ` ${styles.errato}` : ''}${
+              selezionato !== null && slot.valore === null && !slot.bloccato ? ` ${styles.pronto}` : ''
             }`}
             onClick={() => cliccaSlot(i)}
             onDragOver={handleDragOver}
@@ -190,35 +186,35 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
             {slot.valore ? (
               abbinamento ? (
                 <>
-                  <span className="calendario-slot-valore">{slot.valore}</span>
-                  <span className="calendario-slot-etichetta">{slot.etichetta}</span>
+                  <span className={styles.calendarioSlotValore}>{slot.valore}</span>
+                  <span className={styles.calendarioSlotEtichetta}>{slot.etichetta}</span>
                 </>
               ) : (
-                <span className="calendario-slot-valore">{slot.valore}</span>
+                <span className={styles.calendarioSlotValore}>{slot.valore}</span>
               )
             ) : abbinamento ? (
-              <span className="calendario-slot-placeholder">{slot.etichetta}</span>
+              <span className={styles.calendarioSlotPlaceholder}>{slot.etichetta}</span>
             ) : (
-              <span className="calendario-slot-placeholder">{i + 1}</span>
+              <span className={styles.calendarioSlotPlaceholder}>{i + 1}</span>
             )}
           </div>
         ))}
       </div>
 
       {stato === 'errato' && (
-        <div className="calendario-feedback calendario-feedback-errato">
+        <div className={`${styles.calendarioFeedback} ${styles.calendarioFeedbackErrato}`}>
           ❌ Alcuni tasselli non sono nella posizione giusta. Clicca quelli evidenziati per correggerli.
         </div>
       )}
 
       {wallet.length > 0 && stato !== 'completato' && (
-        <div className="calendario-wallet" onDragOver={handleDragOver}>
-          <p className="calendario-wallet-label">Tasselli da posizionare:</p>
-          <div className="calendario-tasselli">
+        <div className={styles.calendarioWallet} onDragOver={handleDragOver}>
+          <p className={styles.calendarioWalletLabel}>Tasselli da posizionare:</p>
+          <div className={styles.calendarioTasselli}>
             {wallet.map((valore, i) => (
               <div
                 key={`${valore}-${i}`}
-                className={`calendario-tassello ${selezionato === i ? 'selezionato' : ''}`}
+                className={`${styles.calendarioTassello}${selezionato === i ? ` ${styles.selezionato}` : ''}`}
                 draggable={stato === 'gioco'}
                 onClick={() => cliccaTassello(i)}
                 onDragStart={(e) => handleDragStart(e, 'wallet', i)}
@@ -231,14 +227,14 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
       )}
 
       {stato === 'completato' && (
-        <div className="calendario-successo">
-          <div className="calendario-successo-icona">✅</div>
+        <div className={styles.calendarioSuccesso}>
+          <div className={styles.calendarioSuccessoIcona}>✅</div>
           <p>Ottimo! Hai completato &quot;{domanda.titolo}&quot;!</p>
         </div>
       )}
 
       {stato === 'gioco' && wallet.length === 0 && grid.every(s => s.valore !== null) && (
-        <div className="calendario-feedback calendario-feedback-corretto">
+        <div className={`${styles.calendarioFeedback} ${styles.calendarioFeedbackCorretto}`}>
           ✅ Controllo in corso...
         </div>
       )}
@@ -246,16 +242,16 @@ function FaseGame({ fase, onCompletato, onStarEarned }) {
   )
 }
 
-function CalendarioGame({ onBack, onStarEarned }) {
+function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (key: string) => void }) {
   const [fase, setFase] = useState(0)
   const [stelleFase, setStelleFase] = useState(new Set())
   const totaleFasi = calendario.domande.length
 
-  function onCompletato(faseCompletata) {
+  function onCompletato(faseCompletata: number) {
     setStelleFase(prev => new Set([...prev, faseCompletata]))
   }
 
-  function vaiFase(i) {
+  function vaiFase(i: number) {
     setFase(i)
   }
 
@@ -272,21 +268,21 @@ function CalendarioGame({ onBack, onStarEarned }) {
   const tutteCompletate = calendario.domande.every((_, i) => stelleFase.has(i))
 
   return (
-    <div className="calendario-game">
-      <div className="calendario-header">
+    <div className={styles.calendarioGame}>
+      <div className={styles.calendarioHeader}>
         <button className="btn-back" onClick={onBack}>
           ← Indietro
         </button>
-        <div className="calendario-progress-dots">
+        <div className={styles.calendarioProgressDots}>
           {calendario.domande.map((d, i) => (
             <span
               key={d.id}
-              className={`calendario-dot ${i === fase ? 'attivo' : ''} ${stelleFase.has(i) ? 'completato' : ''}`}
+              className={`${styles.calendarioDot}${i === fase ? ` ${styles.attivo}` : ''}${stelleFase.has(i) ? ` ${styles.completato}` : ''}`}
               onClick={() => vaiFase(i)}
             />
           ))}
         </div>
-        <span className="calendario-fase-label">{fase + 1}/{totaleFasi}</span>
+        <span className={styles.calendarioFaseLabel}>{fase + 1}/{totaleFasi}</span>
       </div>
 
       <FaseGame
@@ -297,7 +293,7 @@ function CalendarioGame({ onBack, onStarEarned }) {
       />
 
       {tutteCompletate && (
-        <div className="calendario-avanti-container">
+        <div className={styles.calendarioAvantiContainer}>
           <button
             className="btn-next"
             style={{ background: calendario.colore }}
@@ -309,17 +305,17 @@ function CalendarioGame({ onBack, onStarEarned }) {
       )}
 
       {!tutteCompletate && (
-        <div className="calendario-nav-container">
+        <div className={styles.calendarioNavContainer}>
           <button
-            className="calendario-nav-btn"
+            className={styles.calendarioNavBtn}
             disabled={fase === 0}
             onClick={fasePrecedente}
           >
             ← Precedente
           </button>
-          <span className="calendario-nav-counter">{fase + 1} / {totaleFasi}</span>
+          <span className={styles.calendarioNavCounter}>{fase + 1} / {totaleFasi}</span>
           <button
-            className="calendario-nav-btn"
+            className={styles.calendarioNavBtn}
             disabled={fase === totaleFasi - 1}
             onClick={prossimaFase}
           >

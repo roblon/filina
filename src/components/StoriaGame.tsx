@@ -1,30 +1,35 @@
 import { useState, useRef, useEffect } from 'react'
 import { playMp3 } from '../utils/tts'
 import { stellaGiaGuadagnata } from '../utils/stelle'
+import mischia from '../utils/mischia'
 import Riepilogo from './Riepilogo'
+import type { Storia, RispostaQuiz } from '../types'
+import styles from './StoriaGame.module.css'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+interface Opzione {
+  testo: string
+  corretta: boolean
 }
 
-function StoriaGame({ storia, onBack, onStarEarned }) {
+interface Props {
+  storia: Storia
+  onBack: () => void
+  onStarEarned?: (key: string) => void
+}
+
+function StoriaGame({ storia, onBack, onStarEarned }: Props) {
   const [fase, setFase] = useState('video')
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
   const [risposto, setRisposto] = useState(false)
-  const [ultimaRisposta, setUltimaRisposta] = useState(null)
+  const [ultimaRisposta, setUltimaRisposta] = useState<Opzione | null>(null)
   const [fatto, setFatto] = useState(false)
-  const [risposte, setRisposte] = useState([])
+  const [risposte, setRisposte] = useState<RispostaQuiz[]>([])
   const [videoProgress, setVideoProgress] = useState(0)
-  const [opzioni] = useState(() => storia.domande.map(d => mischia(
-    d.opzioni.map((t, i) => ({ testo: t, corretta: i === d.corretta }))
+  const [opzioni] = useState<Opzione[][]>(() => storia.domande.map((d: import('../types').DomandaStoria) => mischia(
+    d.opzioni.map((t: string, i: number) => ({ testo: t, corretta: i === d.corretta }))
   )))
-  const videoRef = useRef(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const ultimoIndiceParlato = useRef(-1)
 
   const videoPath = `${import.meta.env.BASE_URL}assets/video/${storia.video}`
@@ -41,7 +46,7 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
     }
   }, [indice, audioPath])
 
-  function gestisciRisposta(opzione) {
+  function gestisciRisposta(opzione: Opzione) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(opzione)
@@ -101,21 +106,22 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
           </div>
           <span className="punteggio-corrente">Video</span>
         </div>
-        <div className="storia-video-container">
+        <div className={styles.storiaVideoContainer}>
           <video
             ref={videoRef}
-            className="storia-video"
+            className={styles.storiaVideo}
             src={videoPath}
             autoPlay
             controls
             onTimeUpdate={(e) => {
-              const dur = e.target.duration || 42
-              setVideoProgress((e.target.currentTime / dur) * 100)
+              const target = e.target as HTMLVideoElement
+              const dur = target.duration || 42
+              setVideoProgress((target.currentTime / dur) * 100)
             }}
             onEnded={() => setFase('quiz')}
             playsInline
           />
-          <button className="btn-back video-skip-btn" onClick={() => setFase('quiz')}>
+          <button className={`btn-back ${styles.videoSkipBtn}`} onClick={() => setFase('quiz')}>
             Salta video →
           </button>
         </div>
@@ -150,13 +156,13 @@ function StoriaGame({ storia, onBack, onStarEarned }) {
         <div className="domanda-label">Domanda {indice + 1} di {storia.domande.length}</div>
         <div className="parola-corrente">
           {domanda.domanda}
-          <button className="btn-speak" onClick={() => playMp3(audioPath)} aria-label="Ascolta la domanda">
+          <button className="btn-speak" onClick={() => audioPath && playMp3(audioPath)} aria-label="Ascolta la domanda">
             🔈
           </button>
         </div>
 
-        <div className="opzioni-grid storie">
-          {ops.map((op, i) => (
+        <div className={`opzioni-grid ${styles.opzioniGridStorie}`}>
+          {ops.map((op: Opzione, i: number) => (
             <button
               key={i}
               className={`opzione-btn parola-btn ${

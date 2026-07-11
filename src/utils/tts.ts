@@ -1,6 +1,6 @@
-let audioCorrente = null
+let audioCorrente: HTMLAudioElement | null = null
 
-export function playMp3(path) {
+export function playMp3(path: string): void {
   if (audioCorrente) {
     audioCorrente.pause()
     audioCorrente.currentTime = 0
@@ -12,7 +12,7 @@ export function playMp3(path) {
   audio.play().catch(() => {})
 }
 
-export function stopAudio() {
+export function stopAudio(): void {
   if (audioCorrente) {
     audioCorrente.pause()
     audioCorrente.currentTime = 0
@@ -20,7 +20,7 @@ export function stopAudio() {
   }
 }
 
-export function speak(testo, lingua = 'it-IT') {
+export function speak(testo: string, lingua = 'it-IT'): void {
   if (!window.speechSynthesis) return
   window.speechSynthesis.cancel()
   const utterance = new SpeechSynthesisUtterance(testo)
@@ -29,9 +29,10 @@ export function speak(testo, lingua = 'it-IT') {
   window.speechSynthesis.speak(utterance)
 }
 
-export function playStarSound() {
+export function playStarSound(): void {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)()
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+    const ctx = new AudioContextClass()
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
     osc.connect(gain)

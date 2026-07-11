@@ -2,21 +2,21 @@ import { useState, useEffect, useRef } from 'react'
 import esercizioArticoli from '../data/articoli'
 import { playMp3 } from '../utils/tts'
 import { stellaGiaGuadagnata } from '../utils/stelle'
+import mischia from '../utils/mischia'
 import Riepilogo from './Riepilogo'
+import type { RispostaQuiz } from '../types'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+interface ParolaArticolo {
+  parola: string
+  emoji: string
+  determinativo: string
+  indeterminativo: string
 }
 
 const ARTICOLI_DETERMINATIVI = ['il', 'lo', "l'", 'la']
 const ARTICOLI_INDETERMINATIVI = ['un', 'uno', "un'", 'una']
 
-function generaOpzioni(parola, tipo) {
+function generaOpzioni(parola: ParolaArticolo, tipo: string) {
   const pool = tipo === 'determinativo' ? ARTICOLI_DETERMINATIVI : ARTICOLI_INDETERMINATIVI
   const corretto = tipo === 'determinativo' ? parola.determinativo : parola.indeterminativo
   const altri = pool.filter(a => a !== corretto)
@@ -24,22 +24,22 @@ function generaOpzioni(parola, tipo) {
   return mischia([corretto, ...distrattori])
 }
 
-function articoloCompleto(parola, tipo) {
+function articoloCompleto(parola: ParolaArticolo, tipo: string) {
   const art = tipo === 'determinativo' ? parola.determinativo : parola.indeterminativo
   return art.endsWith("'") ? `${art}${parola.parola}` : `${art} ${parola.parola}`
 }
 
-function ArticoliGame({ onBack, onStarEarned }) {
+function ArticoliGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned?: (key: string) => void }) {
   const [parole] = useState(() => mischia(esercizioArticoli.parole))
 
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
   const [risposto, setRisposto] = useState(false)
   const [fatto, setFatto] = useState(false)
-  const [ultimaRisposta, setUltimaRisposta] = useState(null)
+  const [ultimaRisposta, setUltimaRisposta] = useState<string | null>(null)
   const [tipo, setTipo] = useState(() => Math.random() < 0.5 ? 'determinativo' : 'indeterminativo')
   const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole[0], tipo))
-  const [risposte, setRisposte] = useState([])
+  const [risposte, setRisposte] = useState<RispostaQuiz[]>([])
 
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
@@ -53,7 +53,7 @@ function ArticoliGame({ onBack, onStarEarned }) {
     }
   }, [indice, parolaCorrente, tipo, audioPath])
 
-  function gestisciRisposta(articoloScelto) {
+  function gestisciRisposta(articoloScelto: string) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(articoloScelto)

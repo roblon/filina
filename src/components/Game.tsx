@@ -1,38 +1,37 @@
 import { useState, useEffect, useRef } from 'react'
 import { playMp3 } from '../utils/tts'
 import { stellaGiaGuadagnata } from '../utils/stelle'
+import mischia from '../utils/mischia'
 import Riepilogo from './Riepilogo'
+import type { Parola, CategoriaVocabolario, RispostaQuiz } from '../types'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+interface GameProps {
+  categoria: CategoriaVocabolario
+  onBack: () => void
+  onStarEarned?: (key: string) => void
 }
 
-function generaOpzioni(tutte, idx) {
+function generaOpzioni(tutte: Parola[], idx: number): Parola[] {
   const corretta = tutte[idx]
   const altre = tutte.filter((p) => p.parola !== corretta.parola)
   const distrattori = mischia(altre).slice(0, 3)
   return mischia([corretta, ...distrattori])
 }
 
-function testoCompleto(p) {
+function testoCompleto(p: Parola): string {
   return p.articolo.endsWith("'") ? `${p.articolo}${p.parola}` : `${p.articolo} ${p.parola}`
 }
 
-function Game({ categoria, onBack, onStarEarned }) {
-  const [parole] = useState(() => mischia(categoria.parole))
+function Game({ categoria, onBack, onStarEarned }: GameProps) {
+  const [parole] = useState<Parola[]>(() => mischia(categoria.parole))
 
   const [indice, setIndice] = useState(0)
   const [punteggio, setPunteggio] = useState(0)
   const [risposto, setRisposto] = useState(false)
   const [fatto, setFatto] = useState(false)
-  const [ultimaRisposta, setUltimaRisposta] = useState(null)
-  const [opzioni, setOpzioni] = useState(() => generaOpzioni(parole, 0))
-  const [risposte, setRisposte] = useState([])
+  const [ultimaRisposta, setUltimaRisposta] = useState<Parola | null>(null)
+  const [opzioni, setOpzioni] = useState<Parola[]>(() => generaOpzioni(parole, 0))
+  const [risposte, setRisposte] = useState<RispostaQuiz[]>([])
 
   const modalita = Math.floor(indice / 5) % 2 === 0 ? 'parola-emoji' : 'emoji-parola'
   const parolaCorrente = parole[indice]
@@ -46,7 +45,7 @@ function Game({ categoria, onBack, onStarEarned }) {
     }
   }, [indice, parolaCorrente, audioPath])
 
-  function gestisciRisposta(opzione) {
+  function gestisciRisposta(opzione: Parola) {
     if (risposto) return
     setRisposto(true)
     setUltimaRisposta(opzione)

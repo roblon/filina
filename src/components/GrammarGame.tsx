@@ -1,85 +1,69 @@
-import { useState, useEffect, useRef } from 'react'
-import { playMp3, stopAudio } from '../utils/tts'
+import { useState } from 'react'
+import { playMp3 } from '../utils/tts'
 import { stellaGiaGuadagnata } from '../utils/stelle'
+import mischia from '../utils/mischia'
+import useQuiz from '../utils/useQuiz'
 import Riepilogo from './Riepilogo'
+import type { Esercizio } from '../types'
 
-function mischia(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+interface GrammarGameProps {
+  esercizi: Esercizio[]
+  campo: string
+  etichetta: string
+  moduloId: string
+  icona: string
+  nome: string
+  colore: string
+  onBack: () => void
+  onStarEarned?: (key: string) => void
 }
 
-function generaOpzioni(corretta, pool) {
+interface EsercizioConIndice extends Esercizio {
+  indiceOriginale: number
+}
+
+function generaOpzioni(corretta: string, pool: string[]): string[] {
   const altre = pool.filter(p => p !== corretta)
   const distrattori = mischia(altre).slice(0, 3)
   return mischia([corretta, ...distrattori])
 }
 
-function GrammarGame({ esercizi: data, campo, etichetta, moduloId, icona, nome, colore, onBack, onStarEarned }) {
-  const pool = [...new Set(data.map(e => e[campo]))]
+function riempiFrase(frase: string, valore: string): string {
+  return frase.replace('___', valore)
+}
 
-  const [esercizi] = useState(() => {
-    const conIndice = data.map((e, i) => ({ ...e, indiceOriginale: i }))
-    return mischia(conIndice)
+function GrammarGame({ esercizi: data, campo, etichetta, moduloId, icona, nome, colore, onBack, onStarEarned }: GrammarGameProps) {
+  const pool = [...new Set(data.map(e => e[campo] as string))]
+
+  const [esercizi] = useState<EsercizioConIndice[]>(() =>
+    mischia(data.map((e, i) => ({ ...e, indiceOriginale: i })))
+  )
+  const [opzioni, setOpzioni] = useState<string[]>(() =>
+    generaOpzioni(esercizi[0][campo] as string, pool)
+  )
+
+  const quiz = useQuiz({
+    items: esercizi,
+    getAudioPath: (item) => `${import.meta.env.BASE_URL}assets/audio/esercizi/${moduloId}/${String(item.indiceOriginale + 1).padStart(2, '0')}.mp3`,
+    onStarEarned,
+    getStarKey: (item) => `esercizi/${moduloId}/${item.indiceOriginale}`,
   })
 
-  const [indice, setIndice] = useState(0)
-  const [punteggio, setPunteggio] = useState(0)
-  const [risposto, setRisposto] = useState(false)
-  const [fatto, setFatto] = useState(false)
-  const [ultimaRisposta, setUltimaRisposta] = useState(null)
-  const [opzioni, setOpzioni] = useState(() => generaOpzioni(esercizi[0][campo], pool))
-  const [risposte, setRisposte] = useState([])
-
-  const esercizioCorrente = esercizi[indice]
-  const ultimoIndiceParlato = useRef(-1)
-  const corretta = esercizioCorrente[campo]
+  const { item: esercizioCorrente, indice, risposto, fatto, ultimaRisposta, punteggio, risposte, totale, rispondi } = quiz
+  const corretta = esercizioCorrente[campo] as string
   const parti = esercizioCorrente.frase.split('___')
   const audioPath = `${import.meta.env.BASE_URL}assets/audio/esercizi/${moduloId}/${String(esercizioCorrente.indiceOriginale + 1).padStart(2, '0')}.mp3`
 
-  useEffect(() => {
-    if (esercizioCorrente && ultimoIndiceParlato.current !== indice) {
-      playMp3(audioPath)
-      ultimoIndiceParlato.current = indice
-    }
-  }, [indice, esercizioCorrente, audioPath])
-
-  useEffect(() => {
-    return () => stopAudio()
-  }, [])
-
-  function gestisciRisposta(scelta) {
+  function gestisciRisposta(scelta: string) {
     if (risposto) return
-    setRisposto(true)
-    setUltimaRisposta(scelta)
-    const giusta = scelta === corretta
-    if (giusta) {
-      setPunteggio((p) => p + 1)
-      onStarEarned?.(`esercizi/${moduloId}/${esercizioCorrente.indiceOriginale}`)
-    }
-    setRisposte(prev => [...prev, {
+    const prossimo = esercizi[indice + 1]
+    setOpzioni(generaOpzioni(prossimo ? (prossimo[campo] as string) : corretta, pool))
+    rispondi(scelta, corretta, {
       domanda: `${esercizioCorrente.emoji} ${riempiFrase(esercizioCorrente.frase, '___')}`,
-      corretta: giusta,
       rispostaCorretta: riempiFrase(esercizioCorrente.frase, corretta),
       rispostaData: riempiFrase(esercizioCorrente.frase, scelta),
-      valoreSbagliato: giusta ? null : scelta,
-    }])
-    setTimeout(prossimaDomanda, 700)
-  }
-
-  function prossimaDomanda() {
-    if (indice + 1 >= esercizi.length) {
-      setFatto(true)
-      return
-    }
-    const nuovoIndice = indice + 1
-    setIndice(nuovoIndice)
-    setRisposto(false)
-    setUltimaRisposta(null)
-    setOpzioni(generaOpzioni(esercizi[nuovoIndice][campo], pool))
+      valoreSbagliato: scelta === corretta ? null : scelta,
+    })
   }
 
   if (!esercizioCorrente) return null
@@ -91,7 +75,7 @@ function GrammarGame({ esercizi: data, campo, etichetta, moduloId, icona, nome, 
         nome={nome}
         colore={colore}
         punteggio={punteggio}
-        totale={esercizi.length}
+        totale={totale}
         risposte={risposte}
         onBack={onBack}
         grammatica
@@ -109,7 +93,7 @@ function GrammarGame({ esercizi: data, campo, etichetta, moduloId, icona, nome, 
           <div
             className="progress-fill"
             style={{
-              width: `${(indice / esercizi.length) * 100}%`,
+              width: `${(indice / totale) * 100}%`,
               background: colore,
             }}
           />
@@ -189,10 +173,6 @@ function GrammarGame({ esercizi: data, campo, etichetta, moduloId, icona, nome, 
       </div>
     </div>
   )
-}
-
-function riempiFrase(frase, valore) {
-  return frase.replace('___', valore)
 }
 
 export default GrammarGame

@@ -1,4 +1,10 @@
-function ClockIcon({ ore, minuti, size = 48 }) {
+interface ClockIconProps {
+  ore: number
+  minuti: number
+  size?: number
+}
+
+function ClockIcon({ ore, minuti, size = 48 }: ClockIconProps) {
   const raggio = size / 2
   const centro = raggio
 
@@ -10,7 +16,7 @@ function ClockIcon({ ore, minuti, size = 48 }) {
   const spessoreLancettaOre = Math.max(2, size * 0.06)
   const spessoreLancettaMinuti = Math.max(1.5, size * 0.04)
 
-  function coordLancetta(angolo, lunghezza) {
+  function coordLancetta(angolo: number, lunghezza: number) {
     const rad = ((angolo - 90) * Math.PI) / 180
     return {
       x: centro + lunghezza * Math.cos(rad),
