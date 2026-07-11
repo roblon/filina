@@ -78,9 +78,10 @@ const sezioni: SezioneStelle[] = [
   },
 ]
 
-function calcolaOttenute(tipo: string): number {
+function calcolaOttenute(sezioneId: string, moduleId: string): number {
   const chiavi = getChiaviGuadagnate()
-  return chiavi.filter((k) => k.startsWith(tipo + '/')).length
+  const prefisso = `${sezioneId}/${moduleId}/`
+  return chiavi.filter((k) => k.startsWith(prefisso)).length
 }
 
 export function getSezioni() {
@@ -88,7 +89,7 @@ export function getSezioni() {
     ...s,
     moduli: s.moduli.map((m) => ({
       ...m,
-      ottenute: calcolaOttenute(m.id),
+      ottenute: calcolaOttenute(s.id, m.id),
     })),
   }))
 }
