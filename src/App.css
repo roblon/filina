@@ -75,6 +75,35 @@
   color: #2d3436;
 }
 
+/* HOME — level groups */
+.home-level-group {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-level-group + .home-level-group {
+  margin-top: 16px;
+}
+
+.home-level-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #dfe6e9, transparent);
+  margin: 8px 0 4px;
+}
+
+.home-level-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #b2bec3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 4px;
+  text-align: center;
+}
+
 /* GAME */
 .game {
   display: flex;
@@ -925,6 +954,124 @@
 
 .btn-reset-stars:hover {
   background: #ffe0e0;
+}
+
+/* STARS MODAL — back button */
+.stars-modal-back {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: #636e72;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.stars-modal-back:hover {
+  background: #f1f2f6;
+  color: #2d3436;
+}
+
+/* STARS MODAL — section cards */
+.stars-section-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #f1f2f6;
+  border-radius: 14px;
+  background: white;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.stars-section-card:hover {
+  border-color: #dfe6e9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.stars-section-card:active {
+  transform: scale(0.98);
+}
+
+.stars-section-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.stars-section-icona {
+  font-size: 28px;
+  width: 36px;
+  text-align: center;
+  line-height: 1;
+}
+
+.stars-section-nome {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3436;
+  min-width: 80px;
+}
+
+.stars-section-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.stars-section-bar {
+  flex: 1;
+  height: 12px;
+  background: #f1f2f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stars-section-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+.stars-section-conteggio {
+  font-size: 14px;
+  font-weight: 800;
+  color: #636e72;
+  min-width: 48px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* STARS MODAL — level groups */
+.stars-level-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stars-level-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #dfe6e9, transparent);
+  margin: 6px 0 4px;
+}
+
+.stars-level-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #b2bec3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 2px;
 }
 
 /* CALENDARIO GAME */
@@ -2063,6 +2210,36 @@
   .stars-modal-riga-conteggio {
     font-size: 11px;
     min-width: 36px;
+  }
+
+  .stars-section-card {
+    padding: 10px 10px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .stars-section-icona {
+    font-size: 22px;
+    width: 28px;
+  }
+
+  .stars-section-nome {
+    font-size: 12px;
+    min-width: 56px;
+  }
+
+  .stars-section-bar {
+    height: 10px;
+  }
+
+  .stars-section-conteggio {
+    font-size: 12px;
+    min-width: 40px;
+  }
+
+  .stars-modal-back {
+    font-size: 13px;
+    padding: 2px 6px;
   }
 
   .btn-reset-stars {

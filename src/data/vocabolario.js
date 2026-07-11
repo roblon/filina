@@ -4,6 +4,7 @@ const categorie = [
     nome: 'Animali',
     icona: '🐾',
     colore: '#FF6B6B',
+    livello: 1,
     parole: [
       { parola: 'cane', articolo: 'il', emoji: '🐶' },
       { parola: 'gatto', articolo: 'il', emoji: '🐱' },
@@ -24,6 +25,7 @@ const categorie = [
     nome: 'Colori',
     icona: '🎨',
     colore: '#4ECDC4',
+    livello: 1,
     parole: [
       { parola: 'rosso', articolo: 'il', emoji: '🔴' },
       { parola: 'arancione', articolo: 'l\'', emoji: '🟠' },
@@ -42,6 +44,7 @@ const categorie = [
     nome: 'Numeri',
     icona: '🔢',
     colore: '#D68910',
+    livello: 1,
     parole: [
       { parola: 'uno', articolo: 'l\'', emoji: '1️⃣' },
       { parola: 'due', articolo: 'il', emoji: '2️⃣' },
@@ -60,6 +63,7 @@ const categorie = [
     nome: 'Cibo',
     icona: '🍕',
     colore: '#FF8C42',
+    livello: 1,
     parole: [
       { parola: 'mela', articolo: 'la', emoji: '🍎' },
       { parola: 'pizza', articolo: 'la', emoji: '🍕' },
@@ -78,6 +82,7 @@ const categorie = [
     nome: 'Vestiti',
     icona: '👕',
     colore: '#A66CFF',
+    livello: 1,
     parole: [
       { parola: 'maglietta', articolo: 'la', emoji: '👕' },
       { parola: 'pantaloni', articolo: 'i', emoji: '👖' },
@@ -96,6 +101,7 @@ const categorie = [
     nome: 'Corpo',
     icona: '🖐️',
     colore: '#FF6B9D',
+    livello: 1,
     parole: [
       { parola: 'occhi', articolo: 'gli', emoji: '👀' },
       { parola: 'naso', articolo: 'il', emoji: '👃' },
@@ -114,6 +120,7 @@ const categorie = [
     nome: 'Famiglia',
     icona: '👨‍👩‍👧‍👦',
     colore: '#45B7D1',
+    livello: 1,
     parole: [
       { parola: 'mamma', articolo: 'la', emoji: '👩' },
       { parola: 'papà', articolo: 'il', emoji: '👨' },

@@ -27,39 +27,79 @@ export function registraStella(key) {
   return false
 }
 
-const moduli = [
-  { id: 'animali',        tipo: 'giochi/animali',        nome: 'Animali',                icona: '🐾', colore: '#FF6B6B',  totale: 12 },
-  { id: 'colori',         tipo: 'giochi/colori',         nome: 'Colori',                icona: '🎨', colore: '#4ECDC4',  totale: 10 },
-  { id: 'numeri',         tipo: 'giochi/numeri',         nome: 'Numeri',                icona: '🔢', colore: '#D68910',  totale: 10 },
-  { id: 'cibo',           tipo: 'giochi/cibo',           nome: 'Cibo',                  icona: '🍕', colore: '#FF8C42',  totale: 10 },
-  { id: 'vestiti',        tipo: 'giochi/vestiti',        nome: 'Vestiti',               icona: '👕', colore: '#A66CFF',  totale: 10 },
-  { id: 'corpo',          tipo: 'giochi/corpo',          nome: 'Corpo',                 icona: '🖐️', colore: '#FF6B9D',  totale: 10 },
-  { id: 'famiglia',       tipo: 'giochi/famiglia',       nome: 'Famiglia',              icona: '👨‍👩‍👧‍👦', colore: '#45B7D1',  totale: 10 },
-  { id: 'articoli',       tipo: 'esercizi/articoli',             nome: 'Articoli',                icona: '📝', colore: '#4ECDC4',  totale: 80 },
-  { id: 'congiunzioni',   tipo: 'esercizi/congiunzioni',         nome: 'Congiunzioni',            icona: '🔀', colore: '#E17055',  totale: 20 },
-  { id: 'preposizioni-articolate',  tipo: 'esercizi/preposizioni-articolate',  nome: 'Preposizioni Articolate',    icona: '🔗', colore: '#FF8C42',  totale: 20 },
-  { id: 'preposizioni-semplici',    tipo: 'esercizi/preposizioni-semplici',    nome: 'Preposizioni Semplici',      icona: '➡️', colore: '#6C5CE7',  totale: 20 },
-  { id: 'folletto-dei-regali',     tipo: 'storie/folletto-dei-regali',       nome: 'Il folletto dei regali',     icona: '🧝', colore: '#A66CFF',  totale: 4 },
-  { id: 'panda-pandino',            tipo: 'storie/panda-pandino',              nome: 'Panda Pandino',            icona: '🐼', colore: '#2ECC71',  totale: 4 },
-  { id: 'verbi',                    tipo: 'esercizi/verbi',                    nome: 'Verbi al Presente',        icona: '🏃', colore: '#00B894',  totale: 20 },
-  { id: 'aggettivi',                tipo: 'esercizi/aggettivi',                nome: 'Aggettivi',                icona: '🎨', colore: '#FD79A8',  totale: 20 },
-  { id: 'pronomi',                  tipo: 'esercizi/pronomi',                  nome: 'Pronomi',                  icona: '🔄', colore: '#0984E3',  totale: 20 },
-  { id: 'possessivi',               tipo: 'esercizi/possessivi',               nome: 'Possessivi',               icona: '👤', colore: '#6C5CE7',  totale: 20 },
-  { id: 'avverbi',                  tipo: 'esercizi/avverbi',                  nome: 'Avverbi di Frequenza',     icona: '⏰', colore: '#FDCB6E',  totale: 20 },
-  { id: 'passato-prossimo',         tipo: 'esercizi/passato-prossimo',        nome: 'Passato Prossimo',         icona: '⏪', colore: '#E17055',  totale: 20 },
-  { id: 'preposizioni-tempo-luogo', tipo: 'esercizi/preposizioni-tempo-luogo',nome: 'Prep. Tempo e Luogo',      icona: '📍', colore: '#00CEC9',  totale: 20 },
+const sezioni = [
+  {
+    id: 'giochi',
+    nome: 'Giochi',
+    icona: '🎮',
+    colore: '#e17055',
+    moduli: [
+      { id: 'animali',    tipo: 'giochi/animali',    nome: 'Animali',     icona: '🐾', colore: '#FF6B6B',  totale: 12, livello: 1 },
+      { id: 'colori',     tipo: 'giochi/colori',     nome: 'Colori',      icona: '🎨', colore: '#4ECDC4',  totale: 10, livello: 1 },
+      { id: 'numeri',     tipo: 'giochi/numeri',     nome: 'Numeri',      icona: '🔢', colore: '#D68910',  totale: 10, livello: 1 },
+      { id: 'cibo',       tipo: 'giochi/cibo',       nome: 'Cibo',        icona: '🍕', colore: '#FF8C42',  totale: 10, livello: 1 },
+      { id: 'vestiti',    tipo: 'giochi/vestiti',    nome: 'Vestiti',     icona: '👕', colore: '#A66CFF',  totale: 10, livello: 1 },
+      { id: 'corpo',      tipo: 'giochi/corpo',      nome: 'Corpo',       icona: '🖐️', colore: '#FF6B9D',  totale: 10, livello: 1 },
+      { id: 'famiglia',   tipo: 'giochi/famiglia',   nome: 'Famiglia',    icona: '👨‍👩‍👧‍👦', colore: '#45B7D1',  totale: 10, livello: 1 },
+      { id: 'calendario', tipo: 'giochi/calendario', nome: 'Calendario',  icona: '📅', colore: '#E17055',  totale: 4,  livello: 2 },
+      { id: 'orologio',   tipo: 'giochi/orologio',   nome: 'Orologio',    icona: '⏰', colore: '#0984E3',  totale: 12, livello: 2 },
+    ],
+  },
+  {
+    id: 'grammatica',
+    nome: 'Grammatica',
+    icona: '✍️',
+    colore: '#6c5ce7',
+    moduli: [
+      { id: 'articoli',                  tipo: 'esercizi/articoli',                  nome: 'Articoli',              icona: '📝', colore: '#4ECDC4',  totale: 72 },
+      { id: 'preposizioni-semplici',     tipo: 'esercizi/preposizioni-semplici',     nome: 'Prep. Semplici',        icona: '➡️', colore: '#6C5CE7',  totale: 20 },
+      { id: 'preposizioni-articolate',   tipo: 'esercizi/preposizioni-articolate',   nome: 'Prep. Articolate',      icona: '🔗', colore: '#FF8C42',  totale: 20 },
+      { id: 'congiunzioni',              tipo: 'esercizi/congiunzioni',              nome: 'Congiunzioni',          icona: '🔀', colore: '#E17055',  totale: 20 },
+      { id: 'verbi',                     tipo: 'esercizi/verbi',                     nome: 'Verbi al Presente',     icona: '🏃', colore: '#00B894',  totale: 20 },
+      { id: 'aggettivi',                 tipo: 'esercizi/aggettivi',                 nome: 'Aggettivi',             icona: '🎨', colore: '#FD79A8',  totale: 20 },
+      { id: 'pronomi',                   tipo: 'esercizi/pronomi',                   nome: 'Pronomi',               icona: '🔄', colore: '#0984E3',  totale: 20 },
+      { id: 'possessivi',                tipo: 'esercizi/possessivi',                nome: 'Possessivi',            icona: '👤', colore: '#6C5CE7',  totale: 20 },
+      { id: 'avverbi',                   tipo: 'esercizi/avverbi',                   nome: 'Avverbi di Frequenza',  icona: '⏰', colore: '#FDCB6E',  totale: 20 },
+      { id: 'passato-prossimo',          tipo: 'esercizi/passato-prossimo',          nome: 'Passato Prossimo',      icona: '⏪', colore: '#E17055',  totale: 20 },
+      { id: 'preposizioni-tempo-luogo',  tipo: 'esercizi/preposizioni-tempo-luogo',  nome: 'Prep. Tempo e Luogo',   icona: '📍', colore: '#00CEC9',  totale: 20 },
+    ],
+  },
+  {
+    id: 'storie',
+    nome: 'Storie',
+    icona: '📖',
+    colore: '#00b894',
+    moduli: [
+      { id: 'folletto-dei-regali', tipo: 'storie/folletto-dei-regali', nome: 'Il folletto dei regali', icona: '🧝', colore: '#A66CFF', totale: 4 },
+      { id: 'panda-pandino',      tipo: 'storie/panda-pandino',      nome: 'Panda Pandino',          icona: '🐼', colore: '#2ECC71', totale: 4 },
+    ],
+  },
 ]
 
-export function getStatisticheModuli() {
+function calcolaOttenute(tipo) {
   const chiavi = getChiaviGuadagnate()
-  return moduli.map((m) => {
-    const ottenute = chiavi.filter((k) => k.startsWith(m.tipo + '/')).length
-    return { ...m, ottenute }
-  })
+  return chiavi.filter((k) => k.startsWith(tipo + '/')).length
+}
+
+export function getSezioni() {
+  return sezioni.map((s) => ({
+    ...s,
+    moduli: s.moduli.map((m) => ({
+      ...m,
+      ottenute: calcolaOttenute(m.tipo),
+    })),
+  }))
+}
+
+export function getStatisticheModuli() {
+  return getSezioni().flatMap((s) => s.moduli)
 }
 
 export function getTotalePossibile() {
-  return moduli.reduce((sum, m) => sum + m.totale, 0)
+  return sezioni.reduce(
+    (sum, s) => sum + s.moduli.reduce((s2, m) => s2 + m.totale, 0),
+    0,
+  )
 }
 
 export function resettaStelle() {

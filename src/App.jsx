@@ -168,6 +168,7 @@ function App() {
         icona: datiCalendario.icona,
         colore: datiCalendario.colore,
         descrizione: datiCalendario.descrizione,
+        livello: 2,
       },
       {
         id: datiOrologio.id,
@@ -175,6 +176,7 @@ function App() {
         icona: datiOrologio.icona,
         colore: datiOrologio.colore,
         descrizione: datiOrologio.descrizione,
+        livello: 2,
       },
     ]
     return (
