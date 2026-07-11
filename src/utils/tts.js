@@ -20,6 +20,15 @@ export function stopAudio() {
   }
 }
 
+export function speak(testo, lingua = 'it-IT') {
+  if (!window.speechSynthesis) return
+  window.speechSynthesis.cancel()
+  const utterance = new SpeechSynthesisUtterance(testo)
+  utterance.lang = lingua
+  utterance.rate = 0.9
+  window.speechSynthesis.speak(utterance)
+}
+
 export function playStarSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)()

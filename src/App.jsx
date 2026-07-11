@@ -9,6 +9,7 @@ import CongiunzioniGame from './components/CongiunzioniGame'
 import GrammarGame from './components/GrammarGame'
 import StoriaGame from './components/StoriaGame'
 import CalendarioGame from './components/CalendarioGame'
+import OrologioGame from './components/OrologioGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import storie from './data/storie'
@@ -22,6 +23,7 @@ import esercizioPreposizioniTempoLuogo from './data/preposizioni-tempo-luogo'
 import StarsModal from './components/StarsModal'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
 import datiCalendario from './data/calendario'
+import datiOrologio from './data/orologio'
 import categorieVocabolario from './data/vocabolario'
 import { playStarSound } from './utils/tts'
 import './App.css'
@@ -139,6 +141,12 @@ function App() {
               onBack={() => setCategoria(null)}
               onStarEarned={guadagnaStella}
             />
+          ) : categoria.id === 'orologio' ? (
+            <OrologioGame
+              key="orologio"
+              onBack={() => setCategoria(null)}
+              onStarEarned={guadagnaStella}
+            />
           ) : (
             <Game
               key={categoria.id}
@@ -160,6 +168,13 @@ function App() {
         icona: datiCalendario.icona,
         colore: datiCalendario.colore,
         descrizione: datiCalendario.descrizione,
+      },
+      {
+        id: datiOrologio.id,
+        nome: datiOrologio.nome,
+        icona: datiOrologio.icona,
+        colore: datiOrologio.colore,
+        descrizione: datiOrologio.descrizione,
       },
     ]
     return (
