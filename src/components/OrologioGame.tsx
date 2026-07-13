@@ -4,6 +4,7 @@ import orologio from '../data/orologio'
 import { playMp3 } from '../utils/tts'
 import mischia from '../utils/mischia'
 import ClockIcon from './ClockIcon'
+import Riepilogo from './Riepilogo'
 
 interface Tassello {
   nome: string
@@ -46,7 +47,7 @@ function inizializzaFase(fase: number) {
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number) => void; onStarEarned: (chiave: string) => void }) {
+function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (chiave: string) => void }) {
   const init = inizializzaFase(fase)
   const [grid, setGrid] = useState<SlotGriglia[]>(init.grid)
   const [wallet, setWallet] = useState<Tassello[]>(init.wallet)
@@ -124,7 +125,13 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
       setStato('completato')
       const chiave = `giochi/orologio/${d.id}`
       onStarEarned(chiave)
-      onCompletato(fase)
+      const risultati: import('../types').RispostaQuiz[] = griglia.map(s => ({
+        domanda: s.descrizione,
+        corretta: true,
+        rispostaCorretta: s.atteso.nome,
+        rispostaData: s.valore!.nome,
+      }))
+      onCompletato(fase, risultati)
     } else {
       setStato('errato')
       setSlotErrati(errati)
@@ -251,13 +258,32 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (chiave: string) => void }) {
   const [fase, setFase] = useState(0)
   const [stelleFase, setStelleFase] = useState(new Set())
+  const [risultatiFasi, setRisultatiFasi] = useState<Map<number, import('../types').RispostaQuiz[]>>(new Map())
   const totaleFasi = orologio.domande.length
 
-  function onCompletato(faseCompletata: number) {
+  function onCompletato(faseCompletata: number, risultati: import('../types').RispostaQuiz[]) {
     setStelleFase(prev => new Set([...prev, faseCompletata]))
+    setRisultatiFasi(prev => new Map(prev).set(faseCompletata, risultati))
   }
 
   const tutteCompletate = orologio.domande.every((_, i) => stelleFase.has(i))
+
+  const tutteRisultati = Array.from(risultatiFasi.values()).flat()
+  const punteggioFinale = tutteRisultati.filter(r => r.corretta).length
+
+  if (tutteCompletate) {
+    return (
+      <Riepilogo
+        icona={orologio.icona}
+        nome={orologio.nome}
+        colore={orologio.colore}
+        punteggio={punteggioFinale}
+        totale={tutteRisultati.length}
+        risposte={tutteRisultati}
+        onBack={onBack}
+      />
+    )
+  }
 
   return (
     <div className={styles.orologioGame}>
@@ -284,17 +310,6 @@ function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarn
         onStarEarned={onStarEarned}
       />
 
-      {tutteCompletate && (
-        <div className={styles.orologioAvantiContainer}>
-          <button
-            className="btn-next"
-            style={{ background: orologio.colore }}
-            onClick={onBack}
-          >
-            🎉 Visualizza risultati →
-          </button>
-        </div>
-      )}
     </div>
   )
 }

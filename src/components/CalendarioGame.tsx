@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import calendario from '../data/calendario'
 import { playMp3 } from '../utils/tts'
 import mischia from '../utils/mischia'
+import Riepilogo from './Riepilogo'
 import styles from './CalendarioGame.module.css'
 
 function randomPreInseriti(totale: number, conteggio: number) {
@@ -42,7 +43,7 @@ function inizializzaFase(fase: number) {
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number) => void; onStarEarned: (key: string) => void }) {
+function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (key: string) => void }) {
   const init = inizializzaFase(fase)
   const [grid, setGrid] = useState(init.grid)
   const [wallet, setWallet] = useState(init.wallet)
@@ -53,6 +54,13 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
   const domanda = calendario.domande[fase]
   const abbinamento = domanda.tipo === 'abbinamento'
 
+  const nomePerValore = new Map<string, string>()
+  if (abbinamento) {
+    for (const slot of grid) {
+      nomePerValore.set(slot.atteso, slot.etichetta!)
+    }
+  }
+
   const audioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/calendario/${domanda.id}.mp3`
 
   useEffect(() => {
@@ -61,7 +69,16 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 
   function cliccaTassello(indiceWallet: number) {
     if (stato !== 'gioco') return
-    setSelezionato(prev => prev === indiceWallet ? null : indiceWallet)
+    setSelezionato(prev => {
+      const nuovoSelezionato = prev === indiceWallet ? null : indiceWallet
+      if (nuovoSelezionato !== null) {
+        const valore = wallet[nuovoSelezionato]
+        const nome = nomePerValore.get(valore) ?? valore
+        const tileAudioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/calendario/${nome}.mp3`
+        playMp3(tileAudioPath)
+      }
+      return nuovoSelezionato
+    })
   }
 
   function cliccaSlot(indiceSlot: number) {
@@ -114,7 +131,13 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
       setStato('completato')
       const chiave = `giochi/calendario/${d.id}`
       onStarEarned(chiave)
-      onCompletato(fase)
+      const risultati: import('../types').RispostaQuiz[] = griglia.map(s => ({
+        domanda: s.etichetta ?? s.atteso,
+        corretta: true,
+        rispostaCorretta: s.atteso,
+        rispostaData: s.valore!,
+      }))
+      onCompletato(fase, risultati)
     } else {
       setStato('errato')
       setSlotErrati(errati)
@@ -245,10 +268,12 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (key: string) => void }) {
   const [fase, setFase] = useState(0)
   const [stelleFase, setStelleFase] = useState(new Set())
+  const [risultatiFasi, setRisultatiFasi] = useState<Map<number, import('../types').RispostaQuiz[]>>(new Map())
   const totaleFasi = calendario.domande.length
 
-  function onCompletato(faseCompletata: number) {
+  function onCompletato(faseCompletata: number, risultati: import('../types').RispostaQuiz[]) {
     setStelleFase(prev => new Set([...prev, faseCompletata]))
+    setRisultatiFasi(prev => new Map(prev).set(faseCompletata, risultati))
   }
 
   function vaiFase(i: number) {
@@ -266,6 +291,23 @@ function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEa
   }
 
   const tutteCompletate = calendario.domande.every((_, i) => stelleFase.has(i))
+
+  const tutteRisultati = Array.from(risultatiFasi.values()).flat()
+  const punteggioFinale = tutteRisultati.filter(r => r.corretta).length
+
+  if (tutteCompletate) {
+    return (
+      <Riepilogo
+        icona={calendario.icona}
+        nome={calendario.nome}
+        colore={calendario.colore}
+        punteggio={punteggioFinale}
+        totale={tutteRisultati.length}
+        risposte={tutteRisultati}
+        onBack={onBack}
+      />
+    )
+  }
 
   return (
     <div className={styles.calendarioGame}>
@@ -291,18 +333,6 @@ function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEa
         onCompletato={onCompletato}
         onStarEarned={onStarEarned}
       />
-
-      {tutteCompletate && (
-        <div className={styles.calendarioAvantiContainer}>
-          <button
-            className="btn-next"
-            style={{ background: calendario.colore }}
-            onClick={onBack}
-          >
-            🎉 Visualizza risultati →
-          </button>
-        </div>
-      )}
 
       {!tutteCompletate && (
         <div className={styles.calendarioNavContainer}>
