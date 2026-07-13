@@ -47,7 +47,7 @@ function inizializzaFase(fase: number) {
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (chiave: string) => void }) {
+function FaseGame({ fase, onCompletato, onProsegui, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onProsegui: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (chiave: string) => void }) {
   const init = inizializzaFase(fase)
   const [grid, setGrid] = useState<SlotGriglia[]>(init.grid)
   const [wallet, setWallet] = useState<Tassello[]>(init.wallet)
@@ -111,7 +111,6 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
   }
 
   function controlla(griglia: SlotGriglia[]) {
-    const d = orologio.domande[fase]
     const errati = new Set<number>()
     let ok = true
     griglia.forEach((s: SlotGriglia, i: number) => {
@@ -123,15 +122,8 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 
     if (ok) {
       setStato('completato')
-      const chiave = `giochi/orologio/${d.id}`
+      const chiave = `giochi/orologio/${orologio.domande[fase].id}`
       onStarEarned(chiave)
-      const risultati: import('../types').RispostaQuiz[] = griglia.map(s => ({
-        domanda: s.descrizione,
-        corretta: true,
-        rispostaCorretta: s.atteso.nome,
-        rispostaData: s.valore!.nome,
-      }))
-      onCompletato(fase, risultati)
     } else {
       setStato('errato')
       setSlotErrati(errati)
@@ -212,11 +204,20 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
         ))}
       </div>
 
-      {stato === 'errato' && (
-        <div className={`${styles.orologioFeedback} ${styles.orologioFeedbackErrato}`}>
-          ❌ Alcuni tasselli non sono nella posizione giusta. Clicca quelli evidenziati per correggerli.
-        </div>
-      )}
+      <button
+        className="btn btn-riprova"
+        onClick={() => {
+          const risultati: import('../types').RispostaQuiz[] = grid.map(s => ({
+            domanda: s.descrizione,
+            corretta: s.valore?.nome === s.atteso.nome,
+            rispostaCorretta: s.atteso.nome,
+            rispostaData: s.valore?.nome ?? '',
+          }))
+          onProsegui(fase, risultati)
+        }}
+      >
+        Avanti →
+      </button>
 
       {wallet.length > 0 && stato !== 'completato' && (
         <div className={styles.orologioWallet} onDragOver={handleDragOver}>
@@ -245,28 +246,26 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
           <p>Ottimo! Hai completato &quot;{domanda.titolo}&quot;!</p>
         </div>
       )}
-
-      {stato === 'gioco' && wallet.length === 0 && grid.every(s => s.valore !== null) && (
-        <div className={`${styles.orologioFeedback} ${styles.orologioFeedbackCorretto}`}>
-          ✅ Controllo in corso...
-        </div>
-      )}
     </div>
   )
 }
 
 function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (chiave: string) => void }) {
   const [fase, setFase] = useState(0)
-  const [stelleFase, setStelleFase] = useState(new Set())
+  const [fasiCompletate, setFasiCompletate] = useState(new Set())
   const [risultatiFasi, setRisultatiFasi] = useState<Map<number, import('../types').RispostaQuiz[]>>(new Map())
   const totaleFasi = orologio.domande.length
 
   function onCompletato(faseCompletata: number, risultati: import('../types').RispostaQuiz[]) {
-    setStelleFase(prev => new Set([...prev, faseCompletata]))
     setRisultatiFasi(prev => new Map(prev).set(faseCompletata, risultati))
+    setFasiCompletate(prev => new Set([...prev, faseCompletata]))
   }
 
-  const tutteCompletate = orologio.domande.every((_, i) => stelleFase.has(i))
+  function avanzaFase() {
+    setFase(prev => prev + 1)
+  }
+
+  const tutteCompletate = fasiCompletate.size >= totaleFasi
 
   const tutteRisultati = Array.from(risultatiFasi.values()).flat()
   const punteggioFinale = tutteRisultati.filter(r => r.corretta).length
@@ -295,8 +294,7 @@ function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarn
           {orologio.domande.map((d, i) => (
             <span
               key={d.id}
-              className={`${styles.orologioDot} ${i === fase ? styles.attivo : ''} ${stelleFase.has(i) ? styles.completato : ''}`}
-              onClick={() => setFase(i)}
+              className={`${styles.orologioDot} ${i === fase ? styles.attivo : ''} ${fasiCompletate.has(i) ? styles.completato : ''}`}
             />
           ))}
         </div>
@@ -307,9 +305,9 @@ function OrologioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarn
         key={fase}
         fase={fase}
         onCompletato={onCompletato}
+        onProsegui={(_f, risultati) => { onCompletato(fase, risultati); avanzaFase() }}
         onStarEarned={onStarEarned}
       />
-
     </div>
   )
 }

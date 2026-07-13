@@ -43,7 +43,7 @@ function inizializzaFase(fase: number) {
   }
 }
 
-function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (key: string) => void }) {
+function FaseGame({ fase, onCompletato, onProsegui, onStarEarned }: { fase: number; onCompletato: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onProsegui: (fase: number, risultati: import('../types').RispostaQuiz[]) => void; onStarEarned: (key: string) => void }) {
   const init = inizializzaFase(fase)
   const [grid, setGrid] = useState(init.grid)
   const [wallet, setWallet] = useState(init.wallet)
@@ -225,9 +225,25 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
       </div>
 
       {stato === 'errato' && (
-        <div className={`${styles.calendarioFeedback} ${styles.calendarioFeedbackErrato}`}>
-          ❌ Alcuni tasselli non sono nella posizione giusta. Clicca quelli evidenziati per correggerli.
-        </div>
+        <>
+          <div className={`${styles.calendarioFeedback} ${styles.calendarioFeedbackErrato}`}>
+            ❌ Alcuni tasselli non sono nella posizione giusta. Clicca quelli evidenziati per correggerli.
+          </div>
+          <button
+            className="btn btn-riprova"
+            onClick={() => {
+              const risultati: import('../types').RispostaQuiz[] = grid.map(s => ({
+                domanda: s.etichetta ?? s.atteso,
+                corretta: s.valore === s.atteso,
+                rispostaCorretta: s.atteso,
+                rispostaData: s.valore ?? '',
+              }))
+              onProsegui(fase, risultati)
+            }}
+          >
+            Procedi →
+          </button>
+        </>
       )}
 
       {wallet.length > 0 && stato !== 'completato' && (
@@ -267,30 +283,46 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 
 function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEarned: (key: string) => void }) {
   const [fase, setFase] = useState(0)
-  const [stelleFase, setStelleFase] = useState(new Set())
+  const [fasiCompletate, setFasiCompletate] = useState(new Set())
   const [risultatiFasi, setRisultatiFasi] = useState<Map<number, import('../types').RispostaQuiz[]>>(new Map())
   const totaleFasi = calendario.domande.length
 
   function onCompletato(faseCompletata: number, risultati: import('../types').RispostaQuiz[]) {
-    setStelleFase(prev => new Set([...prev, faseCompletata]))
     setRisultatiFasi(prev => new Map(prev).set(faseCompletata, risultati))
+    setFasiCompletate(prev => new Set([...prev, faseCompletata]))
+  }
+
+  function registraRisultatiFase(faseDaRegistrare: number) {
+    if (fasiCompletate.has(faseDaRegistrare) || risultatiFasi.has(faseDaRegistrare)) return
+    const d = calendario.domande[faseDaRegistrare]
+    const risultati: import('../types').RispostaQuiz[] = d.tasselli.map(t => ({
+      domanda: typeof t === 'string' ? t : (t as { nome: string }).nome ?? t as string,
+      corretta: false,
+      rispostaCorretta: typeof t === 'string' ? t : (t as { nome: string; simbolo: string }).simbolo,
+      rispostaData: '',
+    }))
+    setRisultatiFasi(prev => new Map(prev).set(faseDaRegistrare, risultati))
+    setFasiCompletate(prev => new Set([...prev, faseDaRegistrare]))
   }
 
   function vaiFase(i: number) {
+    registraRisultatiFase(fase)
     setFase(i)
   }
 
   function prossimaFase() {
     if (fase + 1 >= totaleFasi) return
+    registraRisultatiFase(fase)
     setFase(prev => prev + 1)
   }
 
   function fasePrecedente() {
     if (fase <= 0) return
+    registraRisultatiFase(fase)
     setFase(prev => prev - 1)
   }
 
-  const tutteCompletate = calendario.domande.every((_, i) => stelleFase.has(i))
+  const tutteCompletate = fasiCompletate.size >= totaleFasi
 
   const tutteRisultati = Array.from(risultatiFasi.values()).flat()
   const punteggioFinale = tutteRisultati.filter(r => r.corretta).length
@@ -319,7 +351,7 @@ function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEa
           {calendario.domande.map((d, i) => (
             <span
               key={d.id}
-              className={`${styles.calendarioDot}${i === fase ? ` ${styles.attivo}` : ''}${stelleFase.has(i) ? ` ${styles.completato}` : ''}`}
+              className={`${styles.calendarioDot}${i === fase ? ` ${styles.attivo}` : ''}${fasiCompletate.has(i) ? ` ${styles.completato}` : ''}`}
               onClick={() => vaiFase(i)}
             />
           ))}
@@ -331,28 +363,27 @@ function CalendarioGame({ onBack, onStarEarned }: { onBack: () => void; onStarEa
         key={fase}
         fase={fase}
         onCompletato={onCompletato}
+        onProsegui={onCompletato}
         onStarEarned={onStarEarned}
       />
 
-      {!tutteCompletate && (
-        <div className={styles.calendarioNavContainer}>
-          <button
-            className={styles.calendarioNavBtn}
-            disabled={fase === 0}
-            onClick={fasePrecedente}
-          >
-            ← Precedente
-          </button>
-          <span className={styles.calendarioNavCounter}>{fase + 1} / {totaleFasi}</span>
-          <button
-            className={styles.calendarioNavBtn}
-            disabled={fase === totaleFasi - 1}
-            onClick={prossimaFase}
-          >
-            Successivo →
-          </button>
-        </div>
-      )}
+      <div className={styles.calendarioNavContainer}>
+        <button
+          className={styles.calendarioNavBtn}
+          disabled={fase === 0}
+          onClick={fasePrecedente}
+        >
+          ← Precedente
+        </button>
+        <span className={styles.calendarioNavCounter}>{fase + 1} / {totaleFasi}</span>
+        <button
+          className={styles.calendarioNavBtn}
+          disabled={fase === totaleFasi - 1}
+          onClick={prossimaFase}
+        >
+          Successivo →
+        </button>
+      </div>
     </div>
   )
 }
