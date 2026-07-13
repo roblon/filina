@@ -1,0 +1,169 @@
+.risultatiScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.risultatiCard {
+  text-align: center;
+  padding: 48px 40px;
+  border-radius: 32px;
+  background: white;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.risultatiIcona {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.risultatiCard h2 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  color: #2d3436;
+}
+
+.risultatiTesto {
+  font-size: 18px;
+  color: #636e72;
+  margin: 0 0 24px;
+}
+
+.punteggioFinale {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.punteggioNumero {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--cat-color, #00b894);
+  line-height: 1;
+}
+
+.punteggioDiv {
+  font-size: 36px;
+  color: #b2bec3;
+}
+
+.punteggioTotale {
+  font-size: 36px;
+  font-weight: 600;
+  color: #b2bec3;
+}
+
+.risultatiAzioni {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.riepilogoLista {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.riepilogoRiga {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.riepilogoRiga.giusta {
+  background: #e6fff8;
+  color: #00b894;
+}
+
+.riepilogoRiga.sbagliata {
+  background: #fff0f0;
+}
+
+.riepilogoIcona {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.riepilogoDomanda {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.riepilogoCorrezione {
+  font-size: 13px;
+  color: #636e72;
+  font-weight: 500;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .risultatiScreen {
+    padding: 10px;
+  }
+
+  .risultatiCard {
+    padding: 24px 16px;
+  }
+
+  .risultatiIcona {
+    font-size: 40px;
+    margin-bottom: 4px;
+  }
+
+  .risultatiCard h2 {
+    font-size: 22px;
+  }
+
+  .risultatiTesto {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .punteggioFinale {
+    margin-bottom: 20px;
+  }
+
+  .punteggioNumero {
+    font-size: 44px;
+  }
+
+  .punteggioDiv,
+  .punteggioTotale {
+    font-size: 22px;
+  }
+
+  .risultatiAzioni {
+    gap: 8px;
+  }
+
+  .riepilogoLista {
+    max-height: 160px;
+  }
+
+  .riepilogoRiga {
+    font-size: 12px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}

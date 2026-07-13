@@ -1,0 +1,342 @@
+.orologioGame {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.orologioHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.orologioProgressDots {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.orologioDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.orologioDot.attivo {
+  background: #0984E3;
+  transform: scale(1.3);
+}
+
+.orologioDot.completato {
+  background: #00b894;
+}
+
+.orologioFaseLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: #636e72;
+  white-space: nowrap;
+}
+
+.orologioArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 40px;
+  gap: 20px;
+}
+
+.orologioDomanda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.orologioDomandaIcona {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.orologioDomandaTesto {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0;
+  max-width: 400px;
+}
+
+.orologioGriglia {
+  display: grid;
+  grid-template-columns: repeat(var(--num-colonne, 4), 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.orologioSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 10px 8px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+  user-select: none;
+}
+
+.orologioSlot.bloccato {
+  background: #f0f0f0;
+  border: 2px solid #ddd;
+  color: #636e72;
+  cursor: default;
+}
+
+.orologioSlot.vuoto {
+  background: #fafafa;
+  border: 2px dashed #ccc;
+  color: #b2bec3;
+  cursor: pointer;
+}
+
+.orologioSlot.vuoto:hover {
+  border-color: #b0b0b0;
+  background: #f0f0f0;
+}
+
+.orologioSlot.pronto {
+  border-color: #0984E3;
+  background: #e3f2fd;
+  animation: pulse-blue 1s infinite;
+}
+
+.orologioSlot.pieno {
+  background: #e6fff8;
+  border: 2px solid #00b894;
+  color: #2d3436;
+  cursor: pointer;
+}
+
+.orologioSlot.errato {
+  background: #fff0f0;
+  border: 2px solid #ff7675;
+  color: #d63031;
+  animation: shake 0.4s ease;
+}
+
+.orologioSlotValore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.orologioSlotEtichetta {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-top: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.orologioWallet {
+  width: 100%;
+  max-width: 560px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.orologioWalletLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #636e72;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.orologioTasselli {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.orologioTassello {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  cursor: grab;
+  transition: all 0.15s;
+  user-select: none;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orologioTasselloWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.orologioTasselloDescrizione {
+  font-size: 11px;
+  color: #636e72;
+  font-style: italic;
+  text-align: center;
+}
+
+.orologioTassello:hover {
+  border-color: #b0b0b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.orologioTassello:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.orologioTassello.selezionato {
+  border-color: #0984E3;
+  background: #e3f2fd;
+  box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.3);
+  transform: translateY(-2px);
+}
+
+.orologioFeedback {
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  animation: fadeIn 0.3s ease;
+  max-width: 400px;
+}
+
+.orologioFeedbackErrato {
+  background: #fff0f0;
+  color: #d63031;
+}
+
+.orologioFeedbackCorretto {
+  background: #e6fff8;
+  color: #00b894;
+}
+
+.orologioSuccesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #e6fff8;
+  animation: fadeIn 0.4s ease;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.orologioSuccessoIcona {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.orologioSuccesso p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00b894;
+  margin: 0;
+}
+
+.orologioAvantiContainer {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 24px;
+}
+
+@media (max-width: 480px) {
+  .orologioHeader {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .orologioDot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .orologioFaseLabel {
+    font-size: 12px;
+  }
+
+  .orologioArea {
+    padding: 12px 10px 24px;
+    gap: 12px;
+  }
+
+  .orologioDomandaIcona {
+    font-size: 32px;
+  }
+
+  .orologioDomandaTesto {
+    font-size: 16px;
+  }
+
+  .orologioGriglia {
+    gap: 6px;
+  }
+
+  .orologioSlot {
+    min-height: 80px;
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  .orologioSlotEtichetta {
+    font-size: 11px;
+  }
+
+  .orologioTassello {
+    padding: 8px 14px;
+  }
+
+  .orologioTasselloDescrizione {
+    font-size: 9px;
+  }
+
+  .orologioSuccesso {
+    padding: 16px;
+  }
+
+  .orologioSuccessoIcona {
+    font-size: 36px;
+  }
+
+  .orologioSuccesso p {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,61 @@
+.placeholderScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.placeholderCard {
+  text-align: center;
+  padding: 48px 40px;
+  border-radius: 32px;
+  background: white;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+.placeholderIcona {
+  font-size: 72px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.placeholderCard h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+  color: #2d3436;
+}
+
+.placeholderCard p {
+  font-size: 16px;
+  color: #636e72;
+  line-height: 1.5;
+  margin: 0 0 32px;
+}
+
+@media (max-width: 480px) {
+  .placeholderScreen {
+    padding: 10px;
+  }
+
+  .placeholderCard {
+    padding: 24px 16px;
+  }
+
+  .placeholderIcona {
+    font-size: 44px;
+    margin-bottom: 10px;
+  }
+
+  .placeholderCard h2 {
+    font-size: 20px;
+  }
+
+  .placeholderCard p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}

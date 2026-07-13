@@ -1,0 +1,59 @@
+.starsCounter {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 100px;
+  border: none;
+  background: linear-gradient(135deg, #e65100, #bf360c);
+  box-shadow: 0 6px 24px rgba(191, 54, 12, 0.5);
+  z-index: 100;
+  animation: starPop 0.4s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.starsCounter:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(191, 54, 12, 0.7);
+}
+
+.starsCounter:active {
+  transform: scale(0.95);
+}
+
+.starsIcon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.starsCount {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  min-width: 28px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+  .starsCounter {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 14px;
+    gap: 6px;
+    box-shadow: 0 4px 16px rgba(191, 54, 12, 0.4);
+  }
+
+  .starsIcon {
+    font-size: 22px;
+  }
+
+  .starsCount {
+    font-size: 18px;
+    min-width: 20px;
+  }
+}
