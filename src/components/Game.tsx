@@ -33,7 +33,7 @@ function Game({ categoria, onBack, onStarEarned }: GameProps) {
   const [opzioni, setOpzioni] = useState<Parola[]>(() => generaOpzioni(parole, 0))
   const [risposte, setRisposte] = useState<RispostaQuiz[]>([])
 
-  const modalita = Math.floor(indice / 5) % 2 === 0 ? 'parola-emoji' : 'emoji-parola'
+  const modalita = categoria.soloTesto ? 'emoji-parola' : Math.floor(indice / 5) % 2 === 0 ? 'parola-emoji' : 'emoji-parola'
   const parolaCorrente = parole[indice]
   const ultimoIndiceParlato = useRef(-1)
   const audioPath = `${import.meta.env.BASE_URL}assets/audio/giochi/${categoria.id}/${parolaCorrente.parola}.mp3`

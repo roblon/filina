@@ -11,6 +11,7 @@ export interface CategoriaVocabolario {
   colore: string
   livello?: number
   descrizione?: string
+  soloTesto?: boolean
   parole: Parola[]
 }
 

@@ -121,6 +121,7 @@ const categorie = [
     icona: '👨‍👩‍👧‍👦',
     colore: '#45B7D1',
     livello: 1,
+    soloTesto: true,
     parole: [
       { parola: 'mamma', articolo: 'la', emoji: '👩' },
       { parola: 'papà', articolo: 'il', emoji: '👨' },
