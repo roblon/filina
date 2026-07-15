@@ -43,7 +43,7 @@ const sezioni: SezioneStelle[] = [
       { id: 'vestiti',    nome: 'Vestiti',     icona: '👕', colore: '#A66CFF',  totale: 10, livello: 1 },
       { id: 'corpo',      nome: 'Corpo',       icona: '🖐️', colore: '#FF6B9D',  totale: 10, livello: 1 },
       { id: 'famiglia',   nome: 'Famiglia',    icona: '👨‍👩‍👧‍👦', colore: '#45B7D1',  totale: 10, livello: 1 },
-      { id: 'calendario', nome: 'Calendario',  icona: '📅', colore: '#E17055',  totale: 4,  livello: 2 },
+      { id: 'calendario', nome: 'Calendario',  icona: '📅', colore: '#E17055',  totale: 8,  livello: 2 },
       { id: 'orologio',   nome: 'Orologio',    icona: '⏰', colore: '#0984E3',  totale: 12, livello: 2 },
     ],
   },

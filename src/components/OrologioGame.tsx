@@ -123,8 +123,9 @@ function FaseGame({ fase, onCompletato, onStarEarned }: { fase: number; onComple
 
     if (ok) {
       setStato('completato')
-      const chiave = `giochi/orologio/${d.id}`
-      onStarEarned(chiave)
+      for (let i = 1; i <= 12; i++) {
+        onStarEarned(`giochi/orologio/${d.id}-${i}`)
+      }
       const risultati: import('../types').RispostaQuiz[] = griglia.map(s => ({
         domanda: s.descrizione,
         corretta: true,
