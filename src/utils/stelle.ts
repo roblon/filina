@@ -45,6 +45,7 @@ const sezioni: SezioneStelle[] = [
       { id: 'famiglia',   nome: 'Famiglia',    icona: '👨‍👩‍👧‍👦', colore: '#45B7D1',  totale: 10, livello: 1 },
       { id: 'calendario', nome: 'Calendario',  icona: '📅', colore: '#E17055',  totale: 8,  livello: 2 },
       { id: 'orologio',   nome: 'Orologio',    icona: '⏰', colore: '#0984E3',  totale: 12, livello: 2 },
+      { id: 'dita',       nome: 'Dita',        icona: '🖐️', colore: '#FF6B9D',  totale: 2,  livello: 2 },
     ],
   },
   {

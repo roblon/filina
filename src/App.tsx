@@ -10,6 +10,7 @@ import esercizioPreposizioniSemplici from './data/preposizioni-semplici'
 import StoriaGame from './components/StoriaGame'
 import CalendarioGame from './components/CalendarioGame'
 import OrologioGame from './components/OrologioGame'
+import DitaGame from './components/DitaGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import StarsModal from './components/StarsModal'
@@ -24,6 +25,7 @@ import esercizioPreposizioniTempoLuogo from './data/preposizioni-tempo-luogo'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
 import datiCalendario from './data/calendario'
 import datiOrologio from './data/orologio'
+import datiDita from './data/dita'
 import categorieVocabolario from './data/vocabolario'
 import { playStarSound } from './utils/tts'
 import type { CategoriaEsercizio, Storia } from './types'
@@ -84,6 +86,7 @@ function App() {
         ...categorieVocabolario,
         { id: datiCalendario.id, nome: datiCalendario.nome, icona: datiCalendario.icona, colore: datiCalendario.colore, descrizione: datiCalendario.descrizione, livello: 2 },
         { id: datiOrologio.id, nome: datiOrologio.nome, icona: datiOrologio.icona, colore: datiOrologio.colore, descrizione: datiOrologio.descrizione, livello: 2 },
+        { id: datiDita.id, nome: datiDita.nome, icona: datiDita.icona, colore: datiDita.colore, descrizione: datiDita.descrizione, livello: 2 },
       ]
       content = <Home categorie={categorieGiochi} onStart={(c) => setCategoria(c)} onBackToMenu={backToMenu} icona="📖" titolo="Vocabolario" sottotitolo="Scegli un argomento per imparare nuove parole" />
     } else if (tema === 'storie') {
@@ -98,6 +101,8 @@ function App() {
       content = <CalendarioGame onBack={onBack} onStarEarned={onStarEarned} />
     } else if (categoria.id === 'orologio') {
       content = <OrologioGame onBack={onBack} onStarEarned={onStarEarned} />
+    } else if (categoria.id === 'dita') {
+      content = <DitaGame onBack={onBack} onStarEarned={onStarEarned} />
     } else {
       content = <Game key={categoria.id} categoria={categoria as import('./types').CategoriaVocabolario} onBack={onBack} onStarEarned={onStarEarned} />
     }
