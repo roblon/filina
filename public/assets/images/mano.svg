@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" width="160" height="144">
+  <!-- Pollice -->
+  <ellipse cx="35" cy="140" rx="15" ry="25" fill="#FFDAB9" stroke="#D2691E" stroke-width="2" transform="rotate(-20 35 140)"/>
+  
+  <!-- Indice -->
+  <ellipse cx="55" cy="80" rx="12" ry="35" fill="#FFDAB9" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Medio -->
+  <ellipse cx="85" cy="60" rx="12" ry="40" fill="#FFDAB9" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Anulare -->
+  <ellipse cx="115" cy="70" rx="12" ry="35" fill="#FFDAB9" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Mignolo -->
+  <ellipse cx="145" cy="90" rx="10" ry="30" fill="#FFDAB9" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Unghie -->
+  <ellipse cx="55" cy="50" rx="8" ry="12" fill="#FFE4E1" stroke="#FFB6C1" stroke-width="1"/>
+  <ellipse cx="85" cy="25" rx="8" ry="12" fill="#FFE4E1" stroke="#FFB6C1" stroke-width="1"/>
+  <ellipse cx="115" cy="40" rx="8" ry="12" fill="#FFE4E1" stroke="#FFB6C1" stroke-width="1"/>
+  <ellipse cx="145" cy="65" rx="7" ry="10" fill="#FFE4E1" stroke="#FFB6C1" stroke-width="1"/>
+  <ellipse cx="35" cy="120" rx="8" ry="12" fill="#FFE4E1" stroke="#FFB6C1" stroke-width="1" transform="rotate(-20 35 120)"/>
+</svg>

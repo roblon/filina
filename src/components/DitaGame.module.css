@@ -1,0 +1,391 @@
+.ditaGame {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.ditaHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.ditaProgressDots {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.ditaDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.ditaDot.attivo {
+  background: #FF6B9D;
+  transform: scale(1.3);
+}
+
+.ditaDot.completato {
+  background: #00b894;
+}
+
+.ditaFaseLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: #636e72;
+  white-space: nowrap;
+}
+
+.ditaArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px 24px;
+  gap: 12px;
+}
+
+.ditaDomanda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.ditaDomandaIcona {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.ditaDomandaTesto {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0;
+  max-width: 400px;
+}
+
+.ditaContainer {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.ditaImmagineWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+}
+
+.ditaImmagine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ditaSlot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 80px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+  user-select: none;
+  z-index: 2;
+}
+
+.ditaSlot.bloccato {
+  background: #f0f0f0;
+  border: 2px solid #ddd;
+  color: #636e72;
+  cursor: default;
+}
+
+.ditaSlot.vuoto {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px dashed #ccc;
+  color: #b2bec3;
+  cursor: pointer;
+}
+
+.ditaSlot.vuoto:hover {
+  border-color: #b0b0b0;
+  background: rgba(240, 240, 240, 0.95);
+}
+
+.ditaSlot.pronto {
+  border-color: #FF6B9D;
+  background: rgba(255, 245, 240, 0.95);
+  animation: pulse 1s infinite;
+}
+
+.ditaSlot.pieno {
+  background: rgba(230, 255, 248, 0.95);
+  border: 2px solid #00b894;
+  color: #2d3436;
+  cursor: pointer;
+}
+
+.ditaSlot.errato {
+  background: rgba(255, 240, 240, 0.95);
+  border: 2px solid #ff7675;
+  color: #d63031;
+  animation: shake 0.4s ease;
+}
+
+.ditaSlotValore {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2d3436;
+  line-height: 1.2;
+}
+
+.ditaSlotPlaceholder {
+  font-size: 16px;
+  font-weight: 700;
+  color: #b2bec3;
+}
+
+.ditaWallet {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.ditaWalletLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #636e72;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.ditaTasselli {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ditaTassello {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3436;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.ditaTassello:hover {
+  border-color: #b0b0b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ditaTassello:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.ditaTassello.selezionato {
+  border-color: #FF6B9D;
+  background: #fff5f0;
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.3);
+  transform: translateY(-2px);
+}
+
+.ditaFeedback {
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  animation: fadeIn 0.3s ease;
+  max-width: 400px;
+}
+
+.ditaFeedbackErrato {
+  background: #fff0f0;
+  color: #d63031;
+}
+
+.ditaFeedbackCorretto {
+  background: #e6fff8;
+  color: #00b894;
+}
+
+.ditaSuccesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #e6fff8;
+  animation: fadeIn 0.4s ease;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.ditaSuccessoIcona {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.ditaSuccesso p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00b894;
+  margin: 0;
+}
+
+.ditaNavContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px 24px;
+}
+
+.ditaNavBtn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3436;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.ditaNavBtn:hover:not(:disabled) {
+  border-color: #FF6B9D;
+  background: #fff5f0;
+}
+
+.ditaNavBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ditaNavCounter {
+  font-size: 14px;
+  font-weight: 700;
+  color: #636e72;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .ditaHeader {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .ditaDot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .ditaFaseLabel {
+    font-size: 12px;
+  }
+
+  .ditaArea {
+    padding: 12px 10px 24px;
+    gap: 12px;
+  }
+
+  .ditaDomandaIcona {
+    font-size: 32px;
+  }
+
+  .ditaDomandaTesto {
+    font-size: 16px;
+  }
+
+  .ditaSlot {
+    min-width: 60px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .ditaSlotValore {
+    font-size: 11px;
+  }
+
+  .ditaTassello {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .ditaSuccesso {
+    padding: 16px;
+  }
+
+  .ditaSuccessoIcona {
+    font-size: 36px;
+  }
+
+  .ditaSuccesso p {
+    font-size: 15px;
+  }
+
+  .ditaNavContainer {
+    padding: 0 10px 16px;
+    gap: 8px;
+  }
+
+  .ditaNavBtn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .ditaNavCounter {
+    font-size: 12px;
+  }
+}
