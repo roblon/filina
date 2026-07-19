@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ThemeMenu from './components/ThemeMenu'
 import Home from './components/Home'
 import Game from './components/Game'
@@ -14,6 +14,7 @@ import DitaGame from './components/DitaGame'
 import Placeholder from './components/Placeholder'
 import StarsCounter from './components/StarsCounter'
 import StarsModal from './components/StarsModal'
+import UserMenu from './components/UserMenu'
 import storie from './data/storie'
 import esercizioVerbi from './data/verbi'
 import esercizioAggettivi from './data/aggettivi'
@@ -23,12 +24,14 @@ import esercizioAvverbi from './data/avverbi'
 import esercizioPassatoProssimo from './data/passato-prossimo'
 import esercizioPreposizioniTempoLuogo from './data/preposizioni-tempo-luogo'
 import { getChiaviGuadagnate, registraStella } from './utils/stelle'
+import { getUserProfile, saveUserProfile } from './utils/userProfile'
+import { setAudioEnabled } from './utils/tts'
 import datiCalendario from './data/calendario'
 import datiOrologio from './data/orologio'
 import datiDita from './data/dita'
 import categorieVocabolario from './data/vocabolario'
 import { playStarSound } from './utils/tts'
-import type { CategoriaEsercizio, Storia } from './types'
+import type { CategoriaEsercizio, Storia, UserProfile } from './types'
 import './shared.css'
 
 const categorieEsercizi: CategoriaEsercizio[] = [
@@ -64,6 +67,11 @@ function App() {
   const [categoria, setCategoria] = useState<CategoriaEsercizio | Storia | null>(null)
   const [stelle, setStelle] = useState(() => getChiaviGuadagnate().length)
   const [mostraModaleStelle, setMostraModaleStelle] = useState(false)
+  const [userProfile, setUserProfile] = useState<UserProfile>(() => getUserProfile())
+
+  useEffect(() => {
+    setAudioEnabled(userProfile.disableAudio === false)
+  }, [userProfile.disableAudio])
 
   function guadagnaStella(domandaKey: string) {
     if (registraStella(domandaKey)) {
@@ -75,6 +83,11 @@ function App() {
   const onBack = () => setCategoria(null)
   const onStarEarned = guadagnaStella
   const backToMenu = () => { setTema(null); setCategoria(null) }
+
+  function handleSaveProfile(profile: UserProfile) {
+    setUserProfile(profile)
+    saveUserProfile(profile)
+  }
 
   let content: React.ReactNode
 
@@ -136,6 +149,7 @@ function App() {
 
   return (
     <>
+      <UserMenu profile={userProfile} onSave={handleSaveProfile} lowered={tema === 'giochi' && !!categoria} />
       {content}
       <StarsCounter count={stelle} onClick={() => setMostraModaleStelle(true)} />
       {mostraModaleStelle && (

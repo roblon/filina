@@ -1,6 +1,13 @@
 let audioCorrente: HTMLAudioElement | null = null
+let audioEnabled = true
+
+export function setAudioEnabled(enabled: boolean): void {
+  audioEnabled = enabled
+  if (!enabled) stopAudio()
+}
 
 export function playMp3(path: string): void {
+  if (!audioEnabled) return
   if (audioCorrente) {
     audioCorrente.pause()
     audioCorrente.currentTime = 0
@@ -21,7 +28,7 @@ export function stopAudio(): void {
 }
 
 export function speak(testo: string, lingua = 'it-IT'): void {
-  if (!window.speechSynthesis) return
+  if (!audioEnabled || !window.speechSynthesis) return
   window.speechSynthesis.cancel()
   const utterance = new SpeechSynthesisUtterance(testo)
   utterance.lang = lingua
@@ -30,6 +37,7 @@ export function speak(testo: string, lingua = 'it-IT'): void {
 }
 
 export function playStarSound(): void {
+  if (!audioEnabled) return
   try {
     const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
     const ctx = new AudioContextClass()

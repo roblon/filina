@@ -52,6 +52,12 @@ export interface RispostaQuiz {
   valoreSbagliato?: string | null
 }
 
+export interface UserProfile {
+  name: string
+  avatar: string
+  disableAudio: boolean
+}
+
 export interface CategoriaEsercizio {
   id: string
   nome: string
